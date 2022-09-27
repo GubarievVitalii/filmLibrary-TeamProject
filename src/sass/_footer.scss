@@ -1,0 +1,31 @@
+
+.section.footer {
+    height: 77;
+    background-color:  #F7F7F7;
+}
+
+.container.footer {
+    display: flex;
+    flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+padding-top: 30px;
+padding-bottom: 30px;
+}
+
+.coperite {
+    margin-right: 10px;
+    color: #545454;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    @include font(400, 16px, 19px, 0.02em);
+}
+
+.icon-love {
+    margin-right: 10px;
+    fill: #FF6B08;
+}
+
+
+
+
