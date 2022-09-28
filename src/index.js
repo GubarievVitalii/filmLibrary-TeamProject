@@ -3,7 +3,7 @@
 // import axios from 'axios';
 import getRefs from './get-refs';
 // import renderMarkupImageInfo from './renderMarkup';
-// import createPagination from './js/pagination';
+import createPagination from './js/pagination';
 import openMovieDetails from './js/movie-details-open';
 
 import { createMarkupElement } from './js/renderMarkup';
