@@ -17,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchTrendMovies();
 });
 
-document.querySelector('.galary-list').addEventListener('click', onMovieCardClick);
+const movieGallery = document.querySelector('.galary-list');
+movieGallery.addEventListener('click', onMovieCardClick);
 
 function onMovieCardClick(e) {
   if (e.target.classList.contains('galary-list-item-img')) {
