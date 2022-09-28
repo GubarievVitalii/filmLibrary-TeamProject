@@ -6,7 +6,7 @@ axios.defaults.baseURL = API_URL;
 
 function handlerGenres ({results, ...other}, genres) {
   for (const object of results) {
-    object.genre_str = object.genre_ids.map(elem => genres.find(genre =>  genre.id === elem).name);
+    object.genre_str = object.genre_ids.map(elem => genres.find(genre =>  genre.id === elem).name)
   }
   return ({...other, results})
 }
