@@ -66,6 +66,18 @@ class MoviesApi{
     this.#currentPage = 1;
   }
 
+  nextPage() {
+    this.#currentPage += 1;
+  }
+
+  previousPage() {
+    if (!(this.#currentPage - 1)){
+      return
+    }
+    
+    this.#currentPage -= 1;
+  }
+
   get currentpage() {
     return this.#currentPage
   }
@@ -81,6 +93,8 @@ class MoviesApi{
   set genres (genre) {
       return
   }
+
+  
 }
 
 export default MoviesApi;
