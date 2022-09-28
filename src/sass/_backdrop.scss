@@ -22,8 +22,6 @@
   }
 }
 
-
-
 .speaker-form {
   margin: 0;
   padding: 0;
@@ -51,7 +49,7 @@
 }
 
 
-.link-close {
+.btn-close {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -63,7 +61,12 @@
   background-color: #ffffff;
   // border: 1px solid rgba(0, 0, 0, 0.1);
   // border-radius: 50%;
+  border: none;
   cursor: pointer;
+}
+
+.modal-content {
+  display: flex;
 }
 
 
