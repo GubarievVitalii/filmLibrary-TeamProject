@@ -57,6 +57,16 @@ class MoviesApi{
     return handlerGenres(response.data, MoviesApi.genres);
   }
 
+  async fetchMovieByID(id) {
+    const response = await axios.get(`/movie/${id}`, {
+      params: {
+        api_key: API_KEY,
+        language: "en",
+      },
+    });
+    return response.data;
+  }
+
   get query() {
     return this.#searchQuery
   }
