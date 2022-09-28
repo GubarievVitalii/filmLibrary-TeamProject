@@ -84,7 +84,8 @@ position: absolute;
   left: 95%;
   transform: translateY(-50%);
 
-  fill:#ffffff;
+  fill: transparent;
+  stroke: #ffffff;
   background-color: transparent;
 
 }
@@ -217,12 +218,6 @@ position: absolute;
   .logo {
     display: flex;
     align-items: center;
-  }
-
-  .logo-header__icon {
-    fill: green;
-    color: green;
-    background-color: transparent;
   }
 
   .search-form{

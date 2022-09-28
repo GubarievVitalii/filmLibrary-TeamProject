@@ -12,18 +12,16 @@
   font-family: Roboto, sans-serif;
   @include font(500, 25px, 25px, 0.03em);
   text-decoration: none;
+
+  // ====1200+====
+  @media screen and (min-width: 1200px) {
+    margin: 0;
+  }
 }
 
 .logo-header__icon {
- fill: white;
+  fill: transparent;
+  stroke: white;
   margin-right: 10px;
   background-color: transparent;
-}
-
-// ====1200+====
-
-@media screen and (min-width: 1200px) {
-  .logo-header {
-    margin: 0;
-  }
 }
