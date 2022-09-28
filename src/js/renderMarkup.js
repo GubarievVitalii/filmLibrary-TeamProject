@@ -2,7 +2,7 @@ const pathImage = "https://image.tmdb.org/t/p/";
 
 export function createMarkupElement({id, title, poster_path, genre_str, release_date, vote_average}) {
   return `<li class="galary-list__item">
-              <a data-modal-open href="" class="galary-list-link-wrapper" data-movieId = ${id}>
+              <a data-modal-open href="" class="galary-list-link-wrapper" data-movie-id = ${id}>
                 <div class="galary-list-item-wraper">
                   <picture>
                     <source
@@ -24,6 +24,7 @@ export function createMarkupElement({id, title, poster_path, genre_str, release_
                       src=${pathImage}original${poster_path}
                       alt="galary"
                       class="galary-list-item-img"
+                      data-movie-id=${id}
                     />
                   </picture>
                   <div class="film-data first">
