@@ -39,8 +39,8 @@ class MoviesApi{
     const response = await axios.get(`/trending/movie/week`, {
       params: {
         api_key: API_KEY,
-        page: this.#currentPage,
         language: "en",
+        page: this.#currentPage,
       },
     });
     return handlerGenres(response.data, MoviesApi.genres);
@@ -50,8 +50,8 @@ class MoviesApi{
     const response = await axios.get(`/trending/movie/day`, {
       params: {
         api_key: API_KEY,
-        page: this.#currentPage,
         language: "en",
+        page: this.#currentPage,
       },
     });
     return handlerGenres(response.data, MoviesApi.genres);
@@ -65,6 +65,18 @@ class MoviesApi{
       },
     });
     return response.data;
+  }
+
+  async fetchMovieQuery () {
+    const response = await axios.get(`/search/movie/`, {
+      params: {
+        api_key: API_KEY,
+        language: "en",
+        query: this.#searchQuery,
+        page: this.#currentPage,
+      },
+    });
+    return handlerGenres(response.data, MoviesApi.genres);
   }
 
   get query() {
