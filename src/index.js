@@ -8,6 +8,12 @@ import openMovieDetails from './js/movie-details-open';
 
 import { createMarkupElement } from './js/renderMarkup';
 import MoviesApi from './js/moviesApi';
+import './js/top.js';
+
+// // кнопка top
+// export const scroll = new OnlyScroll(document.scrollingElement, {
+//   damping: 0.8,
+// });
 
 const refs = getRefs();
 
