@@ -1,11 +1,12 @@
 .top {
     position: sticky;
     bottom: 50px;
+    right: 10px;
     z-index: 1000;
     width: 50px;
     height: 50px;
     margin-left: auto;
-    color: #dcdcdc;
+    color: var(--accent-color-transparent);
     cursor: pointer;
     visibility: hidden;
     border-radius: 50%;
@@ -25,8 +26,9 @@
         width: 100%;
         font-size: 30px;
         font-weight: 500;
-        content:"\21E7";
+        content:"\1F829";
     }
+    &:focus,
     &:hover {
         color: var(--accent-color);
     }
@@ -38,7 +40,7 @@
     &__svg--path {
         box-sizing: border-box;
         fill: none;
-        stroke: var(--accent-color-transparent);
+        stroke: var(--accent-color-transparenty);
         stroke-width: 4px;
         transition: 0.2s;
     }
