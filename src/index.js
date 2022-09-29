@@ -4,16 +4,13 @@ import getRefs from './get-refs';
 // import renderMarkupImageInfo from './renderMarkup';
 import createPagination from './js/pagination';
 import openMovieDetails from './js/movie-details-open';
+import footerModal from './js/footer-modal-open';
 
 import { createMarkupElement } from './js/renderMarkup';
 import MoviesApi from './js/moviesApi';
 import './js/top.js';
 import {makeSkeletonLoader} from './js/skeleton-loader'
 
-// // кнопка top
-// export const scroll = new OnlyScroll(document.scrollingElement, {
-//   damping: 0.8,
-// });
 
 const refs = getRefs();
 
@@ -33,6 +30,7 @@ function onMovieCardClick(e) {
     openMovieDetails(movieId);
   }
 }
+footerModal();
 
 async function fetchTrendMovies() {
   try {
