@@ -1,4 +1,3 @@
-
 // import Notiflix from 'notiflix';
 // import axios from 'axios';
 import getRefs from './get-refs';
@@ -29,12 +28,13 @@ movieGallery.addEventListener('click', onMovieCardClick);
 
 function onMovieCardClick(e) {
   if (e.target.classList.contains('galary-list-item-img')) {
+    e.preventDefault();
     const movieId = e.target.dataset.movieId;
     openMovieDetails(movieId);
   }
 }
 
-async function fetchTrendMovies () {
+async function fetchTrendMovies() {
   try {
     const { results } = await moviesApi.fetchTrendWeekMovies();
     //  // pagination
@@ -55,6 +55,7 @@ async function fetchTrendMovies () {
     
     // Skeleton
         makeSkeletonLoader();
+
   } catch (error) {
     console.log(error);
   }
