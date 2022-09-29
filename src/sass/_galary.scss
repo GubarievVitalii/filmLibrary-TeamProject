@@ -72,6 +72,10 @@
     @include font(500, 12px, 16px, 0.02em);
     font-style: normal;
     margin-left: 5px;
+
+    body.night & {
+        color: #fff;
+      }
 }
 
 .film-data-wraper{
@@ -154,3 +158,4 @@
   }
 }
   
+

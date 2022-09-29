@@ -8,6 +8,7 @@ import footerModal from './js/footer-modal-open';
 
 import { createMarkupElement } from './js/renderMarkup';
 import MoviesApi from './js/moviesApi';
+import './js/nightMode';
 import './js/top.js';
 import {makeSkeletonLoader} from './js/skeleton-loader'
 
@@ -35,6 +36,14 @@ footerModal();
 async function fetchTrendMovies() {
   try {
     const { results } = await moviesApi.fetchTrendWeekMovies();
+
+
+    results.length &&
+      refs.imagesContainer.insertAdjacentHTML(
+        'afterbegin',
+        results.map(createMarkupElement).join('')
+      );
+
     //  // pagination
         // const totalResult = results.total_results;
         // let currentPage = results.page;
@@ -53,7 +62,6 @@ async function fetchTrendMovies() {
     
     // Skeleton
         makeSkeletonLoader();
-
   } catch (error) {
     console.log(error);
   }
