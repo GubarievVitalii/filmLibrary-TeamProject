@@ -35,7 +35,7 @@ footerModal();
 
 async function fetchTrendMovies() {
   try {
-    const { results } = await moviesApi.fetchTrendWeekMovies();
+    const { results, total_results, page} = await moviesApi.fetchTrendWeekMovies();
 
 
     results.length &&
@@ -45,13 +45,10 @@ async function fetchTrendMovies() {
       );
 
     //  // pagination
-        // const totalResult = results.total_results;
-        // let currentPage = results.page;
-        
         const instance = createPagination();
         instance.setItemsPerPage(20);
-        // instance.setTotalItems(totalResult);
-        // instance.movePageTo(currentPage);
+        instance.setTotalItems(total_results);
+        instance.movePageTo(page);
 
         instance.on('afterMove', event => {
             const currentPage = event.page;
