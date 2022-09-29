@@ -1,10 +1,10 @@
-
 // import Notiflix from 'notiflix';
 // import axios from 'axios';
 // import getRefs from './get-refs';
 // import renderMarkupImageInfo from './renderMarkup';
 import createPagination from './js/pagination';
 import openMovieDetails from './js/movie-details-open';
+import footerModal from './js/footer-modal-open';
 
 // const refs = getRefs();
 
@@ -16,3 +16,4 @@ function onMovieCardClick(e) {
     openMovieDetails(movieId);
   }
 }
+footerModal();
