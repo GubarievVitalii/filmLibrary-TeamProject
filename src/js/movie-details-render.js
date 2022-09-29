@@ -32,10 +32,14 @@ export default function renderMovieDetails(movieDetails) {
             ${movieDetails.data.overview}
           </p>
           <div class="md-modal-buttons">
-            <button class="md-button swich-on" type="button">
+            <button class="button-modal add-watch-js" type="button" id="first-btn">
               Add to watch
             </button>
-            <button class="md-button" type="button">Add to queue</button>
+            <button class="button-modal vissualy-hidden remove-watch-js" type="button" id="first-btn">
+              Remove from watch
+            </button>
+            <button class="button-modal add-queue-js" type="button">Add to queue</button>
+            <button class="button-modal vissualy-hidden remove-queue-js" type="button">Remove from queue</button>
           </div>
         </div>
 `;

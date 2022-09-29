@@ -4,7 +4,7 @@ import imageDefaults from '../images/default.jpg'
 export function createMarkupElement({id, title, poster_path, genre_str, release_date, vote_average}) {
   
   return `<li class="galary-list__item" data-movie-id = ${id}>
-              <a data-modal-open href="" class="galary-list-link-wrapper" data-movie-id = ${id}>
+              <a data-modal-open href="" class="galary-list-link-wrapper skeleton" data-movie-id = ${id}>
                 <div class="galary-list-item-wraper">
                   <picture>
                     <source
@@ -30,12 +30,12 @@ export function createMarkupElement({id, title, poster_path, genre_str, release_
                     />
                   </picture>
                   <div class="film-data first">
-                    <p class="films-name">${title}</p>
+                    <p class="films-name skeleton skeleton-text">${title}</p>
                     <div class="film-data-wraper">
-                      <p class="films-genre">
+                      <p class="films-genre skeleton skeleton-text">
                         ${genre_str.join(", ")} &#124; ${release_date.slice(0,4)}
                       </p>
-                      <p class="film-rating">${vote_average}</p>
+                      <p class="film-rating skeleton skeleton-text">${vote_average}</p>
                     </div>
                   </div>
                 </div>
