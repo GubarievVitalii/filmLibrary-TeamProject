@@ -1,4 +1,3 @@
-
 // import Notiflix from 'notiflix';
 // import axios from 'axios';
 import getRefs from './get-refs';
@@ -8,6 +7,7 @@ import openMovieDetails from './js/movie-details-open';
 
 import { createMarkupElement } from './js/renderMarkup';
 import MoviesApi from './js/moviesApi';
+import './js/nightMode';
 import './js/top.js';
 
 // // кнопка top
@@ -33,12 +33,15 @@ function onMovieCardClick(e) {
   }
 }
 
-async function fetchTrendMovies () {
+async function fetchTrendMovies() {
   try {
-    const {results} = await moviesApi.fetchTrendWeekMovies();
+    const { results } = await moviesApi.fetchTrendWeekMovies();
 
-    results.length && refs.imagesContainer.insertAdjacentHTML("afterbegin", results.map(createMarkupElement).join(""))
-    
+    results.length &&
+      refs.imagesContainer.insertAdjacentHTML(
+        'afterbegin',
+        results.map(createMarkupElement).join('')
+      );
   } catch (error) {
     console.log(error);
   }
