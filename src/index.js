@@ -9,6 +9,7 @@ import openMovieDetails from './js/movie-details-open';
 import { createMarkupElement } from './js/renderMarkup';
 import MoviesApi from './js/moviesApi';
 import './js/top.js';
+import {makeSkeletonLoader} from './js/skeleton-loader'
 
 // // кнопка top
 // export const scroll = new OnlyScroll(document.scrollingElement, {
@@ -35,10 +36,25 @@ function onMovieCardClick(e) {
 
 async function fetchTrendMovies () {
   try {
-    const {results} = await moviesApi.fetchTrendWeekMovies();
+    const { results } = await moviesApi.fetchTrendWeekMovies();
+    //  // pagination
+        // const totalResult = results.total_results;
+        // let currentPage = results.page;
+        
+        const instance = createPagination();
+        instance.setItemsPerPage(20);
+        // instance.setTotalItems(totalResult);
+        // instance.movePageTo(currentPage);
+
+        instance.on('afterMove', event => {
+            const currentPage = event.page;
+            window.scrollTo({ top: 240, behavior: 'smooth' });
+        });
 
     results.length && refs.imagesContainer.insertAdjacentHTML("afterbegin", results.map(createMarkupElement).join(""))
     
+    // Skeleton
+        makeSkeletonLoader();
   } catch (error) {
     console.log(error);
   }
