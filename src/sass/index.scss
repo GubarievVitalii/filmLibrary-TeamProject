@@ -3,6 +3,7 @@
 @import './utils/vissualy-hidden';
 @import './utils/placeholders';
 @import './utils/mixins';
+@import './utils/brakepoints';
 
 @import './common';
 @import './container';
@@ -10,8 +11,13 @@
 @import './header';
 @import './logo';
 @import './buttons';
+@import './top';
 @import './galary';
 @import './pages';
 @import './footer';
-@import './backdrop';
+@import './movie-modal';
 @import './developers';
+@import './filter';
+@import './pagination';
+@import './sceleton';
+@import './movie-player';

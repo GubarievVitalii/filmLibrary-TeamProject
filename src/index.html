@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
-
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -9,11 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="./sass/index.scss" />
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@400;500;700;900&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@400;500;700;900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" href="./images/favicon/favicon__filmoteka.png" />
   <script type="module" src="./index.js"></script>
+  <script type="module" src="https://www.youtube.com/iframe_api"></script>
 </head>
 
 <body class="page">
@@ -41,16 +42,22 @@
           </nav>
         </div>
         <form class="search-form" id="search-form">
-          <div class="form-field">
-            <input class="search-input" type="text" name="searchQuery" autocomplete="off" placeholder="Movie search" />
-            <a>
-              <svg class="icon-search" width="12" height="12">
-                <use href="images/sprite.svg#icon-search"></use>
-              </svg>
-            </a>
-          </div>
-          <div class="seach-line"></div>
-        </form>
+            <div class="form-field">
+              <input
+                class="search-input"
+                type="text"
+                name="searchQuery"
+                autocomplete="off"
+                placeholder="Movie search"
+              />
+              <button type="submit" >
+                <svg class="icon-search" width="12" height="12">
+                  <use href="images/sprite.svg#icon-search"></use>
+                </svg>
+              </button>
+            </div>
+            <div class="seach-line"></div>
+          </form>
       </div>
     </header>
   </section>
@@ -59,105 +66,58 @@
   <!-- GALARY -->
 
   <main>
+    <section class="section section--filter">
+      <h2 class="filter-hidden ">Filter options</h2>
+      <div class="container filter__container">
+        <select class="filter-input filter__input--genre" name="genrepicker">
+          <option class="filter__option" value="">Choose Genre</option>
+          <option class="filter__option" value="28">Action</option>
+          <option class="filter__option" value="12">Adventure</option>
+          <option class="filter__option" value="16">Animation</option>
+          <option class="filter__option" value="35">Comedy</option>
+          <option class="filter__option" value="80">Crime</option>
+          <option class="filter__option" value="99">Documentary</option>
+          <option class="filter__option" value="18">Drama</option>
+          <option class="filter__option" value="10751">Family</option>
+          <option class="filter__option" value="14">Fantasy</option>
+          <option class="filter__option" value="36">History</option>
+          <option class="filter__option" value="27">Horror</option>
+          <option class="filter__option" value="10402">Music</option>
+          <option class="filter__option" value="9648">Mystery</option>
+          <option class="filter__option" value="10749">Romance</option>
+          <option class="filter__option" value="878">Science Fiction</option>
+          <option class="filter__option" value="10770">TV Movie</option>
+          <option class="filter__option" value="53">Thriller</option>
+          <option class="filter__option" value="10752">War</option>
+          <option class="filter__option" value="37">Western</option>
+        </select>
+        <select class="filter-input filter__input--year" name="yearpicker"></select>
+
+        <button class="clear-filter filter-hidden">
+          <svg class="clear-filter__icon" width="22" height="22">
+            <use href="./images/close.svg"></use>
+          </svg>
+        </button>
+      </div>
+    </section>
     <section class="section galary">
       <div class="container galary">
         <ul class="galary-list">
-          <li class="galary-list__item">
-            <!-- <a data-modal-open href="" class="galary-list-link-wrapper"> -->
-            <div class="galary-list-item-wraper">
-              <picture>
-                <source srcset="./images/default.jpg" media="(min-width: 1280)" type="image" />
-                <source srcset="./images/default.jpg" media="(min-width: 768)" type="image" />
-                <source srcset="./images/default.jpg" media="(min-width: 320)" type="image" />
-                <img src="./images/default.jpg" alt="galary" class="galary-list-item-img" data-movie-id="550" />
-              </picture>
-              <div class="film-data first">
-                <p class="films-name">My Dreams</p>
-                <div class="film-data-wraper">
-                  <p class="films-genre">Western, Action, Other | 2022</p>
-                  <p class="film-rating">150</p>
-                </div>
-              </div>
-            </div>
-            <!-- </a> -->
-          </li>
-          <li class="galary-list__item">
-            <!-- <a href="" class="galary-list-link-wrapper link"> -->
-            <div class="galary-list-item-wraper">
-              <picture>
-                <source srcset="./images/default.jpg" media="(min-width: 1280)" type="image" />
-                <source srcset="./images/default.jpg" media="(min-width: 768)" type="image" />
-                <source srcset="./images/default.jpg" media="(min-width: 320)" type="image" />
-                <img src="./images/default.jpg" alt="galary" class="galary-list-item-img" data-movie-id="14" />
-              </picture>
-              <div class="film-data">
-                <p class="films-name">My Dreams</p>
-                <div class="film-data-wraper">
-                  <p class="films-genre">Western, Action, Other | 2022</p>
-                  <p class="film-rating">150</p>
-                </div>
-              </div>
-            </div>
-            <!-- </a> -->
-          </li>
-          <li class="galary-list__item">
-            <!-- <a href="" class="galary-list-link-wrapper link"> -->
-            <div class="galary-list-item-wraper">
-              <picture>
-                <source srcset="./images/default.jpg" media="(min-width: 1280)" type="image" />
-                <source srcset="./images/default.jpg" media="(min-width: 768)" type="image" />
-                <source srcset="./images/default.jpg" media="(min-width: 320)" type="image" />
-                <img src="./images/default.jpg" alt="galary" class="galary-list-item-img" data-movie-id="76341" />
-              </picture>
-              <div class="film-data">
-                <p class="films-name">My Dreams</p>
-                <div class="film-data-wraper">
-                  <p class="films-genre">Western, Action, Other | 2022</p>
-                  <p class="film-rating">150</p>
-                </div>
-              </div>
-            </div>
-            <!-- </a> -->
-          </li>
-          <li class="galary-list__item">
-            <!-- <a href="" class="galary-list-link-wrapper link"> -->
-            <div class="galary-list-item-wraper">
-              <picture>
-                <source srcset="./images/default.jpg" media="(min-width: 1280)" type="image" />
-                <source srcset="./images/default.jpg" media="(min-width: 768)" type="image" />
-                <source srcset="./images/default.jpg" media="(min-width: 320)" type="image" />
-                <img src="./images/default.jpg" alt="galary" class="galary-list-item-img" data-movie-id="274" />
-              </picture>
-              <div class="film-data">
-                <p class="films-name">My Dreams</p>
-                <div class="film-data-wraper">
-                  <p class="films-genre">Western, Action, Other | 2022</p>
-                  <p class="film-rating">150</p>
-                </div>
-              </div>
-            </div>
-            <!-- </a> -->
-          </li>
-          <li class="galary-list__item">
-            <!-- <a href="" class="galary-list-link-wrapper link"> -->
-            <div class="galary-list-item-wraper">
-              <picture>
-                <source srcset="./images/default.jpg" media="(min-width: 1280)" type="image" />
-                <source srcset="./images/default.jpg" media="(min-width: 768)" type="image" />
-                <source srcset="./images/default.jpg" media="(min-width: 320)" type="image" />
-                <img src="./images/default.jpg" alt="galary" class="galary-list-item-img" data-movie-id="680" />
-              </picture>
-              <div class="film-data">
-                <p class="films-name">My Dreams</p>
-                <div class="film-data-wraper">
-                  <p class="films-genre">Western, Action, Other | 2022</p>
-                  <p class="film-rating">150</p>
-                </div>
-              </div>
-            </div>
-            <!-- </a> -->
-          </li>
+          
         </ul>
+      </div>
+      <div class="top">
+        <svg class="top__svg" viewBox="-2 -2 52 52">
+          <path
+            class="top__svg--path"
+            d="M24,0
+            a24,24 0 0,1 0,48
+            a24,24 0 0,1 0,-48"
+          />
+        </svg>
+      </div>
+      <div class="pagination-thumb">
+      <div id="tui-pagination-container" class="tui-pagination"></div>
       </div>
     </section>
   </main>
@@ -190,8 +150,13 @@
     </div>
   </footer>
 
-  <!-- FOOTER END -->
-  <!-- MODAL WINDOW-->
+
+    <div class="player-backdrop is-hidden">
+      <div class="player"></div>
+    </div>
+
+    <!-- MODAL WINDOW-END -->
+    <!-- MODAL WINDOW-TEAM -->
 
   <div data-modal class="backdrop is-hidden js-backdrop">
     <div class="modal">
