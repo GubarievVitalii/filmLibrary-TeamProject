@@ -8,3 +8,13 @@ export default function getRefs() {
     }
   }
 
+    checkBoxEl: document.querySelector('[name="ligthswitcher"]'),
+    bodyEl: document.querySelector('body'),
+
+    addWatchBtn: document.querySelector('.add-watch-js'),
+    removeWatchBtn: document.querySelector('.remove-watch-js'),
+    addQueueBtn: document.querySelector('.add-queue-js'),
+    removeQueueBtn: document.querySelector('.remove-queue-js'),
+
+  };
+}

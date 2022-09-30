@@ -1,7 +1,7 @@
 .ligth-checkbox {
     position: absolute;
-    top: 23.5%;
-    left: 49%;
+    top: 84%;
+    left: 48%;
     transform: (-50% -50%);
 }
 
@@ -10,7 +10,7 @@ input[type='checkbox'] {
     width: 60px;
     height: 22px;
     -webkit-appearance: none;
-    background: linear-gradient(0deg, #661522, #1f0200);
+    background: linear-gradient(0deg, #eafa0480, #eafa041a);
     outline: none;
     border-radius: 20px;
     box-shadow: 0 0 2px #292929, 0 0 0 3px #353535, 0 0 0 3px #3e3e3e,
@@ -20,7 +20,7 @@ input[type='checkbox'] {
 }
 
 input:checked[type='checkbox'] {
-    background: linear-gradient(0deg, #bdc024, #212201);
+    background: linear-gradient(0deg, #ff6b0177, #212201);
     box-shadow: 0 0 2px #292929, 0 0 0 3px #353535, 0 0 0 3px #3e3e3e,
         inset 0 0 10px rgba(0, 0, 0, 1), 0 5px 20px rgba(0, 0, 0, 0.5),
         inset 0 0 15px rgba(0, 0, 0, 0.2);
@@ -37,7 +37,7 @@ input[type='checkbox']:before {
     border-radius: 20px;
     box-shadow: 0 0 0 1px #232323;
     transform: scale(0.98, 0.96);
-    transition: 0.5s;
+    transition: 250ms;
     z-index: 2;
 }
 
@@ -71,5 +71,5 @@ input:checked[type='checkbox']:before {
 
 .night {
     background: #272e34;
-    transition: 1s;
+    transition: 250ms;
 }
