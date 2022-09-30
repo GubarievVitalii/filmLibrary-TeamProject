@@ -4,13 +4,14 @@ const options = {
   totalItems: 1000,
   itemsPerPage: 10,
   visiblePages: 5,
-  page: 5,
+  page: 1,
   centerAlign: true,
   firstItemClassName: 'tui-first-child',
   lastItemClassName: 'tui-last-child',
   template: {
     page: '<a class="tui-page-btn  ">{{page}}</a>',
-    currentPage: '<strong class="tui-page-btn tui-is-selected  ">{{page}}</strong>',
+    currentPage:
+      '<strong class="tui-page-btn tui-is-selected  ">{{page}}</strong>',
     moveButton:
       '<a class="tui-page-btn tui-{{type}}">' +
       '<span class="tui-ico-{{type}}">{{type}}</span>' +
@@ -31,6 +32,5 @@ const createPagination = () => {
   const instance = new Pagination(container, options);
   return instance;
 };
-
 
 export default createPagination;

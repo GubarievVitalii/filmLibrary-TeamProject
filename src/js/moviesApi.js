@@ -57,6 +57,7 @@ class MoviesApi{
     return handlerGenres(response.data, MoviesApi.genres);
   }
 
+
   async fetchMovieByID(id, withVideo = false) {
     const response = await axios.get(`/movie/${id}`, {
       params: {
@@ -64,6 +65,7 @@ class MoviesApi{
         language: "en",
       },
     });
+
     if (withVideo) {
       const {results} =  await this.fetchMovieVideoByID(id);
       response.data["resultVideo"] = results;
@@ -79,6 +81,7 @@ class MoviesApi{
         language: "en",
       },
     });
+
     return response.data;
   }
 

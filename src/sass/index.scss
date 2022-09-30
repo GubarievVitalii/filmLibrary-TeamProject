@@ -1,17 +1,24 @@
+@import './components/nightMode';
 
 @import './utils/variables';
 @import './utils/vissualy-hidden';
 @import './utils/placeholders';
 @import './utils/mixins';
+@import './utils/brakepoints';
 
-@import './common';
-@import './container';
-@import './example';
-@import './header';
-@import './logo';
-@import './buttons';
-@import './galary';
-@import './pages';
-@import './footer';
-@import './backdrop';
-@import './developers';
+@import './components/common';
+@import './components/container';
+@import './components/example';
+@import './components/header';
+@import './components/logo';
+@import './components/buttons';
+@import './components/top';
+@import './components/galary';
+@import './components/pages';
+@import './components/footer';
+@import './components/movie-modal';
+@import './components/developers';
+@import './components/filter';
+@import './components/pagination';
+@import './components/sceleton';
+@import './components/movie-player';
