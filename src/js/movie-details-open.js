@@ -30,7 +30,7 @@ export default async function openMovieDetails(movieId) {
   backdrop.addEventListener('click', onBackdropClick);
   function onBackdropClick(e) {
     if (e.target === backdrop) {
-      document.getElementById('first-btn').blur();
+      // document.getElementById('first-btn').blur();
       backdrop.classList.add('is-hidden');
       modalContent.innerHTML = '';
     }

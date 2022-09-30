@@ -10,8 +10,7 @@ import { createMarkupElement } from './js/renderMarkup';
 import MoviesApi from './js/moviesApi';
 import './js/nightMode';
 import './js/top.js';
-import {makeSkeletonLoader} from './js/skeleton-loader'
-
+import { makeSkeletonLoader } from './js/skeleton-loader';
 
 const refs = getRefs();
 
@@ -35,8 +34,8 @@ footerModal();
 
 async function fetchTrendMovies() {
   try {
-    const { results, total_results, page} = await moviesApi.fetchTrendWeekMovies();
-
+    const { results, total_results, page } =
+      await moviesApi.fetchTrendWeekMovies();
 
     results.length &&
       refs.imagesContainer.insertAdjacentHTML(
@@ -45,20 +44,24 @@ async function fetchTrendMovies() {
       );
 
     //  // pagination
-        const instance = createPagination();
-        instance.setItemsPerPage(20);
-        instance.setTotalItems(total_results);
-        instance.movePageTo(page);
+    const instance = createPagination();
+    instance.setItemsPerPage(20);
+    instance.setTotalItems(total_results);
+    instance.movePageTo(page);
 
-        instance.on('afterMove', event => {
-            const currentPage = event.page;
-            window.scrollTo({ top: 240, behavior: 'smooth' });
-        });
+    instance.on('afterMove', event => {
+      const currentPage = event.page;
+      window.scrollTo({ top: 240, behavior: 'smooth' });
+    });
 
-    results.length && refs.imagesContainer.insertAdjacentHTML("afterbegin", results.map(createMarkupElement).join(""))
-    
+    results.length &&
+      refs.imagesContainer.insertAdjacentHTML(
+        'afterbegin',
+        results.map(createMarkupElement).join('')
+      );
+
     // Skeleton
-        makeSkeletonLoader();
+    makeSkeletonLoader();
   } catch (error) {
     console.log(error);
   }
