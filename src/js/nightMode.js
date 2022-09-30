@@ -1,25 +1,21 @@
-// // 'use strict';
-// import ls from './storage';
+import getRefs from './get-refs';
+import ls from './storage';
 
-// const cneckBoxEl = document.querySelector('[name="ligthswitcher"]');
-// const bodyEl = document.querySelector('body');
+const switherMode = ls.load('light');
+if (switherMode === 'off') {
+  getRefs().checkBoxEl.checked = true;
+  getRefs().bodyEl.classList.add('night');
+}
 
-// console.log(cneckBoxEl);
+getRefs().checkBoxEl.addEventListener('change', nigthlight);
 
-// const switherMode = ls.load('light');
-// if (switherMode === 'off') {
-//   cneckBoxEl.checked = true;
-//   bodyEl.classList.add('night');
-// }
+function nigthlight() {
+  if (getRefs().checkBoxEl.checked) {
+    ls.save('light', 'off');
+    getRefs().bodyEl.classList.add('night');
+  } else {
+    getRefs().bodyEl.classList.remove('night');
+    ls.save('light', 'on');
+  }
+}
 
-// cneckBoxEl.addEventListener('change', nigthlight);
-
-// function nigthlight() {
-//   if (cneckBoxEl.checked) {
-//     ls.save('light', 'off');
-//     bodyEl.classList.add('night');
-//   } else {
-//     bodyEl.classList.remove('night');
-//     ls.save('light', 'on');
-//   }
-// }

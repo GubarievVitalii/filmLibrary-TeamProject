@@ -47,6 +47,10 @@
     cursor: pointer;
     transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
+    body.night & {
+            color: #ff6b01;
+        }
+
     @media screen and (min-width: $tablet) {
         height: 40px;
         width: 40px;
@@ -63,6 +67,9 @@
     background: #ff6b01;
     border-color: #ff6b01;
     cursor: default;
+    body.night & {
+            background-color: #f5c7a621;
+        }
 }
 
 .tui-pagination .tui-is-selected:hover {
@@ -78,13 +85,13 @@
     padding-bottom: 16px;
 }
 
-.tui-pagination .tui-first-child.tui-is-selected {
-    border-left: 1px solid #ff6b01
-}
+// .tui-pagination .tui-first-child.tui-is-selected {
+//     border-left: 1px solid #ff6b01
+// }
 
-.tui-pagination .tui-last-child.tui-is-selected {
-    border-right: 1px solid #ff6b01
-}
+// .tui-pagination .tui-last-child.tui-is-selected {
+//     border-right: 1px solid #ff6b01
+// }
 
 .tui-pagination .tui-first,
 .tui-pagination .tui-prev,
@@ -98,8 +105,11 @@
     line-height: 26px;
     white-space: nowrap;
     font-weight: 500;
-    background: #F7F7F7;
+    background-color: #F7F7F7;
     // border: 1px solid #ddd;
+    body.night & {
+            background-color: #272e34;
+        }
 }
 
 .tui-pagination .tui-prev-is-ellip {
@@ -257,5 +267,8 @@
 .tui-page-btn.tui-is-disabled.tui-next,
 .tui-page-btn.tui-is-disabled.tui-first,
 .tui-page-btn.tui-is-disabled.tui-last {
-    background-color: white;
+    background-color: #fff;
+    body.night & {
+            background-color: #272e34;
+        }
 }

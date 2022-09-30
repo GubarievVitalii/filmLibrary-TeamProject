@@ -2,6 +2,12 @@
 .footer {
     background-color:  #F7F7F7;
     padding: 29px 0;
+
+    body.night & {
+            background-color: #272e34;
+            border-top: 1px solid #ff6b0177;
+        }
+    
     & .container{
         padding: 0 44px;
         display: flex;

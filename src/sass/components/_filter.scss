@@ -36,10 +36,16 @@
 
     transition: color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
         background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-    &:hover {
+    body.night & {
         color: white;
+        background-color: #272e34;
+        border: 1px solid #ff6b0177;
+    }
+    &:hover {
         background-color: #ff6b01;
+        body.night & {
+                background-color: #ff6b0177;
+            }
     }
 
     &:first-child {
