@@ -65,8 +65,8 @@ class MoviesApi{
       },
     });
     if (withVideo) {
-      const resultFetchVideo =  await this.fetchMovieVideoByID(id);
-      response.data["resultVideo"] = resultFetchVideo.results;
+      const {results} =  await this.fetchMovieVideoByID(id);
+      response.data["resultVideo"] = results;
       return response.data;
     }
     return response.data;
