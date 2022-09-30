@@ -57,13 +57,31 @@ class MoviesApi{
     return handlerGenres(response.data, MoviesApi.genres);
   }
 
-  async fetchMovieByID(id) {
+
+  async fetchMovieByID(id, withVideo = false) {
     const response = await axios.get(`/movie/${id}`, {
       params: {
         api_key: API_KEY,
         language: "en",
       },
     });
+
+    if (withVideo) {
+      const {results} =  await this.fetchMovieVideoByID(id);
+      response.data["resultVideo"] = results;
+      return response.data;
+    }
+    return response.data;
+  }
+
+  async fetchMovieVideoByID(id) {
+    const response = await axios.get(`/movie/${id}/videos`, {
+      params: {
+        api_key: API_KEY,
+        language: "en",
+      },
+    });
+
     return response.data;
   }
 
