@@ -10,11 +10,14 @@ import { createMarkupElement } from './js/renderMarkup';
 import MoviesApi from './js/moviesApi';
 import './js/nightMode';
 import './js/top.js';
-import { makeSkeletonLoader } from './js/skeleton-loader';
+import {makeSkeletonLoader} from './js/skeleton-loader'
 
+// import userAuth from './js/auth'
+import authListnener from './js/auth'
 const refs = getRefs();
 
 const moviesApi = new MoviesApi();
+
 
 document.addEventListener('DOMContentLoaded', () => {
   fetchTrendMovies();
@@ -66,3 +69,6 @@ async function fetchTrendMovies() {
     console.log(error);
   }
 }
+
+
+
