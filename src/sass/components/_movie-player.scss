@@ -1,3 +1,5 @@
+
+
 .player-backdrop {
     position: fixed;
     top: 0;
@@ -23,4 +25,21 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
+}
+
+.btn-player-close {
+    position: absolute;
+    top: calc(50% - ((100vw * 0.18) + 60px));
+    left: 50%;
+    transform: translate((calc((100vw * 0.32) + 10px)));
+
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
