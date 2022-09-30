@@ -106,6 +106,10 @@ class MoviesApi{
     this.#currentPage = 1;
   }
 
+  eventPage(newPage) {
+    this.#currentPage = newPage;
+  }
+
   nextPage() {
     this.#currentPage += 1;
   }
@@ -114,7 +118,7 @@ class MoviesApi{
     if (!(this.#currentPage - 1)){
       return
     }
-    
+
     this.#currentPage -= 1;
   }
 
