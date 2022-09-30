@@ -1,13 +1,11 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import getRefs from './get-refs';
 
 export default function addToWatchOrQueue(movieDetails) {
   const { data } = movieDetails;
   const { id, title, poster_path, genres, release_date, vote_average } = data;
-
-  const addWatchBtn = document.querySelector('.add-watch-js');
-  const removeWatchBtn = document.querySelector('.remove-watch-js');
-  const addQueueBtn = document.querySelector('.add-queue-js');
-  const removeQueueBtn = document.querySelector('.remove-queue-js');
+  const { addWatchBtn, removeWatchBtn, addQueueBtn, removeQueueBtn } =
+    getRefs();
 
   let watched = localStorage.getItem('Watched');
   let queue = localStorage.getItem('Queue');
@@ -20,7 +18,10 @@ export default function addToWatchOrQueue(movieDetails) {
     release_date,
     vote_average,
   };
-
+  // Перевірка наявності в LocalStorage ключа Watched,
+  // якщо є -> перевіряємо наявність фільму в масиві
+  // об'єктів і в залежності від результату відображаємо потрібну кнопку
+  // якщо немає -> створюємо ключ з значенням [];
   if (watched !== null) {
     watched = JSON.parse(watched);
     const isFilmWatched = watched.find(film => film.id === id);
@@ -32,7 +33,7 @@ export default function addToWatchOrQueue(movieDetails) {
     localStorage.setItem('Watched', JSON.stringify([]));
     watched = JSON.parse(localStorage.getItem('Watched'));
   }
-
+  // Теж саме що і в попередньому випадку, але для ключа Queue і відповідно його кнопок
   if (queue !== null) {
     queue = JSON.parse(queue);
     const isFilmQueue = queue.find(film => film.id === id);
@@ -44,18 +45,16 @@ export default function addToWatchOrQueue(movieDetails) {
     localStorage.setItem('Queue', JSON.stringify([]));
     queue = JSON.parse(localStorage.getItem('Queue'));
   }
-
+  // Додавання поточного фільму до LocalStorage
+  // та перевірка його наявності в значенні ключа Queue
+  // якщо цей фільм є в Queue, він звідти видаляється
   function addFilmToWatched() {
-    if (watched !== null) {
-      watched.push(filmInfo);
-      localStorage.setItem('Watched', JSON.stringify(watched));
-    }
+    watched.push(filmInfo);
+    localStorage.setItem('Watched', JSON.stringify(watched));
 
-    if (queue !== null) {
-      const isFilmQueue = queue.find(film => film.id === id);
-      if (isFilmQueue !== undefined) {
-        removeFilmFromQueue();
-      }
+    const isFilmQueue = queue.find(film => film.id === id);
+    if (isFilmQueue !== undefined) {
+      removeFilmFromQueue();
     }
 
     addWatchBtn.classList.add('vissualy-hidden');
@@ -63,18 +62,16 @@ export default function addToWatchOrQueue(movieDetails) {
 
     Notify.success(`The movie "${title}" has been added to watched`);
   }
-
+  // Додавання поточного фільму до LocalStorage
+  // та перевірка його наявності в значенні ключа Watched
+  // якщо цей фільм є в Watched, він звідти видаляється
   function addFilmToQueue() {
-    if (queue !== null) {
-      queue.push(filmInfo);
-      localStorage.setItem('Queue', JSON.stringify(queue));
-    }
+    queue.push(filmInfo);
+    localStorage.setItem('Queue', JSON.stringify(queue));
 
-    if (watched !== null) {
-      const isFilmWatched = watched.find(film => film.id === id);
-      if (isFilmWatched !== undefined) {
-        removeFilmFromWatched();
-      }
+    const isFilmWatched = watched.find(film => film.id === id);
+    if (isFilmWatched !== undefined) {
+      removeFilmFromWatched();
     }
 
     addQueueBtn.classList.add('vissualy-hidden');
@@ -82,7 +79,7 @@ export default function addToWatchOrQueue(movieDetails) {
 
     Notify.success(`The movie "${title}" has been added to the queue`);
   }
-
+  // Видалення об'єкта фільму ключа Watched з LocalStorage за індексом
   function removeFilmFromWatched() {
     const index = watched.indexOf(watched.find(film => film.id === id));
 
@@ -94,7 +91,7 @@ export default function addToWatchOrQueue(movieDetails) {
 
     Notify.info(`The film "${title}" has been removed from watched`);
   }
-
+  // Видалення об'єкта фільму ключа Queue з LocalStorage за індексом
   function removeFilmFromQueue() {
     const index = queue.indexOf(queue.find(film => film.id === id));
 
