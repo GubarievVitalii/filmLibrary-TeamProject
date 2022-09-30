@@ -20,17 +20,16 @@
 <body class="page">
   <!-- HEADER -->
 
-  <section class="section header">
-    <header>
-      <div class="container header__container">
-        <div class="logo__nav">
-          <div class="logo logo-header">
-            <svg class="logo-header__icon" width="24" height="24">
-              <use href="images/sprite.svg#icon-logo"></use>
-            </svg>
-            <p class="logo-web">Filmoteka</p>
-          </div>
-          <nav class="site-nav">
+  <header class="header">
+    <div class="container header__container">
+      <div class="logo__nav">
+        <div class="logo logo-header">
+          <svg class="logo-header__icon" width="24" height="24">
+            <use href="images/sprite.svg#icon-logo"></use>
+          </svg>
+          <p class="logo-web">Filmoteka</p>
+        </div>
+        <nav class="site-nav">
             <ul class="site-nav-header">
               <li class="site-nav-header__item">
                 <a href="./index.html" class="site-nav-header__link current">HOME</a>
@@ -43,36 +42,33 @@
               </li>
             </ul>
           </nav>
-        </div>
-        <form class="search-form" id="search-form">
-            <div class="form-field">
-              <input
-                class="search-input"
-                type="text"
-                name="searchQuery"
-                autocomplete="off"
-                placeholder="Movie search"
-              />
-              <button type="submit" >
-                <svg class="icon-search" width="12" height="12">
-                  <use href="images/sprite.svg#icon-search"></use>
-                </svg>
-              </button>
-            </div>
-            <div class="seach-line"></div>
-          </form>
-        </div>
-        <div class="ligth-checkbox">
-          <input type="checkbox" name="ligthswitcher" />
-          <svg class="moon-icon">
-            <use href="./images/sprite.svg#icon-moon"></use>
-          </svg>
-          <svg class="sun-icon">
-            <use href="./images/sprite.svg#icon-sun"></use>
-          </svg>
-        </div>
-      </header>
-    </section>
+      </div>
+      <form class="search-form" id="search-form">
+          <div class="form-field">
+            <input
+              class="search-input"
+              type="text"
+              name="searchQuery"
+              autocomplete="off"
+              placeholder="Movie search"
+            />
+              <svg class="icon-search" width="12" height="12">
+                <use href="images/sprite.svg#icon-search"></use>
+              </svg>
+          </div>
+          <!-- <div class="seach-line"></div> -->
+      </form>
+    </div>
+    <div class="ligth-checkbox">
+        <input type="checkbox" name="ligthswitcher" />
+        <svg class="moon-icon">
+          <use href="./images/sprite.svg#icon-moon"></use>
+        </svg>
+        <svg class="sun-icon">
+          <use href="./images/sprite.svg#icon-sun"></use>
+        </svg>
+      </div>
+  </header>
 
     <!-- HEADER-END -->
     <!-- GALARY -->
@@ -129,7 +125,7 @@
         </svg>
       </div>
       <div class="pagination-thumb">
-      <div id="tui-pagination-container" class="tui-pagination"></div>
+        <div id="tui-pagination-container" class="tui-pagination"></div>
       </div>
     </section>
   </main>
@@ -137,19 +133,14 @@
   <!-- GALARY END -->
   <!-- PAGES -->
 
-  <section class="section pages">
-    <div class="container pages">
-      <p>Pagination!!!</p>
-    </div>
-  </section>
 
   <!-- PAGES END-->
   <!-- FOOTER -->
 
   <footer class="footer">
-    <div class="section footer">
-      <div class="container footer">
-        <p class="coperite">© 2020 | All Rights Reserved |</p>
+    <div class="container">
+      <p class="coperite">© 2020 | All Rights Reserved |</p>
+      <div class="footer__bottom">
         <p class="coperite">Developed with</p>
         <svg class="icon-love" width="12" height="12">
           <use href="./images/sprite.svg#icon-love"></use>
@@ -161,7 +152,6 @@
       </div>
     </div>
   </footer>
-
 
     <div class="player-backdrop is-hidden">
       <div class="player"></div>
@@ -179,65 +169,7 @@
       </button>
 
       <include src="./partials/footer-modal.html"></include>
-
-
     </div>
   </div>
-
-  <!-- MODAL WINDOW-END -->
-  <!-- MODAL WINDOW-TEAM -->
-  <!-- 
-  <div data-modal-two class="backdrop is-hidden js-back">
-    <div class="modal-dev">
-      <a data-modal-close-two href="" class="link-close">
-        <svg class="icon-close" with="18" height="18">
-          <use href="./images/sprite.svg#icon-close"></use>
-        </svg>
-      </a>
-      <div class="container-dev">
-        <h2 class="modal-title">Our team:</h2>
-        <ul class="list-developers">
-          <li class="developer-item">
-            <picture class="picture-dev">
-              <source srcset="./images/default.jpg" media="(min-width: 1280)" type="image" />
-              <source srcset="./images/default.jpg" media="(min-width: 768)" type="image" />
-              <source srcset="./images/default.jpg" media="(min-width: 320)" type="image" />
-              <img class="photo-dev" src="./images/default.jpg" alt="galary" />
-            </picture>
-            <div class="dev-data-box">
-              <h2 class="name-developer">Piter Ivanoff</h2>
-              <h3 class="type-work">Development: HTML/CSS</h3>
-            </div>
-          </li>
-          <li class="developer-item">
-            <picture>
-              <source srcset="./images/default.jpg" media="(min-width: 1280)" type="image" />
-              <source srcset="./images/default.jpg" media="(min-width: 768)" type="image" />
-              <source srcset="./images/default.jpg" media="(min-width: 320)" type="image" />
-              <img class="photo-dev" src="./images/default.jpg" alt="galary" />
-            </picture>
-            <div class="mdev-data-box">
-              <h2 class="name-developer">Piter Ivanoff</h2>
-              <h3 class="type-work">Development of HTML/CSS</h3>
-            </div>
-          </li>
-          <li class="developer-item">
-            <picture>
-              <source srcset="./images/default.jpg" media="(min-width: 1280)" type="image" />
-              <source srcset="./images/default.jpg" media="(min-width: 768)" type="image" />
-              <source srcset="./images/default.jpg" media="(min-width: 320)" type="image" />
-              <img class="photo-dev" src="./images/default.jpg" alt="galary" />
-            </picture>
-            <div class="dev-data-box">
-              <h2 class="name-developer">Piter Ivanoff</h2>
-              <h3 class="type-work">Development of HTML/CSS</h3>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
--->
 </body>
-
 </html>
