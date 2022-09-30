@@ -1,5 +1,5 @@
 export default function renderMovieDetails(movieDetails) {
-  const modalContent = document.querySelector('.modal-content');
+  const movieModalContent = document.querySelector('.movie-modal-content');
 
   const genres = movieDetails.data.genres.map(genre => genre.name).join(', ');
   const movieDetailsMarkup = `
@@ -43,5 +43,5 @@ export default function renderMovieDetails(movieDetails) {
           </div>
         </div>
 `;
-  modalContent.insertAdjacentHTML('beforeend', movieDetailsMarkup);
+  movieModalContent.insertAdjacentHTML('beforeend', movieDetailsMarkup);
 }
