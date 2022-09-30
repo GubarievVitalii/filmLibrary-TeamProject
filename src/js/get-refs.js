@@ -4,6 +4,7 @@ export default function getRefs() {
         searchInput: document.querySelector('.search-input'),
         searchBtn: document.querySelector('.search-button'),
         imagesContainer: document.querySelector('.galary-list'),
+        paginationList: document.querySelector('.pagination'),
     }
   }
 
