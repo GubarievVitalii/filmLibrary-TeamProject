@@ -35,6 +35,11 @@
 
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   transform: translate(-50%, -50%) scale(1.1);
+  body.night & {
+      background-color: #272e34;
+      border: 1px solid #ff6b0177;
+      box-shadow: 0px 0px 4px 4px #ff6b0142;
+    }
 }
 
 
@@ -52,6 +57,11 @@
   background-color: #ffffff;
   border: none;
   cursor: pointer;
+  body.night & {
+      border-radius: 50%;
+      background-color: #272e34;
+      border: 1px solid #ff6b0177;
+    }
 }
 
 // .modal-content {
@@ -80,6 +90,9 @@
   width: 240px;
   margin: auto;
   margin-bottom: 15px;
+  body.night & {
+      color: #ff6b01;
+    }
 }
 
 .modal-table-box{
@@ -94,6 +107,9 @@
   @include font(500, 12px, 16px, 0.03em);
 
   padding-right: 40px;
+  body.night & {
+      color: #ff6b0177;
+    }
 }
 
 .modal-data-value {
@@ -150,6 +166,9 @@
     margin-bottom: 20px;
     width: 240px;
 
+    body.night & {
+        color: #8C8C8C;
+      }
 }
 
 .md-modal-buttons {
@@ -184,6 +203,11 @@
     border: none;
     color: var(--white-text-color);
   }
+
+    body.night & {
+      color: #8C8C8C;
+      border: 1px solid #ff6b0177;
+    }
 
 }
 
