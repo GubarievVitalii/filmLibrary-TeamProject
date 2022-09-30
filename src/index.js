@@ -12,6 +12,8 @@ import './js/nightMode';
 import './js/top.js';
 import { makeSkeletonLoader } from './js/skeleton-loader';
 
+// import userAuth from './js/auth'
+import authListnener from './js/auth';
 const refs = getRefs();
 
 const moviesApi = new MoviesApi();
