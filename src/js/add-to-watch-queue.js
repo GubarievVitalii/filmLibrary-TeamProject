@@ -7,6 +7,12 @@ export default function addToWatchOrQueue(movieDetails) {
   const { addWatchBtn, removeWatchBtn, addQueueBtn, removeQueueBtn } =
     getRefs();
 
+  const genreNames = [];
+
+  for (const genre of genres) {
+    genreNames.push(genre.name);
+  }
+
   let watched = localStorage.getItem('Watched');
   let queue = localStorage.getItem('Queue');
 
@@ -14,7 +20,7 @@ export default function addToWatchOrQueue(movieDetails) {
     id,
     title,
     poster_path,
-    genres,
+    genreNames,
     release_date,
     vote_average,
   };
