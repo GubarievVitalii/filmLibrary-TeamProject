@@ -18,3 +18,4 @@ function nigthlight() {
     ls.save('light', 'on');
   }
 }
+

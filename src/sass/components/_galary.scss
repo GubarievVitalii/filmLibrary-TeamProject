@@ -2,7 +2,8 @@
   padding: 60px 15px;
 }
 
-.galary-list {
+.galary-list,
+galary-list-library {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -110,7 +111,8 @@
 // ====768+====
 
 @media screen and (min-width: 768px) {
-  .galary-list{
+  .galary-list,
+  galary-list-library{
     justify-content: start;
   }
 
