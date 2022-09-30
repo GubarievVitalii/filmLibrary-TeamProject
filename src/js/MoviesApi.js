@@ -1,6 +1,6 @@
 import axios from "axios";
 const API_URL = 'https://api.themoviedb.org/3';
-const API_KEY = 'a620a6416fb18e40f7d335c64c3f9e0e';
+const API_KEY = 'bb9be7856d820d280efdc8865f07d5b2';
 
 axios.defaults.baseURL = API_URL;
 
@@ -57,8 +57,23 @@ class MoviesApi{
     return handlerGenres(response.data, MoviesApi.genres);
   }
 
-  async fetchMovieByID(id) {
+  async fetchMovieByID(id, withVideo = false) {
     const response = await axios.get(`/movie/${id}`, {
+      params: {
+        api_key: API_KEY,
+        language: "en",
+      },
+    });
+    if (withVideo) {
+      const resultFetchVideo =  await this.fetchMovieVideoByID(id);
+      response.data["resultVideo"] = resultFetchVideo.results;
+      return response.data;
+    }
+    return response.data;
+  }
+
+  async fetchMovieVideoByID(id) {
+    const response = await axios.get(`/movie/${id}/videos`, {
       params: {
         api_key: API_KEY,
         language: "en",
