@@ -40,8 +40,8 @@ export default function addToWatchOrQueue(movieDetails) {
       removeWatchBtn.classList.remove('vissualy-hidden');
     }
   } else {
-    localStorage.setItem('Watched', JSON.stringify([]));
     try {
+      localStorage.setItem('Watched', JSON.stringify([]));
       watched = JSON.parse(localStorage.getItem('Watched'));
     } catch (error) {
       console.log(error.name);
@@ -62,8 +62,8 @@ export default function addToWatchOrQueue(movieDetails) {
       removeQueueBtn.classList.remove('vissualy-hidden');
     }
   } else {
-    localStorage.setItem('Queue', JSON.stringify([]));
     try {
+      localStorage.setItem('Queue', JSON.stringify([]));
       queue = JSON.parse(localStorage.getItem('Queue'));
     } catch (error) {
       console.log(error.name);
@@ -75,7 +75,12 @@ export default function addToWatchOrQueue(movieDetails) {
   // якщо цей фільм є в Queue, він звідти видаляється
   function addFilmToWatched() {
     watched.push(filmInfo);
-    localStorage.setItem('Watched', JSON.stringify(watched));
+    try {
+      localStorage.setItem('Watched', JSON.stringify(watched));
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
 
     const isFilmQueue = queue.find(film => film.id === id);
     if (isFilmQueue) {
@@ -92,7 +97,12 @@ export default function addToWatchOrQueue(movieDetails) {
   // якщо цей фільм є в Watched, він звідти видаляється
   function addFilmToQueue() {
     queue.push(filmInfo);
-    localStorage.setItem('Queue', JSON.stringify(queue));
+    try {
+      localStorage.setItem('Queue', JSON.stringify(queue));
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
 
     const isFilmWatched = watched.find(film => film.id === id);
     if (isFilmWatched) {
@@ -109,7 +119,12 @@ export default function addToWatchOrQueue(movieDetails) {
     const index = watched.indexOf(watched.find(film => film.id === id));
 
     watched.splice(index, 1);
-    localStorage.setItem('Watched', JSON.stringify(watched));
+    try {
+      localStorage.setItem('Watched', JSON.stringify(watched));
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
 
     addWatchBtn.classList.remove('vissualy-hidden');
     removeWatchBtn.classList.add('vissualy-hidden');
@@ -121,7 +136,12 @@ export default function addToWatchOrQueue(movieDetails) {
     const index = queue.indexOf(queue.find(film => film.id === id));
 
     queue.splice(index, 1);
-    localStorage.setItem('Queue', JSON.stringify(queue));
+    try {
+      localStorage.setItem('Queue', JSON.stringify(queue));
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
 
     addQueueBtn.classList.remove('vissualy-hidden');
     removeQueueBtn.classList.add('vissualy-hidden');
