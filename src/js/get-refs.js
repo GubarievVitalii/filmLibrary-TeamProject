@@ -20,5 +20,10 @@ export default function getRefs() {
     playerContainer: document.querySelector('.player'),
     playerBackdrop: document.querySelector('.player-backdrop'),
     playerCloseBtn: document.querySelector('.btn-player-close'),
+    
+    filterClear: document.querySelector('.filter__clear'),
+    filterGenreList: document.querySelector('.filter__genre-list'),
+    filterContainer: document.querySelector('.filter__container'),
+    filterSelectBtn: document.querySelector('.filter__select-btn'),
   };
 }
