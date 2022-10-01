@@ -4,10 +4,13 @@ function footerModal() {
     footerModalClose: document.querySelector('.close'),
     modal: document.querySelector('[data-modal]'),
     backdrop: document.querySelector('.backdrop'),
+    body: document.querySelector('body'),
   };
 
   refs.footerModalOpen.addEventListener('click', footerMO);
+  refs.footerModalOpen.addEventListener('click', toggleMenu);
   refs.footerModalClose.addEventListener('click', footerMC);
+  refs.footerModalClose.addEventListener('click', toggleMenu);
   refs.backdrop.addEventListener('click', onBackdropClick);
 
   document.addEventListener('keypress', function (e) {
@@ -43,6 +46,10 @@ function footerModal() {
       refs.modal.classList.add('is-hidden');
       footerMC();
     }
+  }
+
+  function toggleMenu() {
+    refs.body.classList.add('no-scroll');
   }
 }
 

@@ -21,6 +21,10 @@
     pointer-events: none;
 }
 
+.no-scroll {
+    overflow: hidden;
+}
+
 .footer-modal {
 
     position: absolute;
