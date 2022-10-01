@@ -1,117 +1,70 @@
-.button {
-    display: inline-block;
-    border: 1px solid var(--white-text-color);
-    border-radius: 5px;
 
-    width: 135px;
-    padding: 13px 36px;
-    text-transform: uppercase;
-    background-color: transparent;
-    align-items: center;
-    text-align: center;
+.md-button {
+  display: inline-block;
+  width: 110px;
+  height: auto;
+
+  border: 1px solid var(--primary-text-color);
+  border-radius: 5px;
+  padding: 10px;
+  text-transform: uppercase;
+  background-color: transparent;
+  align-items: center;
+  text-align: center;
+
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  @include font(500, 12px, 16px, 0.03em);
+  color: var(--primary-text-color);
+  cursor: pointer;
   
-    font-family: Roboto, sans-serif;
-    font-style: normal;
-    @include font(500, 12px, 16px, 0.03em);
-    color: var(--white-text-color);
-    cursor: pointer;
-    
 
-    &:not(:last-child) {
-      margin-right: 20px;
-    }
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+
+  // &:hover,
+  // &:focus {
+  //   background-color: var(--accent-color);
+  //   border: none;
+  // }
+
+
+  &.swich-on {
+    border: none;
+    padding: 6px 27px;
+    background-color: var(--accent-color);
+    color: var(--white-text-color);
+    
+  
+    
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
 
     &:hover,
     &:focus {
       background-color: var(--accent-color);
-      border: none;
     }
-  
-  
-    &.swich-on {
-      border: none;
-      background-color: var(--accent-color);
-      color: var(--white-text-color);
-     
-      transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-  
-      &:hover,
-      &:focus {
-        background-color: var(--accent-color);
-      }
-    }
-  
   }
 
-  .md-button {
-    display: inline-block;
-    width: 110px;
-    height: auto;
-
-    border: 1px solid var(--primary-text-color);
-    border-radius: 5px;
-    padding: 10px;
-    text-transform: uppercase;
-    background-color: transparent;
-    align-items: center;
-    text-align: center;
-  
-    font-family: Roboto, sans-serif;
-    font-style: normal;
-    @include font(500, 12px, 16px, 0.03em);
-    color: var(--primary-text-color);
-    cursor: pointer;
-    
-
-    &:not(:last-child) {
-      margin-right: 20px;
-    }
-
-    // &:hover,
-    // &:focus {
-    //   background-color: var(--accent-color);
-    //   border: none;
-    // }
-  
-  
-    &.swich-on {
-      border: none;
-      padding: 6px 27px;
-      background-color: var(--accent-color);
-      color: var(--white-text-color);
-     
-    
-     
-      transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-  
-      &:hover,
-      &:focus {
-        background-color: var(--accent-color);
-      }
-    }
-  
-  }
+}
 
 
   
  // ===768+====
 
-@media screen and (min-width: 768px) {
-
+@include tablet {
   .md-button {
     width: auto;
- padding-left: 20px;
- padding-right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     &.swich-on {
       width: auto;
       padding: 10px 13px;
-  }
+    }
 
-  &:not(:last-child) {
-    margin-right: 15px;
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
   }
-
-}
 }
