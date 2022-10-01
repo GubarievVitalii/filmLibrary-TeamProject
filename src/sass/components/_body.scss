@@ -5,11 +5,11 @@ html {
   scroll-behavior: smooth;
 }
 
-*,
-::after,
-::before {
-  box-sizing: inherit;
-}
+// *,
+// ::after,
+// ::before {
+//   box-sizing: inherit;
+// }
 
 body {
   background-color: var(--white-text-color);
@@ -62,6 +62,7 @@ button {
 }
 
 .link {
+  display: block;
   text-decoration: none;
 }
 
