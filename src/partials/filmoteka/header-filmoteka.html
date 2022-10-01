@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="header__nav">
+        <div class="logo">
+            <a class="logo__link link" href="./index.html">
+                <svg class="logo__icon" width="24" height="24">
+                    <use href="./images/sprite.svg#icon-logo"></use>
+                </svg>
+                <h1 class="logo__web">Filmoteka</h1>
+            </a>
+        </div>
+        <nav class="nav">
+            <ul class="nav__list list">
+                <li class="nav__item">
+                    <span  class="nav__link  nav__link--active ">Home</span>
+                </li>
+                <li class="nav__item library">
+                    <a href="./my-library.html" class="nav__link link authreq">my library</a>
+                </li>
+                <li class="nav__item">
+                    <span class="nav__link auth">LOG IN</span>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <form class="search-form" id="search-form">
+        <div class="search-field">
+            <input
+                class="search-input"
+                type="text"
+                name="searchQuery"
+                autocomplete="off"
+                placeholder="Movie search"
+            />
+            <svg class="search-icon" width="12" height="12">
+                <use href="images/sprite.svg#icon-search"></use>
+            </svg>
+        </div>
+        <p class="alarm__info is-hidden" id="alarm__info">Search result not successful. Enter the correct movie name and</p>
+    </form>
+</div>
+<div class="ligth-checkbox">
+    <input type="checkbox" name="ligthswitcher" />
+    <svg class="moon-icon">
+    <use href="./images/sprite.svg#icon-moon"></use>
+    </svg>
+    <svg class="sun-icon">
+    <use href="./images/sprite.svg#icon-sun"></use>
+    </svg>
+</div>

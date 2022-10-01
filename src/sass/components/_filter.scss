@@ -1,3 +1,4 @@
+
 body.night {
   & .filter__select-btn {
     box-shadow: none;
@@ -8,6 +9,16 @@ body.night {
   & .filter__clear:hover,
   & .filter__clear:focus {
     fill: #ff6b01;
+  }
+}
+.section-filter {
+  @extend .section;
+
+  padding-top: 20px;
+  padding-bottom: 0;
+
+  @media screen and (min-width: $tablet) {
+      padding-top: 30px;
   }
 }
 .section--filter {

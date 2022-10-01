@@ -3,22 +3,20 @@ import imageDefaults from '../images/default.jpg'
 
 export function createMarkupElement({id, title, poster_path, genre_str, release_date, vote_average}) {
   
-  return `<li class="galary-list__item" data-movie-id = ${id}>
-              <a data-modal-open href="" class="galary-list-link-wrapper skeleton" data-movie-id = ${id}>
-                <div class="galary-list-item-wraper">
+  return `<li class="gallery__item" data-movie-id = ${id}>
+              <a data-modal-open href="" class="gallery__link link skeleton" data-movie-id = ${id}>
+                <div class="galary__card">
                   <img
                     src=${!poster_path ? imageDefaults: `${pathImage}original${poster_path}`}
                     alt="galary"
-                    class="galary-list-item-img"
+                    class="gallery__img"
                     data-movie-id=${id}
                   />
-                  <div class="film-data first">
-                    <p class="films-name skeleton skeleton-text">${title}</p>
-                    <div class="film-data-wraper">
-                      <p class="films-genre skeleton skeleton-text">
-                        ${genre_str.join(", ")} &#124; ${release_date.slice(0,4)}
-                      </p>
-                    </div>
+                  <div class="film first">
+                    <p class="films__name skeleton skeleton-text">${title}</p>
+                    <p class="films__genre skeleton skeleton-text">
+                      ${genre_str.join(", ")} &#124; ${release_date.slice(0,4)}
+                    </p>
                   </div>
                 </div>
               </a>
