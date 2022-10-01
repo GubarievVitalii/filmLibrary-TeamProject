@@ -29,31 +29,30 @@ const authCheck = document.querySelector('.authreq')
 
 authBtn.addEventListener('click', onAuthClick)
 userLibrary.addEventListener('click', checkAuth)
-export default async function userAuth  ()  {
+export default userAuth = async () => {
   await signInWithPopup(auth, provider)
-  .then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    // The signed-in user info.
-    const user = result.user
-    if(user) {
-        Notiflix.Notify.success(`Hello ${user.displayName}`)
-        authBtn.removeEventListener('click', onAuthClick)
-        
-    }
-
-  
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
-  });}
+    .then(result => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      if (user) {
+        Notiflix.Notify.success(`Hello ${user.displayName}`);
+        authBtn.removeEventListener('click', onAuthClick);
+      }
+    })
+    .catch(error => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
+};
 
 export const authListnener =  onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -61,8 +60,8 @@ export const authListnener =  onAuthStateChanged(auth, (user) => {
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid;
  
-      userLibrary.innerHTML =  `<a href="./my-library.html" class="site-nav-header__link library "
-      >MY LIBRARY</a>`
+      userLibrary.innerHTML = `<a href="./my-library.html" class="nav__link library "
+      >MY LIBRARY</a>`;
       authBtn.innerHTML = "LOG OUT"
       authBtn.removeEventListener('click', onAuthClick)
       authCheck.removeEventListener('click', checkAuth)
@@ -80,7 +79,7 @@ export const authListnener =  onAuthStateChanged(auth, (user) => {
       
         authBtn.addEventListener('click', onAuthClick)
         authBtn.innerHTML = "LOG IN"
-        userLibrary.innerHTML =  `<span class='site-nav-header__link'>MY LIBRARY</span>`
+        userLibrary.innerHTML = `<span class="nav__link">MY LIBRARY</span>`;
         
     }
   });
