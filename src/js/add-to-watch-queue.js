@@ -2,15 +2,12 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import getRefs from './get-refs';
 
 export default function addToWatchOrQueue(movieDetails) {
-  // const { data } = movieDetails;
-  // переписав запити через moviesApi, тепер це присвоєння не потрібне
   const { id, title, poster_path, genres, release_date, vote_average } =
     movieDetails;
   const { addWatchBtn, removeWatchBtn, addQueueBtn, removeQueueBtn } =
     getRefs();
 
   const genreNames = [];
-
   for (const genre of genres) {
     genreNames.push(genre.name);
   }
@@ -30,28 +27,48 @@ export default function addToWatchOrQueue(movieDetails) {
   // якщо є -> перевіряємо наявність фільму в масиві
   // об'єктів і в залежності від результату відображаємо потрібну кнопку
   // якщо немає -> створюємо ключ з значенням [];
-  if (watched !== null) {
-    watched = JSON.parse(watched);
+  if ('Watched' in localStorage) {
+    try {
+      watched = JSON.parse(watched);
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
     const isFilmWatched = watched.find(film => film.id === id);
-    if (isFilmWatched !== undefined) {
+    if (isFilmWatched) {
       addWatchBtn.classList.add('vissualy-hidden');
       removeWatchBtn.classList.remove('vissualy-hidden');
     }
   } else {
     localStorage.setItem('Watched', JSON.stringify([]));
-    watched = JSON.parse(localStorage.getItem('Watched'));
+    try {
+      watched = JSON.parse(localStorage.getItem('Watched'));
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
   }
   // Теж саме що і в попередньому випадку, але для ключа Queue і відповідно його кнопок
-  if (queue !== null) {
-    queue = JSON.parse(queue);
+  if ('Queue' in localStorage) {
+    try {
+      queue = JSON.parse(queue);
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
     const isFilmQueue = queue.find(film => film.id === id);
-    if (isFilmQueue !== undefined) {
+    if (isFilmQueue) {
       addQueueBtn.classList.add('vissualy-hidden');
       removeQueueBtn.classList.remove('vissualy-hidden');
     }
   } else {
     localStorage.setItem('Queue', JSON.stringify([]));
-    queue = JSON.parse(localStorage.getItem('Queue'));
+    try {
+      queue = JSON.parse(localStorage.getItem('Queue'));
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
   }
   // Додавання поточного фільму до LocalStorage
   // та перевірка його наявності в значенні ключа Queue
