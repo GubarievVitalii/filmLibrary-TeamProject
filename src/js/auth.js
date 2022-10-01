@@ -60,7 +60,7 @@ export const authListnener =  onAuthStateChanged(auth, (user) => {
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid;
  
-      userLibrary.innerHTML = `<a href="./my-library.html" class="nav__link link authreq"
+      userLibrary.innerHTML = `<a href="./my-library.html" class="nav__link library "
       >MY LIBRARY</a>`;
       authBtn.innerHTML = "LOG OUT"
       authBtn.removeEventListener('click', onAuthClick)
