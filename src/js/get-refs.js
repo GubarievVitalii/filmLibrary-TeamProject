@@ -14,7 +14,11 @@ export default function getRefs() {
       addQueueBtn: document.querySelector('.add-queue-js'),
       removeQueueBtn: document.querySelector('.remove-queue-js'),
 
-    };
+    filterClear: document.querySelector('.filter__clear'),
+    filterGenreList: document.querySelector('.filter__genre-list'),
+    filterContainer: document.querySelector('.filter__container'),
+    filterSelectBtn: document.querySelector('.filter__select-btn'),
+  };
 }
 
 

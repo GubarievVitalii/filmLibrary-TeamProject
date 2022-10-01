@@ -8,6 +8,7 @@ import { createMarkupElement } from './js/renderMarkup';
 import MoviesApi from './js/moviesApi';
 import './js/nightMode';
 import './js/top.js';
+import './js/filter';
 
 import renderPagination from './js/pagination'
 

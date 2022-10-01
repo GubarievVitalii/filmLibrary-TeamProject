@@ -112,6 +112,7 @@ class MoviesApi{
         api_key: API_KEY,
         language: "en",
         with_genres: queryGendres,
+        page: this.#currentPage,
       },
     });
 
