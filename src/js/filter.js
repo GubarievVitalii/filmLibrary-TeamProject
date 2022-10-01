@@ -1,7 +1,6 @@
 import { genresNames } from './genres-names';
 import { createMarkupElement } from './renderMarkup';
 import { fetchTrendMovies } from './pagination';
-import Notiflix from 'notiflix';
 import MoviesApi from './moviesApi';
 import getRefs from './get-refs';
 import { renderPaginationbyGenre } from './pagination';
