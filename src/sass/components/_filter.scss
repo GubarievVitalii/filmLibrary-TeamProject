@@ -1,4 +1,6 @@
-.section--filter {
+.section-filter {
+    @extend .section;
+
     padding-top: 20px;
     padding-bottom: 0;
 
@@ -15,7 +17,8 @@
     }
 }
 
-.filter__container {
+.filter-container {
+    @extend .container; 
     position: relative;
     display: flex;
     justify-content: center;

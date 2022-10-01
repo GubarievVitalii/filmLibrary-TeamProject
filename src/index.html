@@ -18,181 +18,19 @@
   </head>
 
   <body class="page">
-    <!-- HEADER -->
-
     <header class="header">
-      <div class="container header__container">
-        <div class="logo__nav">
-          <div class="logo logo-header">
-            <svg class="logo-header__icon" width="24" height="24">
-              <use href="images/sprite.svg#icon-logo"></use>
-            </svg>
-            <p class="logo-web">Filmoteka</p>
-          </div>
-          <nav class="site-nav">
-            <ul class="site-nav-header">
-              <li class="site-nav-header__item">
-                <a href="./index.html" class="site-nav-header__link current"
-                  >HOME</a
-                >
-              </li>
-              <li class="site-nav-header__item library">
-                <span class="site-nav-header__link authreq">MY LIBRARY</span>
-              </li>
-              <li class="site-nav-header__item">
-                <span class="site-nav-header__link auth">LOG IN</span>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <form class="search-form" id="search-form">
-          <div class="form-field">
-            <input
-              class="search-input"
-              type="text"
-              name="searchQuery"
-              autocomplete="off"
-              placeholder="Movie search"
-            />
-            <svg class="icon-search" width="12" height="12">
-              <use href="images/sprite.svg#icon-search"></use>
-            </svg>
-          </div>
-          <!-- <div class="seach-line"></div> -->
-        </form>
-      </div>
-      <div class="ligth-checkbox">
-        <input type="checkbox" name="ligthswitcher" />
-        <svg class="moon-icon">
-          <use href="./images/sprite.svg#icon-moon"></use>
-        </svg>
-        <svg class="sun-icon">
-          <use href="./images/sprite.svg#icon-sun"></use>
-        </svg>
-      </div>
+      <include src="./partials/filmoteka/header-filmoteka.html"></include>
     </header>
-
-    <!-- HEADER-END -->
-    <!-- GALARY -->
-
     <main>
-      <section class="section section--filter">
-        <h2 class="filter-hidden">Filter options</h2>
-        <div class="container filter__container">
-          <select class="filter-input filter__input--genre" name="genrepicker">
-            <option class="filter__option" value="">Choose Genre</option>
-            <option class="filter__option" value="28">Action</option>
-            <option class="filter__option" value="12">Adventure</option>
-            <option class="filter__option" value="16">Animation</option>
-            <option class="filter__option" value="35">Comedy</option>
-            <option class="filter__option" value="80">Crime</option>
-            <option class="filter__option" value="99">Documentary</option>
-            <option class="filter__option" value="18">Drama</option>
-            <option class="filter__option" value="10751">Family</option>
-            <option class="filter__option" value="14">Fantasy</option>
-            <option class="filter__option" value="36">History</option>
-            <option class="filter__option" value="27">Horror</option>
-            <option class="filter__option" value="10402">Music</option>
-            <option class="filter__option" value="9648">Mystery</option>
-            <option class="filter__option" value="10749">Romance</option>
-            <option class="filter__option" value="878">Science Fiction</option>
-            <option class="filter__option" value="10770">TV Movie</option>
-            <option class="filter__option" value="53">Thriller</option>
-            <option class="filter__option" value="10752">War</option>
-            <option class="filter__option" value="37">Western</option>
-          </select>
-          <select
-            class="filter-input filter__input--year"
-            name="yearpicker"
-          ></select>
-
-          <button class="clear-filter filter-hidden">
-            <svg class="clear-filter__icon" width="22" height="22">
-              <use href="./images/close.svg"></use>
-            </svg>
-          </button>
-        </div>
-      </section>
-      <section class="section galary">
-        <div class="container galary">
-          <ul class="galary-list"></ul>
-        </div>
-        <div class="top">
-          <svg class="top__svg" viewBox="-2 -2 52 52">
-            <path
-              class="top__svg--path"
-              d="M24,0
-            a24,24 0 0,1 0,48
-            a24,24 0 0,1 0,-48"
-            />
-          </svg>
-        </div>
-        <ul class="pagination"></ul>
-      </section>
+      <include src="./partials/filmoteka/search-by-genre.html"></include>
+      <include src="./partials/filmoteka/gallery-filmoteka.html"></include>
+      <include src="./partials/top.html"></include>
     </main>
-
-    <!-- GALARY END -->
-    <!-- PAGES -->
-
-    <!-- PAGES END-->
-    <!-- FOOTER -->
-
     <footer class="footer">
-      <div class="section footer">
-        <div class="container footer">
-          <p class="coperite">© 2020 | All Rights Reserved |</p>
-          <p class="coperite">Developed with</p>
-          <svg class="icon-love" width="12" height="12">
-            <use href="./images/sprite.svg#icon-love"></use>
-          </svg>
-          <p class="coperite">
-            by&nbsp<a
-              data-modal-open-two
-              class="coperite footer-modal-open"
-              href=""
-              noreferrer
-              noopener
-              nofollow
-              >GoIT Students</a
-            >
-          </p>
-        </div>
-      </div>
-
+      <include src="./partials/footer.html"></include>
     </footer>
-
-    <!-- MOVIE MODAL -->
-
-    <div class="movie-modal-backdrop is-hidden">
-      <div class="movie-modal">
-        <button type="button" class="btn-close">
-          <svg class="icon-close" with="18" height="18">
-            <use href="./images/sprite.svg#icon-close"></use>
-          </svg>
-        </button>
-        <div class="movie-modal-content"></div>
-      </div>
-    </div>
-
-    <div class="player-backdrop is-hidden">
-      <button type="button" class="btn-player-close">
-        <img src="./images/close-player.svg" alt="" width="50" height="50" />
-      </button>
-      <div class="player"></div>
-    </div>
-
-    <!-- MOVIE MODAL END -->
-
-    <div data-modal class="backdrop is-hidden js-backdrop">
-      <div class="modal vissualy-hidden">
-        <button type="button" class="btn-close">
-          <svg class="icon-close" with="18" height="18">
-            <use href="./images/sprite.svg#icon-close"></use>
-          </svg>
-        </button>
-
-        <include src="./partials/footer-modal.html"></include>
-      </div>
-    </div>
+    <include src="./partials/movie-modal.html"></include>
+    <include src="./partials/player-backdrop.html"></include>
+    <include src="./partials/modal-students.html"></include>
   </body>
 </html>

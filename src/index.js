@@ -25,10 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ------------ OPEN MOVIE MODAL --------------------
 
-const movieGallery = document.querySelector('.galary-list');
+const movieGallery = document.querySelector('.gallery__list');
 movieGallery.addEventListener('click', onMovieCardClick);
 function onMovieCardClick(e) {
-  if (e.target.classList.contains('galary-list-item-img')) {
+  if (e.target.classList.contains('gallery__img')) {
     e.preventDefault();
     const movieId = e.target.dataset.movieId;
     openMovieDetails(movieId);

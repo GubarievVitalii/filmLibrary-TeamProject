@@ -9,7 +9,6 @@
         }
     
     & .container{
-        padding: 0 44px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -31,9 +30,7 @@
 .coperite {
     margin-right: 10px;
     color: #545454;
-    font-family: Roboto, sans-serif;
-    font-style: normal;
-    @include font(400, 16px, 19px, 0.02em);
+    @include font(400, 14px, 16px, 0.02em);
 }
 
 .icon-love {
@@ -78,4 +75,9 @@
     }
 }
 
+@include tablet{
+    .coperite {
+        @include font(400, 16px, 19px, 0.02em);
+    }
+}
 

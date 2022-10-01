@@ -11,137 +11,20 @@
     <link rel="stylesheet" href="./sass/index.scss" />
     <link rel="icon" href="./images/favicon/favicon__filmoteka.png" />
   </head>
-  <body class="page">
-    <!-- HEADER -->
+  <body>
     <header class="header-library">
-      <div class="container header__container">
-        <div class="logo__nav">
-          <div class="logo">
-            <a class="logo-header" href="./index.html">
-              <svg class="logo-header__icon" width="24" height="24">
-                <use href="./images/sprite.svg#icon-logo"></use>
-              </svg>
-              <span class="logo-web">Filmoteka</span>
-            </a>
-          </div>
-          <nav class="site-nav">
-            <ul class="site-nav-header">
-              <li class="site-nav-header__item">
-                <a href="./index.html" class="site-nav-header__link">HOME</a>
-              </li>
-              <li class="site-nav-header__item library">
-                <span class="site-nav-header__link authreq">MY LIBRARY</span>
-              </li>
-              <li class="site-nav-header__item ">
-                <span class="site-nav-header__link auth">LOG OUT</span>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div class="header-buttons">
-          <button class="button swich-on" type="button">WATCHED</button>
-          <button class="button" type="button">QUEUE</button>
-        </div>
-      </div>
-      <div class="ligth-checkbox">
-        <input type="checkbox" name="ligthswitcher" />
-        <svg class="moon-icon">
-          <use href="./images/sprite.svg#icon-moon"></use>
-        </svg>
-        <svg class="sun-icon">
-          <use href="./images/sprite.svg#icon-sun"></use>
-        </svg>
-      </div>
+      <include src="./partials/library/header-library.html"></include>
     </header>
-
-    <!-- HEADER END-->
-    <!-- GALARY -->
-
     <main>
-    <section class="section galary">
-      <div class="container galary">
-        <ul class="galary-list-library watched-list">
-          
-        </ul>
-        <ul class="galary-list-library queue-list">
-          
-        </ul>
-      </div>
-      <ul class="pagination"></ul>
-    </section>
-    <div class="top">
-        <svg class="top__svg" viewBox="-2 -2 52 52">
-          <path
-            class="top__svg--path"
-            d="M24,0
-            a24,24 0 0,1 0,48
-            a24,24 0 0,1 0,-48"
-          />
-        </svg>
-      </div>
-      <div class="pagination-thumb">
-        <div id="tui-pagination-container" class="tui-pagination"></div>
-      </div>
+      <include src="./partials/library/gallery-librery.html"></include>
+      <include src="./partials/top.html"></include>
     </main>
-
-    <section class="section pages">
-      <div class="pagination-thumb">
-        <div id="tui-pagination-container" class="tui-pagination"></div>
-      </div>
-    </section>
-
     <footer class="footer">
-      <div class="container">
-        <p class="coperite">© 2020 | All Rights Reserved |</p>
-        <div class="footer__bottom">
-          <p class="coperite">Developed with</p>
-          <svg class="icon-love" width="12" height="12">
-            <use href="./images/sprite.svg#icon-love"></use>
-          </svg>
-          <p class="coperite">
-            by&nbsp<a
-              data-modal-open-two
-              class="coperite footer-modal-open"
-              href=""
-              noreferrer
-              noopener
-              nofollow
-              >GoIT Students</a
-            >
-          </p>
-        </div>
-      </div>
+      <include src="./partials/footer.html"></include>
     </footer>
-
-    <div data-modal class="backdrop is-hidden js-backdrop">
-      <div class="modal">
-        <button type="button" class="btn-close">
-          <svg class="icon-close" with="18" height="18">
-            <use href="./images/sprite.svg#icon-close"></use>
-          </svg>
-        </button>
-
-        <include src="./partials/footer-modal.html"></include>
-      </div>
-    </div>
-    <div class="player-backdrop is-hidden">
-      <div class="player"></div>
-    </div>
-
-    <!-- MODAL WINDOW-END -->
-    <!-- MODAL WINDOW-TEAM -->
-
-    <div data-modal class="backdrop is-hidden js-backdrop">
-      <div class="modal">
-        <button type="button" class="btn-close">
-          <svg class="icon-close" with="18" height="18">
-            <use href="./images/sprite.svg#icon-close"></use>
-          </svg>
-        </button>
-
-        <include src="./partials/footer-modal.html"></include>
-      </div>
-    </div>
+    <include src="./partials/movie-modal.html"></include>
+    <include src="./partials/player-backdrop.html"></include>
+    <include src="./partials/modal-students.html"></include>
 
     <script src="./my-library.js" type="module"></script>
   </body>

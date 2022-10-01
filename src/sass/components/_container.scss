@@ -1,80 +1,20 @@
-.container,
-.container-dev{
+.container {
   margin: 0 auto;
-  
+  display: block;
+  max-width: 480px;
+  padding: 0 20px;
 }
 
-
-
-// 320+
-@media screen and (min-width: 320px) {
-  .container {
-    display: block;
-    max-width: 480px;
-    // margin-left: auto;
-    // margin-right: auto;
-    // outline: 2px solid tomato;
-  }
-
-  .container-dev {
-    display: block;
-    width: 240px;
-    // outline: 2px solid tomato;
-  }
-
-
-}
-
-// 768+
-@media screen and (min-width: 768px) {
-
-.section.header,
- .section{
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
+@include tablet {
   .container {
     max-width: 768px;
-    // outline: 2px solid tomato;
-  
+    padding: 0 30px;
   }
-
-.container-dev {
-  display: block;
-  width: 549px;
-  // outline: 2px solid tomato;
 }
 
-
-}
-
-// 1200+
-
-@media screen and (min-width: 1280px) {
+@include desktop {
   .container {
-    padding: 0 18;
-    max-width: 1260px;
-    // outline: 2px solid tomato;
-
-  }
-
-  .container-dev {
-    display: block;
-    width: 833px;
-    // outline: 2px solid tomato;
-  }
-
-
-}
-
-
-@media screen and (min-width: 1200px){
-   
-  .container-dev {
-    display: block;
-    width: 833px;
-    // outline: 2px solid tomato;
+    max-width: 1280px;
   }
 }
 
