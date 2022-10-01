@@ -78,7 +78,6 @@
     font-style: normal;
     background-color: var(--accent-color);
     border-radius: 5px;
-    padding: 1 10;
   }
 }
 
@@ -102,7 +101,7 @@
   }
 }
 
-// ====1200+====
+// ====1280+====
 
 @include desktop {
   .gallery{
@@ -118,35 +117,14 @@
       margin-bottom: 12px;
     } 
   }
+
+  .films{
+    &__name {
+      @include font(500, 20px, 24px, 0.02em);
+    }
+
+    &__genre {
+      @include font(500, 20px, 24px, 0.02em);
+    }
+  }
 }
-
-// @media screen and (min-width: 1280px) {
-
-//   .galary-list-item-img {
-//     display: block;
-//     width: 384px;
-//     height: 574px;
-//   }
-
-//   .section.galary {
-//     padding: 60px 0px;
-//   }
-
-//   .galary-list__item {
-//     margin-right: 32px;
- 
-
-//     &:nth-child(2n) {
-//       margin-right: 32px;
-//     }
-//     &:nth-child(3n) {
-//       margin-right: 0px;
-//     }
-
-//     // &:nth-last-child(-n + 3) {
-//     //   margin-bottom: 0;
-//     // }
-//   }
-// }
-  
-
