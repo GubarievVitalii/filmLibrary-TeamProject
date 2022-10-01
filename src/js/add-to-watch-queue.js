@@ -78,7 +78,7 @@ export default function addToWatchOrQueue(movieDetails) {
     localStorage.setItem('Watched', JSON.stringify(watched));
 
     const isFilmQueue = queue.find(film => film.id === id);
-    if (isFilmQueue !== undefined) {
+    if (isFilmQueue) {
       removeFilmFromQueue();
     }
 
@@ -95,7 +95,7 @@ export default function addToWatchOrQueue(movieDetails) {
     localStorage.setItem('Queue', JSON.stringify(queue));
 
     const isFilmWatched = watched.find(film => film.id === id);
-    if (isFilmWatched !== undefined) {
+    if (isFilmWatched) {
       removeFilmFromWatched();
     }
 
