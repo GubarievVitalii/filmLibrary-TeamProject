@@ -15,7 +15,7 @@ import { makeSkeletonLoader } from './js/skeleton-loader';
 import renderPagination from './js/pagination';
 
 // import userAuth from './js/auth'
-import authListnener from './js/auth';
+// import authListnener from './js/auth';
 const refs = getRefs();
 
 const moviesApi = new MoviesApi();

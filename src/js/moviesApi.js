@@ -70,14 +70,6 @@ class MoviesApi {
     return handlerGenres(response.data, MoviesApi.genres);
   }
 
-  //   if (withVideo) {
-  //     const { results } = await this.fetchMovieVideoByID(id);
-  //     response.data['resultVideo'] = results;
-  //     return response.data;
-  //   }
-  //   return response.data;
-  // }
-  // забрав перевірку if (withVideo), додав масив з відео по замовчуванню
   async fetchMovieByID(id) {
     const response = await axios.get(`/movie/${id}`, {
       params: {
