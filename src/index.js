@@ -9,13 +9,13 @@ import MoviesApi from './js/moviesApi';
 import './js/nightMode';
 import './js/top.js';
 
-import renderPagination from './js/pagination'
+import { makeSkeletonLoader } from './js/skeleton-loader';
 
+import renderPagination from './js/pagination';
 
 // import userAuth from './js/auth'
 import authListnener from './js/auth';
 const refs = getRefs();
-
 
 const moviesApi = new MoviesApi();
 
@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ------------ OPEN MOVIE MODAL --------------------
 
-const movieGallery = document.querySelector('.gallery__list');
-movieGallery.addEventListener('click', onMovieCardClick);
+// const movieGallery = document.querySelector('.galary-list');
+refs.imagesContainer.addEventListener('click', onMovieCardClick);
 function onMovieCardClick(e) {
   if (e.target.classList.contains('gallery__img')) {
     e.preventDefault();
@@ -49,22 +49,22 @@ async function fetchTrendMovies() {
         results.map(createMarkupElement).join('')
       );
 
-    //  // pagination
-    const instance = createPagination();
-    instance.setItemsPerPage(20);
-    instance.setTotalItems(total_results);
-    instance.movePageTo(page);
+    // pagination
+    // const instance = createPagination();
+    // instance.setItemsPerPage(20);
+    // instance.setTotalItems(total_results);
+    // instance.movePageTo(page);
 
-    instance.on('afterMove', event => {
-      const currentPage = event.page;
-      window.scrollTo({ top: 240, behavior: 'smooth' });
-    });
+    // instance.on('afterMove', event => {
+    //   const currentPage = event.page;
+    //   window.scrollTo({ top: 240, behavior: 'smooth' });
+    // });
 
-    results.length &&
-      refs.imagesContainer.insertAdjacentHTML(
-        'afterbegin',
-        results.map(createMarkupElement).join('')
-      );
+    // results.length &&
+    //   refs.imagesContainer.insertAdjacentHTML(
+    //     'afterbegin',
+    //     results.map(createMarkupElement).join('')
+    //   );
 
     // Skeleton
     makeSkeletonLoader();
