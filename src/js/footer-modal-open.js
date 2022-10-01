@@ -1,7 +1,7 @@
 function footerModal() {
   const refs = {
     footerModalOpen: document.querySelector('.footer-modal-open'),
-    footerModalClose: document.querySelector('svg.icon-close'),
+    footerModalClose: document.querySelector('.btn-close'),
     modal: document.querySelector('[data-modal]'),
     backdrop: document.querySelector('.backdrop'),
   };

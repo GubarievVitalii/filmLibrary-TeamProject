@@ -1,59 +1,62 @@
-import axios from 'axios';
+import MoviesApi from './moviesApi';
+import getRefs from './get-refs';
 import renderMovieDetails from './movie-details-render';
-import playTrailer from './movie-play-trailer';
+import watchTrailer from './movie-play-trailer';
 import addToWatchOrQueue from './add-to-watch-queue'; // FT-18, FT-19 (Функціонал для кнопок "Додати до переглянутих", "Додати до черги")
 
+const moviesApi = new MoviesApi();
+const { movieBackdrop, movieModalContent } = getRefs();
+
 export default function openMovieDetails(movieId) {
-  const movieBackdrop = document.querySelector('.movie-modal-backdrop');
-  console.log(movieBackdrop);
-  const movieModalContent = document.querySelector('.movie-modal-content');
   movieBackdrop.classList.remove('is-hidden');
+  movieBackdrop.insertAdjacentHTML(
+    'beforeend',
+    `<div class="lds-ring"><div></div><div></div><div></div><div></div>`
+  );
+  const spinner = document.querySelector('.lds-ring');
 
-  axios
-    .get(
-      `https://api.themoviedb.org/3/movie/${movieId}?api_key=babda8599831afaa2c30cb95eedbc1fe&language=en`
-    )
-    .then(movieDetails => {
-      renderMovieDetails(movieDetails);
-      addToWatchOrQueue(movieDetails); // FT-18, FT-19 (Функціонал для кнопок "Додати до переглянутих", "Додати до черги")
-    });
+  let trailer;
+  const playTrailerBtnMarkup = `<button class="button-modal play-trailer" type="button">Watch trailer</button>`;
 
-  let trailer = '';
-  const playTrailerBtnMarkup = `<button class="button-modal play-trailer" type="button">
-                                Watch trailer
-                            </button>`;
-  axios
-    .get(
-      `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=babda8599831afaa2c30cb95eedbc1fe`
-    )
-    .then(response => {
-      if (response.data.results.length !== 0) {
-        trailer = response.data.results[0].key;
-        const btnContainer = document.querySelector('.md-modal-buttons');
-        btnContainer.insertAdjacentHTML('beforeend', playTrailerBtnMarkup);
+  moviesApi.fetchMovieByID(movieId).then(movieDetails => {
+    // movieModalContent.innerHTML = '';
+    spinner.remove();
+    renderMovieDetails(movieDetails);
+    const closeMovieModalBtn = document.querySelector('.modal-close-btn');
+    closeMovieModalBtn.addEventListener('click', onCloseBtnClick);
+    function onCloseBtnClick() {
+      movieBackdrop.classList.add('is-hidden');
+      movieModalContent.innerHTML = '';
+    }
+    addToWatchOrQueue(movieDetails); // FT-18, FT-19 (Функціонал для кнопок "Додати до переглянутих", "Додати до черги")
 
-        const playTrailerBtn = document.querySelector('.play-trailer');
-        playTrailerBtn.addEventListener('click', onWatchTrailerClick);
-        function onWatchTrailerClick() {
-          playTrailer(trailer);
-        }
+    if (movieDetails.resultVideo.length !== 0) {
+      trailer = movieDetails.resultVideo.find(
+        video => video.type === 'Trailer'
+      );
+      const movieModalButtons = document.querySelector('.movie-modal-buttons');
+      movieModalButtons.insertAdjacentHTML('beforeend', playTrailerBtnMarkup);
+
+      const watchTrailerBtn = document.querySelector('.play-trailer');
+      watchTrailerBtn.addEventListener('click', onWatchTrailerClick);
+      function onWatchTrailerClick() {
+        watchTrailer(trailer.key);
       }
-    });
+    }
+  });
 
   // ----------------------------------------- CLOSE MODAL ---------------------------------------------
 
-  const closeBtn = document.querySelector('.btn-close');
-  closeBtn.addEventListener('click', onCloseBtnClick);
-  function onCloseBtnClick() {
-    movieBackdrop.classList.add('is-hidden');
-    movieModalContent.innerHTML = '';
-  }
+  // function clearMovieModal() {
+  //   movieModalContent.innerHTML = '';
+  // }
 
   movieBackdrop.addEventListener('click', onBackdropClick);
   function onBackdropClick(e) {
     if (e.target === movieBackdrop) {
       movieBackdrop.classList.add('is-hidden');
       movieModalContent.innerHTML = '';
+      // setTimeout(() => clearMovieModal(), 500);
     }
   }
 
@@ -62,6 +65,7 @@ export default function openMovieDetails(movieId) {
     if (event.code === 'Escape') {
       movieBackdrop.classList.add('is-hidden');
       movieModalContent.innerHTML = '';
+      // setTimeout(() => clearMovieModal(), 500);
       document.removeEventListener('keydown', onEscPress);
     }
   }

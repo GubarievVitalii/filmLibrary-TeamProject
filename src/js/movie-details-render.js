@@ -1,37 +1,43 @@
-export default function renderMovieDetails(movieDetails) {
-  const movieModalContent = document.querySelector('.movie-modal-content');
+import getRefs from './get-refs';
+const { movieModalContent } = getRefs();
 
-  const genres = movieDetails.data.genres.map(genre => genre.name).join(', ');
+export default function renderMovieDetails(movieDetails) {
+  const genres = movieDetails.genres.map(genre => genre.name).join(', ');
   const movieDetailsMarkup = `
-    <img class="modal-image" src="https://image.tmdb.org/t/p/w500${movieDetails.data.poster_path}" />
+  <div class="movie-modal">
+        <button type="button" class="modal-close-btn">
+            &#x26CC
+        </button>
+        <div class="movie-modal-content">
+    <img class="modal-image" src="https://image.tmdb.org/t/p/w500${movieDetails.poster_path}" />
     <div class="modal-data-box">
-        <h2 class="modal-title">${movieDetails.data.title}</h2>
+        <h2 class="modal-title">${movieDetails.title}</h2>
         <table class="modal-table-box">
-            <tr>
+            <tr class="movie-modal-tr">
               <td class="modal-data">Vote / Votes</td>
               <td class="modal-data-value">
-                <span class="modal-rating">${movieDetails.data.vote_average}</span>/
-                <span class="modal-rating-two">${movieDetails.data.vote_count}</span>
+                <span class="modal-rating">${movieDetails.vote_average}</span>/
+                <span class="modal-rating-two">${movieDetails.vote_count}</span>
               </td>
             </tr>
-            <tr>
+            <tr class="movie-modal-tr">
               <td class="modal-data">Popularity</td>
-              <td class="modal-data-value">${movieDetails.data.popularity}</td>
+              <td class="modal-data-value">${movieDetails.popularity}</td>
             </tr>
-            <tr>
+            <tr class="movie-modal-tr">
               <td class="modal-data">Original Title</td>
-              <td class="modal-data-value">${movieDetails.data.original_title}</td>
+              <td class="modal-data-value">${movieDetails.original_title}</td>
             </tr>
-            <tr>
+            <tr class="movie-modal-tr">
               <td class="modal-data">Genre</td>
               <td class="modal-data-value">${genres}</td>
             </tr>
           </table>
           <h3 class="modal-title-about">ABOUT</h3>
           <p class="modal-description">
-            ${movieDetails.data.overview}
+            ${movieDetails.overview}
           </p>
-          <div class="md-modal-buttons">
+          <div class="movie-modal-buttons">
             <button class="button-modal add-watch-js" type="button" id="first-btn">
               Add to watch
             </button>
@@ -42,6 +48,8 @@ export default function renderMovieDetails(movieDetails) {
             <button class="button-modal vissualy-hidden remove-queue-js" type="button">Remove from queue</button>
           </div>
         </div>
+        </div>
+      </div>
 `;
   movieModalContent.insertAdjacentHTML('beforeend', movieDetailsMarkup);
 }
