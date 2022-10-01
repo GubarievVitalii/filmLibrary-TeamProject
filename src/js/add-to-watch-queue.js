@@ -1,6 +1,6 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import getRefs from './get-refs';
-import renderWatched from './render-watched-movie';
+import renderWatched from './render-watched-list';
 import renderQueue from './render_queue-list';
 
 export default function addToWatchOrQueue(movieDetails) {
@@ -8,8 +8,14 @@ export default function addToWatchOrQueue(movieDetails) {
   // переписав запити через moviesApi, тепер це присвоєння не потрібне
   const { id, title, poster_path, genres, release_date, vote_average } =
     movieDetails;
-  const { addWatchBtn, removeWatchBtn, addQueueBtn, removeQueueBtn } =
-    getRefs();
+  const {
+    addWatchBtn,
+    removeWatchBtn,
+    addQueueBtn,
+    removeQueueBtn,
+    watchedBtn,
+    queuedBtn,
+  } = getRefs();
 
   const genreNames = [];
 
@@ -72,7 +78,12 @@ export default function addToWatchOrQueue(movieDetails) {
 
     Notify.success(`The movie "${title}" has been added to watched`);
 
-    renderWatched(); // FT-14 (Рендер бібліотеки після додавання фільму в переглянуті)
+    // FT-14 (Рендер бібліотеки після додавання фільму в переглянуті)
+    if (queuedBtn.classList.contains('selected')) {
+      renderQueue();
+    } else {
+      renderWatched();
+    }
   }
   // Додавання поточного фільму до LocalStorage
   // та перевірка його наявності в значенні ключа Watched
@@ -91,7 +102,12 @@ export default function addToWatchOrQueue(movieDetails) {
 
     Notify.success(`The movie "${title}" has been added to the queue`);
 
-    renderQueue(); // FT-15 (Рендер бібліотеки після додавання фільму в чергу)
+    // FT-15 (Рендер бібліотеки після додавання фільму в чергу)
+    if (watchedBtn.classList.contains('selected')) {
+      renderWatched();
+    } else {
+      renderQueue();
+    }
   }
   // Видалення об'єкта фільму ключа Watched з LocalStorage за індексом
   function removeFilmFromWatched() {
