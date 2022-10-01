@@ -13,6 +13,20 @@ function handlerGenres({ results, ...other }, genres) {
   return { ...other, results };
 }
 
+function getQueryGendres(queryGendres) {
+  console.log(queryGendres);
+  if (Array.isArray(queryGendres)) {
+    return queryGendres.join(',');
+  } else if (typeof queryGendres === 'string') {
+    return queryGendres;
+  } else if (typeof queryGendres === 'number') {
+    console.log(queryGendres);
+    return queryGendres.toString();
+  } else {
+    return '';
+  }
+}
+
 class MoviesApi {
   static genres = null;
   static async fetchGendresMovie() {
@@ -56,14 +70,6 @@ class MoviesApi {
     return handlerGenres(response.data, MoviesApi.genres);
   }
 
-  // async fetchMovieByID(id, withVideo = false) {
-  //   const response = await axios.get(`/movie/${id}`, {
-  //     params: {
-  //       api_key: API_KEY,
-  //       language: 'en',
-  //     },
-  //   });
-
   //   if (withVideo) {
   //     const { results } = await this.fetchMovieVideoByID(id);
   //     response.data['resultVideo'] = results;
@@ -93,6 +99,23 @@ class MoviesApi {
     });
 
     return response.data;
+  }
+
+  async fetchMovieByGenres(arrayGenres) {
+    const queryGendres = getQueryGendres(arrayGenres);
+    if (!queryGendres) {
+      return { results: [] };
+    }
+    const response = await axios.get('/discover/movie', {
+      params: {
+        api_key: API_KEY,
+        language: 'en',
+        with_genres: queryGendres,
+        page: this.#currentPage,
+      },
+    });
+
+    return handlerGenres(response.data, MoviesApi.genres);
   }
 
   async fetchMovieQuery() {
