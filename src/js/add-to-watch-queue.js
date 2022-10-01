@@ -1,6 +1,7 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import getRefs from './get-refs';
 import renderWatched from './render-watched-movie';
+import renderQueue from './render_queue-list';
 
 export default function addToWatchOrQueue(movieDetails) {
   // const { data } = movieDetails;
