@@ -115,12 +115,16 @@
   }
 }
 
-.alarm__info{
-  display: none;
+.alarm__info{  
   width: 280px;
   margin: 0 auto;
   color: #FF001B;
   @include font(400, 14px, 16px, 0em);
+
+  &.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 .header-buttons {
   display: flex;
