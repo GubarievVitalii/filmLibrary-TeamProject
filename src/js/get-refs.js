@@ -14,16 +14,20 @@ export default function getRefs() {
     addQueueBtn: document.querySelector('.add-queue-js'),
     removeQueueBtn: document.querySelector('.remove-queue-js'),
 
+    filterClear: document.querySelector('.filter__clear'),
+    filterGenreList: document.querySelector('.filter__genre-list'),
+    filterContainer: document.querySelector('.filter__container'),
+    filterSelectBtn: document.querySelector('.filter__select-btn'),
+
     movieBackdrop: document.querySelector('.movie-modal-backdrop'),
     movieModalContent: document.querySelector('.movie-modal-content'),
 
     playerContainer: document.querySelector('.player'),
     playerBackdrop: document.querySelector('.player-backdrop'),
     playerCloseBtn: document.querySelector('.btn-player-close'),
-    
-    filterClear: document.querySelector('.filter__clear'),
-    filterGenreList: document.querySelector('.filter__genre-list'),
-    filterContainer: document.querySelector('.filter__container'),
-    filterSelectBtn: document.querySelector('.filter__select-btn'),
+
+    galleryList: document.querySelector('.gallery__list--library'),
+    watchedBtn: document.querySelector('.watched-btn'),
+    queuedBtn: document.querySelector('.queue-btn'),
   };
 }

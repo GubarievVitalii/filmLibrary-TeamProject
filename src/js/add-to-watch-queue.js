@@ -1,5 +1,6 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import getRefs from './get-refs';
+import renderWatched from './render-watched-movie';
 
 export default function addToWatchOrQueue(movieDetails) {
   // const { data } = movieDetails;
@@ -69,6 +70,8 @@ export default function addToWatchOrQueue(movieDetails) {
     removeWatchBtn.classList.remove('vissualy-hidden');
 
     Notify.success(`The movie "${title}" has been added to watched`);
+
+    renderWatched(); // FT-14 (Рендер бібліотеки після додавання фільму в переглянуті)
   }
   // Додавання поточного фільму до LocalStorage
   // та перевірка його наявності в значенні ключа Watched
@@ -86,6 +89,8 @@ export default function addToWatchOrQueue(movieDetails) {
     removeQueueBtn.classList.remove('vissualy-hidden');
 
     Notify.success(`The movie "${title}" has been added to the queue`);
+
+    renderQueue(); // FT-15 (Рендер бібліотеки після додавання фільму в чергу)
   }
   // Видалення об'єкта фільму ключа Watched з LocalStorage за індексом
   function removeFilmFromWatched() {
@@ -98,6 +103,8 @@ export default function addToWatchOrQueue(movieDetails) {
     removeWatchBtn.classList.add('vissualy-hidden');
 
     Notify.info(`The film "${title}" has been removed from watched`);
+
+    renderWatched(); // FT-14 (Рендер бібліотеки після видалення фільму з переглянутих)
   }
   // Видалення об'єкта фільму ключа Queue з LocalStorage за індексом
   function removeFilmFromQueue() {
@@ -110,6 +117,8 @@ export default function addToWatchOrQueue(movieDetails) {
     removeQueueBtn.classList.add('vissualy-hidden');
 
     Notify.info(`The film "${title}" been removed from the queue`);
+
+    renderQueue(); // FT-15 (Рендер бібліотеки після видалення фільму з черги)
   }
 
   addWatchBtn.addEventListener('click', addFilmToWatched);
