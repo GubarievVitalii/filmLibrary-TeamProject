@@ -11,6 +11,7 @@ import './js/top.js';
 import './js/filter';
 
 import { makeSkeletonLoader } from './js/skeleton-loader';
+import onSearch  from './js/onSearch';
 
 import renderPagination from './js/pagination';
 
@@ -73,3 +74,6 @@ async function fetchTrendMovies() {
     console.log(error);
   }
 }
+
+
+refs.searchForm.addEventListener('submit', onSearch );
