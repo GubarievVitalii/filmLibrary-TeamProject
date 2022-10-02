@@ -7,7 +7,6 @@ import openMovieDetails from './js/movie-details-open.js';
 import footerModal from './js/footer-modal-open';
 
 topUp();
-footerModal();
 
 const { watchedBtn, queuedBtn, galleryList } = getRefs();
 
@@ -32,3 +31,4 @@ function onMovieCardClick(e) {
   }
 }
 
+footerModal();
