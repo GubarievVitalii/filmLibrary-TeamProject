@@ -4,7 +4,7 @@ import getRefs from './get-refs';
 import { createMarkupElement } from './renderMarkup.js';
 import { makeSkeletonLoader } from './skeleton-loader.js';
 import MoviesApi from './moviesApi.js';
-import createPagination from './pagination.js';
+// import createPagination from './pagination.js';
 
 
 const refs = getRefs();
