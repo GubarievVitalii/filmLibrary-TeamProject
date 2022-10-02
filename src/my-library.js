@@ -1,9 +1,13 @@
-import './js/top.js';
+import topUp from './js/top.js';
 import './js/nightMode';
 import getRefs from './js/get-refs.js';
 import renderWatched from './js/render-watched-movie.js';
 import renderQueue from './js/render_queue-list.js';
 import openMovieDetails from './js/movie-details-open.js';
+import footerModal from './js/footer-modal-open';
+
+topUp();
+footerModal();
 
 const { watchedBtn, queuedBtn, galleryList } = getRefs();
 
@@ -28,3 +32,4 @@ function onMovieCardClick(e) {
     openMovieDetails(movieId);
   }
 }
+
