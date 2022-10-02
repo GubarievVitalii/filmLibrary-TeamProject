@@ -1,7 +1,6 @@
 import getRefs from './get-refs';
 const refs = getRefs();
 function footerModal() {
-
   refs.footerModalOpen.addEventListener('click', footerMO);
   refs.footerModalClose.addEventListener('click', footerMC);
   refs.backdrop.addEventListener('click', onBackdropClick);
@@ -15,7 +14,6 @@ function footerModal() {
 
   function footerMO(evt) {
     evt.preventDefault();
-    console.log('open modal footer');
     window.addEventListener('keydown', onEscKeyPress);
     refs.modal.classList.remove('is-hidden');
     refs.scrollUp.classList.add('is-hidden');
