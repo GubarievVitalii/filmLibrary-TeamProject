@@ -46,6 +46,7 @@ export default function renderMovieDetails(movieDetails) {
             </button>
             <button class="button-modal add-queue-js" type="button">Add to queue</button>
             <button class="button-modal vissualy-hidden remove-queue-js" type="button">Remove from queue</button>
+            <button class="button-modal play-trailer" type="button">Watch trailer</button>
           </div>
         </div>
         </div>

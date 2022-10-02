@@ -32,10 +32,10 @@ export default function renderQueue() {
     return;
   }
 
-  if (queueMarkup === '') {
-    Notiflix.Notify.warning('There is no queue list!');
-    return;
-  }
+  //   if (!queueMarkup) {
+  //     Notiflix.Notify.warning('There is no queue list!');
+  //     return;
+  //   }
   galleryList.insertAdjacentHTML('beforeend', queueMarkup);
   makeSkeletonLoader();
 }
