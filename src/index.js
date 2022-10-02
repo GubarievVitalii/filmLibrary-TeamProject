@@ -11,8 +11,8 @@ import onSearch from './js/onSearch';
 
 // import renderPagination from './js/pagination';
 
-// import userAuth from './js/auth'
-// import authListnener from './js/auth';
+import userAuth from './js/auth'
+
 
 const refs = getRefs();
 
