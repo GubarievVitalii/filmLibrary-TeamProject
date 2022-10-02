@@ -64,7 +64,7 @@ const authGoogle = async () => {
     // ...
   });}
 
- authEmailAndPassword = async () => {
+    const authEmailAndPassword = async () => {
     const loginEmail = emailInput.value
     const loginPassword = passwordInput.value
     try{
