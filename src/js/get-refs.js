@@ -16,7 +16,7 @@ export default function getRefs() {
 
     filterClear: document.querySelector('.filter__clear'),
     filterGenreList: document.querySelector('.filter__genre-list'),
-    filterContainer: document.querySelector('.filter__container'),
+    filterWrap: document.querySelector('.filter__wrap'),
     filterSelectBtn: document.querySelector('.filter__select-btn'),
 
     movieBackdrop: document.querySelector('.movie-modal-backdrop'),
@@ -39,5 +39,8 @@ export default function getRefs() {
     // top.js
     scrollUp: document.querySelector('.top'),
     scrollUpSvgPath: document.querySelector('.top__svg--path'),
+
+    // loader
+    backdropSpinnerRef: document.querySelector('.backdrop-spinner'),
   };
 }
