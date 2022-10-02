@@ -56,7 +56,7 @@ export default async function openMovieDetails(movieIdPromise) {
       }
     }
   } catch (e) {
-    Notiflix.Notify.warning('Ups! Something went wrong.', {
+    Notiflix.Notify.failure('Ups! Something went wrong.', {
       position: 'center-center',
     });
     movieBackdrop.classList.add('is-hidden');
