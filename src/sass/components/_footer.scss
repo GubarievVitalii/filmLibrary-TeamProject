@@ -4,8 +4,8 @@
     padding: 29px 0;
 
     body.night & {
-            background-color: #272e34;
-            border-top: 1px solid #ff6b0177;
+            background-color: var(--background-color-night);
+            border-top: 1px solid var(--primary-color-night);
         }
     
     & .container{
@@ -29,13 +29,16 @@
 
 .coperite {
     margin-right: 10px;
-    color: #545454;
+    color: var(--second-text-color);
     @include font(400, 14px, 16px, 0.02em);
+    body.night & {
+            color: var(--primary-text-color-night);
+    }
 }
 
 .icon-love {
     margin-right: 10px;
-    fill: #FF6B08;
+    fill: var(--accent-color);
     transform: translate(0px, 3px);
     -webkit-animation: pulsing 2s infinite;
     animation: pulsing 1500ms infinite;

@@ -23,6 +23,10 @@
     align-items: center;
     align-content: center;
   }
+  
+  body.night & {
+    border-bottom: 1px solid var(--primary-color-night);
+  }
 }
 .logo{
   color: #ffffff;
@@ -70,11 +74,15 @@
     &--active{
       width: 100%;
       border-bottom: 3px solid #FF001B;
+      body.night & {
+          border-bottom: 3px solid var(--second-color-night);
+        }
     }
   }
 }
 
 .search{
+  
   &-form{
     display: flex;
     flex-direction: column;
@@ -86,6 +94,9 @@
     margin-bottom: 16px;
     width: 280px;
     border-bottom: 1px solid #ffffff;
+    body.night & {
+        border-bottom: 1px solid var(--second-color-night);
+      }
   }
   &-input {
     color: #ffffff;
@@ -96,6 +107,7 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+    
     &::placeholder{
       color: #ffffff;
     }

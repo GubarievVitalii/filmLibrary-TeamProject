@@ -28,8 +28,16 @@
 
         &:hover {
             background-color: var(--accent-color);
-            color: var(--accent-color);
+            color: var(--white-text-color);
+            body.night & {
+                    background-color: var(--primary-color-night);
+                }
 
+        }
+        body.night & {
+            background-color: var(--background-color-night);
+            border: 1px solid var(--primary-color-night);
+            color: var(--primary-text-color-night);
         }
 
         @media screen and (max-width: 767px) {
@@ -44,6 +52,11 @@
     color: var(--white-text-color);
     box-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
         0 2px 1px -1px rgb(0 0 0 / 12%);
+    
+    body.night & {
+        background-color: var(--primary-color-night);
+        color: var(--white-text-color);
+    }
 }
 
 .pagination__arrow {
@@ -84,6 +97,10 @@
         border-radius: 5px;
     }
 
+    body.night & {
+        background-color: var(--background-color-night);
+        color: var(--primary-text-color-night);
+    }
 
     &--right {
         margin-left: 20px;
@@ -99,11 +116,8 @@
         @media screen and (max-width: 767px) {
             margin-right: 10px;
         }
-
     }
-
 }
-
 
 .material-icons {
     font-size: 16px;
