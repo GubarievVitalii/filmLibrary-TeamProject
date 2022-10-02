@@ -29,5 +29,15 @@ export default function getRefs() {
     galleryList: document.querySelector('.gallery__list--library'),
     watchedBtn: document.querySelector('.watched-btn'),
     queuedBtn: document.querySelector('.queue-btn'),
+
+    //  footer-modal
+    footerModalOpen: document.querySelector('.footer-modal-open'),
+    footerModalClose: document.querySelector('.close'),
+    modal: document.querySelector('[data-modal]'),
+    backdrop: document.querySelector('.backdrop'),
+
+    // top.js
+    scrollUp: document.querySelector('.top'),
+    scrollUpSvgPath: document.querySelector('.top__svg--path'),
   };
 }
