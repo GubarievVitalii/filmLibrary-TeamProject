@@ -1,5 +1,5 @@
 import getRefs from "../get-refs";
-import { makeSkeletonLoader } from '../../js/skeleton-loader';
+import { spinnerOn } from '../loader';
 import MoviesApi from "./moviesApi";
 
 import Notiflix from 'notiflix';
@@ -39,7 +39,7 @@ function renderMovies({ results, total_results, total_pages, page }){
   customPagination.setTotalPages(total_pages);
   
   // Skeleton
-  makeSkeletonLoader();
+  spinnerOn();
 }
 const moviesApi = new MoviesApi(renderMovies);
   

@@ -1,5 +1,5 @@
 import { createMarkupElement } from './renderMarkup';
-import { makeSkeletonLoader } from './skeleton-loader';
+import { spinnerOn } from './loader';
 import getRefs from './get-refs';
 import Notiflix from 'notiflix';
 
@@ -37,5 +37,5 @@ export default function renderGallery() {
   //   return;
   // }
   galleryList.insertAdjacentHTML('beforeend', watchedMarkup);
-  makeSkeletonLoader();
+  spinnerOn();
 }

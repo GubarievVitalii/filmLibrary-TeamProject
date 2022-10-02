@@ -6,7 +6,7 @@ import './js/nightMode';
 import topUp from './js/top.js';
 import './js/filter';
 
-import { makeSkeletonLoader } from './js/skeleton-loader';
+import { spinnerOn } from './js/loader';
 import onSearch from './js/onSearch';
 
 // import renderPagination from './js/pagination';
@@ -63,8 +63,7 @@ footerModal();
 //     //     results.map(createMarkupElement).join('')
 //     //   );
 
-//     // Skeleton
-//     makeSkeletonLoader();
+
 //   } catch (error) {
 //     console.log(error);
 //   }
