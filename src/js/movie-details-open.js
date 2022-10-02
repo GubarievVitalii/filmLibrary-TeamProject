@@ -63,9 +63,9 @@ export default function openMovieDetails(movieId) {
         position: 'center-center',
       });
       movieBackdrop.classList.add('is-hidden');
-      console.log(e);
-      console.log(e.name);
-      console.log(e.message);
+      // console.log(e);
+      // console.log(e.name);
+      // console.log(e.message);
     });
 
   // ----------------------------------------- CLOSE MODAL ---------------------------------------------
