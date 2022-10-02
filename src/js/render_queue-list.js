@@ -1,28 +1,41 @@
 import { createMarkupElement } from './renderMarkup';
 import { makeSkeletonLoader } from './skeleton-loader';
 import getRefs from './get-refs';
+import Notiflix from 'notiflix';
 
-const { galleryList, queuedBtn } = getRefs();
+const { galleryList, watchedBtn, queuedBtn } = getRefs();
 
 export default function renderQueue() {
-  queuedBtn.focus();
-  if (
-    localStorage.getItem('Queue') &&
-    JSON.parse(localStorage['Queue']).length > 0
-  ) {
+  try {
+    queuedBtn.classList.add('selected');
+    watchedBtn.classList.remove('selected');
+  } catch (e) {
+    return;
+  }
+
+  let queueList;
+  let queueMarkup = '';
+  try {
+    queueList = localStorage.getItem('Queue');
     galleryList.innerHTML = '';
     let genres;
-    let watchedMarkup = '';
 
-    JSON.parse(localStorage['Queue']).map(watchedItem => {
-      genres = watchedItem.genreNames;
-      delete watchedItem.genres;
-      watchedItem.genre_str = genres;
+    JSON.parse(queueList).map(queueItem => {
+      genres = queueItem.genreNames;
+      delete queueItem.genres;
+      queueItem.genre_str = genres;
 
-      watchedMarkup += createMarkupElement(watchedItem);
+      queueMarkup += createMarkupElement(queueItem);
     });
-
-    galleryList.insertAdjacentHTML('beforeend', watchedMarkup);
-    makeSkeletonLoader();
+  } catch (e) {
+    Notiflix.Notify.warning('There is no queue list!');
+    return;
   }
+
+  if (queueMarkup === '') {
+    Notiflix.Notify.warning('There is no queue list!');
+    return;
+  }
+  galleryList.insertAdjacentHTML('beforeend', queueMarkup);
+  makeSkeletonLoader();
 }

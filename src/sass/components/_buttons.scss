@@ -30,6 +30,11 @@
     outline: none;
   }
 
+  &.selected {
+    background-color: var(--accent-color);
+    border: none;
+  }
+
 
   &.swich-on {
     border: none;
