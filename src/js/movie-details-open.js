@@ -59,12 +59,13 @@ export default function openMovieDetails(movieId) {
       }
     })
     .catch(e => {
-      Notiflix.Notify.warning('Ups! Something went wrong.', {
+      Notiflix.Notify.failure('Ups! Something went wrong.', {
         position: 'center-center',
       });
-      // console.log(e);
-      // console.log(e.name);
-      // console.log(e.message);
+      movieBackdrop.classList.add('is-hidden');
+      console.log(e);
+      console.log(e.name);
+      console.log(e.message);
     });
 
   // ----------------------------------------- CLOSE MODAL ---------------------------------------------

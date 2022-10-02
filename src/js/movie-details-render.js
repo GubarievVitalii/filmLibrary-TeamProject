@@ -1,41 +1,82 @@
 import getRefs from './get-refs';
 const { movieModalContent } = getRefs();
+import posterDefault from '../images/movie-defalt-poster.jpg';
+const pathImage = 'https://image.tmdb.org/t/p/';
+
+const params = {
+  poster_path: '',
+  title: 'MOVIE TITLE',
+  vote_average: 0,
+  vote_count: 0,
+  popularity: 0,
+  original_title: 'Original Title',
+  genres: 'genres',
+  overview: 'Movie overview',
+};
 
 export default function renderMovieDetails(movieDetails) {
-  const genres = movieDetails.genres.map(genre => genre.name).join(', ');
+  if (movieDetails.poster_path) {
+    params.poster_path = movieDetails.poster_path;
+  }
+  if (movieDetails.title) {
+    params.title = movieDetails.title;
+  }
+  if (movieDetails.vote_average) {
+    params.vote_average = movieDetails.vote_average.toFixed(2);
+  }
+  if (movieDetails.vote_count) {
+    params.vote_count = movieDetails.vote_count;
+  }
+  if (movieDetails.popularity) {
+    params.popularity = movieDetails.popularity;
+  }
+  if (movieDetails.original_title) {
+    params.original_title = movieDetails.original_title;
+  }
+  if (movieDetails.genres) {
+    params.genres = movieDetails.genres.map(genre => genre.name).join(', ');
+  }
+  if (movieDetails.overview) {
+    params.overview = movieDetails.overview;
+  }
+
   const movieDetailsMarkup = `
   <div class="movie-modal">
         <button type="button" class="modal-close-btn">
             &#x26CC
         </button>
         <div class="movie-modal-content">
-    <img class="modal-image" src="https://image.tmdb.org/t/p/w500${movieDetails.poster_path}" />
+    <img class="modal-image" src="${
+      !params.poster_path
+        ? posterDefault
+        : `${pathImage}original${params.poster_path}`
+    }" />
     <div class="modal-data-box">
-        <h2 class="modal-title">${movieDetails.title}</h2>
+        <h2 class="modal-title">${params.title}</h2>
         <table class="modal-table-box">
             <tr class="movie-modal-tr">
               <td class="modal-data">Vote / Votes</td>
               <td class="modal-data-value">
-                <span class="modal-rating">${movieDetails.vote_average}</span>/
-                <span class="modal-rating-two">${movieDetails.vote_count}</span>
+                <span class="modal-rating">${params.vote_average}</span>/
+                <span class="modal-rating-two">${params.vote_count}</span>
               </td>
             </tr>
             <tr class="movie-modal-tr">
               <td class="modal-data">Popularity</td>
-              <td class="modal-data-value">${movieDetails.popularity}</td>
+              <td class="modal-data-value">${params.popularity}</td>
             </tr>
             <tr class="movie-modal-tr">
               <td class="modal-data">Original Title</td>
-              <td class="modal-data-value">${movieDetails.original_title}</td>
+              <td class="modal-data-value">${params.original_title}</td>
             </tr>
             <tr class="movie-modal-tr">
               <td class="modal-data">Genre</td>
-              <td class="modal-data-value">${genres}</td>
+              <td class="modal-data-value">${params.genres}</td>
             </tr>
           </table>
           <h3 class="modal-title-about">ABOUT</h3>
           <p class="modal-description">
-            ${movieDetails.overview}
+            ${params.overview}
           </p>
           <div class="movie-modal-buttons">
             <button class="button-modal add-watch-js" type="button" id="first-btn">
