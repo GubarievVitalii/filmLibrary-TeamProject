@@ -1,4 +1,8 @@
 import axios from 'axios';
+
+import Notiflix from 'notiflix';
+import 'notiflix/dist/notiflix-3.2.5.min.css';
+
 const API_URL = 'https://api.themoviedb.org/3';
 const API_KEY = 'bb9be7856d820d280efdc8865f07d5b2';
 
@@ -70,14 +74,6 @@ class MoviesApi {
     return handlerGenres(response.data, MoviesApi.genres);
   }
 
-  //   if (withVideo) {
-  //     const { results } = await this.fetchMovieVideoByID(id);
-  //     response.data['resultVideo'] = results;
-  //     return response.data;
-  //   }
-  //   return response.data;
-  // }
-  // забрав перевірку if (withVideo), додав масив з відео по замовчуванню
   async fetchMovieByID(id) {
     const response = await axios.get(`/movie/${id}`, {
       params: {
@@ -118,17 +114,39 @@ class MoviesApi {
     return handlerGenres(response.data, MoviesApi.genres);
   }
 
-  async fetchMovieQuery() {
+  async fetchMovieQuery () {
     const response = await axios.get(`/search/movie/`, {
       params: {
         api_key: API_KEY,
-        language: 'en',
+        language: "en",
         query: this.#searchQuery,
         page: this.#currentPage,
       },
     });
+
+    if (response.data.results.length === 0) {
+      Notiflix.Notify.warning('❌ Sorry, there are no images matching your search query. Please try again.', {
+                    timeout: 3000,
+                    });
+            } 
+
+    const totalFilmsOfResponse = response.data.total_results;
+
+    // const {results} = response.data;
+
+    if (response.data.results.length > 0) {
+        Notiflix.Notify.success (
+          ` We found ${totalFilmsOfResponse} images.`, {
+            timeout: 3000,}
+        )
+        }
+
+
     return handlerGenres(response.data, MoviesApi.genres);
+
+    
   }
+
 
   get query() {
     return this.#searchQuery;

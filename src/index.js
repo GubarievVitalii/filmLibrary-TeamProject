@@ -11,11 +11,13 @@ import topUp from './js/top.js';
 import './js/filter';
 
 import { makeSkeletonLoader } from './js/skeleton-loader';
+import onSearch  from './js/onSearch';
 
 import renderPagination from './js/pagination';
 
 import userAuth from './js/auth'
 import authListnener from './js/auth';
+
 const refs = getRefs();
 
 const moviesApi = new MoviesApi();
@@ -74,4 +76,6 @@ async function fetchTrendMovies() {
   }
 }
 
+refs.searchForm.addEventListener('submit', onSearch);
 topUp();
+

@@ -1,16 +1,15 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import getRefs from './get-refs';
+import renderWatched from './render-watched-movie';
+import renderQueue from './render_queue-list';
 
 export default function addToWatchOrQueue(movieDetails) {
-  // const { data } = movieDetails;
-  // переписав запити через moviesApi, тепер це присвоєння не потрібне
   const { id, title, poster_path, genres, release_date, vote_average } =
     movieDetails;
   const { addWatchBtn, removeWatchBtn, addQueueBtn, removeQueueBtn } =
     getRefs();
 
   const genreNames = [];
-
   for (const genre of genres) {
     genreNames.push(genre.name);
   }
@@ -30,38 +29,63 @@ export default function addToWatchOrQueue(movieDetails) {
   // якщо є -> перевіряємо наявність фільму в масиві
   // об'єктів і в залежності від результату відображаємо потрібну кнопку
   // якщо немає -> створюємо ключ з значенням [];
-  if (watched !== null) {
-    watched = JSON.parse(watched);
+  if ('Watched' in localStorage) {
+    try {
+      watched = JSON.parse(watched);
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
     const isFilmWatched = watched.find(film => film.id === id);
-    if (isFilmWatched !== undefined) {
+    if (isFilmWatched) {
       addWatchBtn.classList.add('vissualy-hidden');
       removeWatchBtn.classList.remove('vissualy-hidden');
     }
   } else {
-    localStorage.setItem('Watched', JSON.stringify([]));
-    watched = JSON.parse(localStorage.getItem('Watched'));
+    try {
+      localStorage.setItem('Watched', JSON.stringify([]));
+      watched = JSON.parse(localStorage.getItem('Watched'));
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
   }
   // Теж саме що і в попередньому випадку, але для ключа Queue і відповідно його кнопок
-  if (queue !== null) {
-    queue = JSON.parse(queue);
+  if ('Queue' in localStorage) {
+    try {
+      queue = JSON.parse(queue);
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
     const isFilmQueue = queue.find(film => film.id === id);
-    if (isFilmQueue !== undefined) {
+    if (isFilmQueue) {
       addQueueBtn.classList.add('vissualy-hidden');
       removeQueueBtn.classList.remove('vissualy-hidden');
     }
   } else {
-    localStorage.setItem('Queue', JSON.stringify([]));
-    queue = JSON.parse(localStorage.getItem('Queue'));
+    try {
+      localStorage.setItem('Queue', JSON.stringify([]));
+      queue = JSON.parse(localStorage.getItem('Queue'));
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
   }
   // Додавання поточного фільму до LocalStorage
   // та перевірка його наявності в значенні ключа Queue
   // якщо цей фільм є в Queue, він звідти видаляється
   function addFilmToWatched() {
     watched.push(filmInfo);
-    localStorage.setItem('Watched', JSON.stringify(watched));
+    try {
+      localStorage.setItem('Watched', JSON.stringify(watched));
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
 
     const isFilmQueue = queue.find(film => film.id === id);
-    if (isFilmQueue !== undefined) {
+    if (isFilmQueue) {
       removeFilmFromQueue();
     }
 
@@ -69,16 +93,23 @@ export default function addToWatchOrQueue(movieDetails) {
     removeWatchBtn.classList.remove('vissualy-hidden');
 
     Notify.success(`The movie "${title}" has been added to watched`);
+
+    renderWatched(); // FT-14 (Рендер бібліотеки після додавання фільму в переглянуті)
   }
   // Додавання поточного фільму до LocalStorage
   // та перевірка його наявності в значенні ключа Watched
   // якщо цей фільм є в Watched, він звідти видаляється
   function addFilmToQueue() {
     queue.push(filmInfo);
-    localStorage.setItem('Queue', JSON.stringify(queue));
+    try {
+      localStorage.setItem('Queue', JSON.stringify(queue));
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
 
     const isFilmWatched = watched.find(film => film.id === id);
-    if (isFilmWatched !== undefined) {
+    if (isFilmWatched) {
       removeFilmFromWatched();
     }
 
@@ -86,30 +117,46 @@ export default function addToWatchOrQueue(movieDetails) {
     removeQueueBtn.classList.remove('vissualy-hidden');
 
     Notify.success(`The movie "${title}" has been added to the queue`);
+
+    renderQueue(); // FT-15 (Рендер бібліотеки після додавання фільму в чергу)
   }
   // Видалення об'єкта фільму ключа Watched з LocalStorage за індексом
   function removeFilmFromWatched() {
     const index = watched.indexOf(watched.find(film => film.id === id));
 
     watched.splice(index, 1);
-    localStorage.setItem('Watched', JSON.stringify(watched));
+    try {
+      localStorage.setItem('Watched', JSON.stringify(watched));
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
 
     addWatchBtn.classList.remove('vissualy-hidden');
     removeWatchBtn.classList.add('vissualy-hidden');
 
     Notify.info(`The film "${title}" has been removed from watched`);
+
+    renderWatched(); // FT-14 (Рендер бібліотеки після видалення фільму з переглянутих)
   }
   // Видалення об'єкта фільму ключа Queue з LocalStorage за індексом
   function removeFilmFromQueue() {
     const index = queue.indexOf(queue.find(film => film.id === id));
 
     queue.splice(index, 1);
-    localStorage.setItem('Queue', JSON.stringify(queue));
+    try {
+      localStorage.setItem('Queue', JSON.stringify(queue));
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
 
     addQueueBtn.classList.remove('vissualy-hidden');
     removeQueueBtn.classList.add('vissualy-hidden');
 
     Notify.info(`The film "${title}" been removed from the queue`);
+
+    renderQueue(); // FT-15 (Рендер бібліотеки після видалення фільму з черги)
   }
 
   addWatchBtn.addEventListener('click', addFilmToWatched);
