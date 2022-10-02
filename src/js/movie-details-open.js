@@ -1,15 +1,13 @@
-import MoviesApi from './moviesApi';
 import getRefs from './get-refs';
 import renderMovieDetails from './movie-details-render';
 import watchTrailer from './movie-play-trailer';
 import addToWatchOrQueue from './add-to-watch-queue'; // FT-18, FT-19 (Функціонал для кнопок "Додати до переглянутих", "Додати до черги")
 import Notiflix from 'notiflix';
 
-const moviesApi = new MoviesApi();
 const { movieBackdrop, movieModalContent } = getRefs();
 const TRAILER = 'Trailer';
 
-export default function openMovieDetails(movieId) {
+export default async function openMovieDetails(movieIdPromise) {
   movieBackdrop.classList.remove('is-hidden');
   movieBackdrop.insertAdjacentHTML(
     'beforeend',
@@ -17,9 +15,10 @@ export default function openMovieDetails(movieId) {
   );
   const spinner = document.querySelector('.lds-ring');
 
-  moviesApi
-    .fetchMovieByID(movieId)
-    .then(movieDetails => {
+  try {
+
+      const movieDetails = await movieIdPromise;
+
       spinner.remove();
       renderMovieDetails(movieDetails);
 
@@ -57,15 +56,15 @@ export default function openMovieDetails(movieId) {
           });
         }
       }
-    })
-    .catch(e => {
+    }
+    catch (e)  {
       Notiflix.Notify.warning('Ups! Something went wrong.', {
         position: 'center-center',
       });
       // console.log(e);
       // console.log(e.name);
       // console.log(e.message);
-    });
+    }
 
   // ----------------------------------------- CLOSE MODAL ---------------------------------------------
 
