@@ -39,5 +39,8 @@ export default function getRefs() {
     // top.js
     scrollUp: document.querySelector('.top'),
     scrollUpSvgPath: document.querySelector('.top__svg--path'),
+
+    // loader
+    backdropSpinnerRef: document.querySelector('.backdrop-spinner'),
   };
 }
