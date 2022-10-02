@@ -1,16 +1,9 @@
+import getRefs from './get-refs';
+const refs = getRefs();
 function footerModal() {
-  const refs = {
-    footerModalOpen: document.querySelector('.footer-modal-open'),
-    footerModalClose: document.querySelector('.close'),
-    modal: document.querySelector('[data-modal]'),
-    backdrop: document.querySelector('.backdrop'),
-    body: document.querySelector('body'),
-  };
 
   refs.footerModalOpen.addEventListener('click', footerMO);
-  refs.footerModalOpen.addEventListener('click', toggleMenu);
   refs.footerModalClose.addEventListener('click', footerMC);
-  refs.footerModalClose.addEventListener('click', toggleMenu);
   refs.backdrop.addEventListener('click', onBackdropClick);
 
   document.addEventListener('keypress', function (e) {
@@ -22,15 +15,17 @@ function footerModal() {
 
   function footerMO(evt) {
     evt.preventDefault();
-
     console.log('open modal footer');
     window.addEventListener('keydown', onEscKeyPress);
     refs.modal.classList.remove('is-hidden');
+    refs.scrollUp.classList.add('is-hidden');
+    refs.bodyEl.classList.toggle('no-scroll');
   }
 
   function footerMC(evt) {
-    evt.preventDefault();
     refs.modal.classList.add('is-hidden');
+    refs.scrollUp.classList.remove('is-hidden');
+    refs.bodyEl.classList.toggle('no-scroll');
   }
 
   function onEscKeyPress(event) {
@@ -44,12 +39,9 @@ function footerModal() {
   function onBackdropClick(event) {
     if (event.currentTarget === event.target) {
       refs.modal.classList.add('is-hidden');
+      refs.scrollUp.classList.remove('is-hidden');
       footerMC();
     }
-  }
-
-  function toggleMenu() {
-    refs.body.classList.add('no-scroll');
   }
 }
 

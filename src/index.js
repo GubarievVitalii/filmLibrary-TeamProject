@@ -7,14 +7,14 @@ import footerModal from './js/footer-modal-open';
 import { createMarkupElement } from './js/renderMarkup';
 import MoviesApi from './js/moviesApi';
 import './js/nightMode';
-import './js/top.js';
+import topUp from './js/top.js';
 import './js/filter';
 
 import { makeSkeletonLoader } from './js/skeleton-loader';
 
 import renderPagination from './js/pagination';
 
-// import userAuth from './js/auth'
+import userAuth from './js/auth'
 import authListnener from './js/auth';
 const refs = getRefs();
 
@@ -73,3 +73,5 @@ async function fetchTrendMovies() {
     console.log(error);
   }
 }
+
+topUp();
