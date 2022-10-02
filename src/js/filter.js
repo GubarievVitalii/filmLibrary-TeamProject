@@ -1,11 +1,6 @@
-import { genresNames } from './genres-names';
-
-import {moviesApi, customPagination} from './gallery';
+import { moviesApi, customPagination } from './gallery';
 
 import getRefs from './get-refs';
-
-// import { renderPaginationbyGenre } from './pagination';
-
 
 const refs = getRefs();
 
@@ -15,46 +10,44 @@ let selectedGenreName = [];
 setGenre();
 
 async function setGenre() {
-
   try {
-    const genre  = await moviesApi.getAllGenres();
+    const genre = await moviesApi.getAllGenres();
 
     genre.forEach(genre => {
-    const elem = document.createElement('li');
-    elem.classList.add('filter__genre-item');
-    elem.id = genre.id;
-    elem.innerText = genre.name;
-    elem.addEventListener('click', () => {
-      if (selectedGenre.length === 0) {
-        selectedGenre.push(genre.id);
-        selectedGenreName.push(genre.name);
-      } else {
-        if (selectedGenre.includes(genre.id)) {
-          selectedGenre.forEach((id, index) => {
-            if (id === genre.id) {
-              selectedGenre.splice(index, 1);
-              selectedGenreName.splice(index, 1);
-            }
-          });
-        } else {
+      const elem = document.createElement('li');
+      elem.classList.add('filter__genre-item');
+      elem.id = genre.id;
+      elem.innerText = genre.name;
+      elem.addEventListener('click', () => {
+        if (selectedGenre.length === 0) {
           selectedGenre.push(genre.id);
           selectedGenreName.push(genre.name);
+        } else {
+          if (selectedGenre.includes(genre.id)) {
+            selectedGenre.forEach((id, index) => {
+              if (id === genre.id) {
+                selectedGenre.splice(index, 1);
+                selectedGenreName.splice(index, 1);
+              }
+            });
+          } else {
+            selectedGenre.push(genre.id);
+            selectedGenreName.push(genre.name);
+          }
         }
-      }
-      
-      moviesApi.currentPage = 1;
-      moviesApi.genres = selectedGenre;
-      moviesApi.currentFetch = moviesApi.fetchMovieByGenres;  
-      customPagination.moveToPage(moviesApi.currentPage)
 
-      highlightSelection();
-      updateFilterSelectBtn();
+        moviesApi.currentPage = 1;
+        moviesApi.genres = selectedGenre;
+        refs.searchInput.value = '';
+        moviesApi.currentFetch = moviesApi.fetchMovieByGenres;
+        customPagination.moveToPage(moviesApi.currentPage);
+
+        highlightSelection();
+        updateFilterSelectBtn();
+      });
+      refs.filterGenreList.append(elem);
     });
-    refs.filterGenreList.append(elem);
-  });
-  } catch (error) {
-    
-  }
+  } catch (error) {}
 }
 
 // highlight selected genre
@@ -71,29 +64,28 @@ function highlightSelection() {
     });
   } else {
     refs.filterClear.classList.add('filter--hidden');
-    fetchTrendMovies();
+    console.log('fbdb');
+    // fetchTrendMovies();
   }
 }
 
 // render movies by genre
 
-export async function showMovies() {
-  try {
-    const { results, page, total_pages } = await moviesApi.fetchMovieByGenres(
-      selectedGenre
-    );
-    refs.imagesContainer.innerHTML = '';
+// async function showMovies() {
+//   try {
+//     const { results } = await moviesApi.fetchMovieByGenres(selectedGenre);
+//     refs.imagesContainer.innerHTML = '';
+//     refs.searchInput.value = '';
 
-    results.length &&
-      refs.imagesContainer.insertAdjacentHTML(
-        'afterbegin',
-        results.map(createMarkupElement).join('')
-      );
-    renderPaginationbyGenre(page, total_pages);
-  } catch (error) {
-    console.log(error);
-  }
-}
+//     results.length &&
+//       refs.imagesContainer.insertAdjacentHTML(
+//         'afterbegin',
+//         results.map(createMarkupElement).join('')
+//       );
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 // clear filter
 refs.filterClear.addEventListener('click', onFilterClearBtn);
@@ -135,4 +127,18 @@ function updateFilterSelectBtn() {
     refs.filterSelectBtn.innerHTML = selectedGenreName[0] + '...';
     return;
   }
+}
+
+export function clearFilterOnSearch() {
+  if (selectedGenre.length != 0) {
+    selectedGenre.forEach(id => {
+      const filterHighlightedGenre = document.getElementById(id);
+      filterHighlightedGenre.classList.remove('filter__genre-item--highlight');
+    });
+  }
+  selectedGenre = [];
+  selectedGenreName = [];
+  refs.filterClear.classList.add('filter--hidden');
+  refs.filterWrap.classList.remove('filter--active');
+  refs.filterSelectBtn.innerHTML = 'Select genre';
 }
