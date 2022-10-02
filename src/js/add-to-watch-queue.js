@@ -101,11 +101,13 @@ export default function addToWatchOrQueue(movieDetails) {
     Notify.success(`The movie "${title}" has been added to watched`);
 
     // FT-14 (Рендер бібліотеки після додавання фільму в переглянуті)
-    if (queuedBtn.classList.contains('selected')) {
-      renderQueue();
-    } else {
-      renderWatched();
-    }
+    try {
+      if (queuedBtn.classList.contains('selected')) {
+        renderQueue();
+      } else {
+        renderWatched();
+      }
+    } catch (e) {}
   }
   // Додавання поточного фільму до LocalStorage
   // та перевірка його наявності в значенні ключа Watched
@@ -130,11 +132,13 @@ export default function addToWatchOrQueue(movieDetails) {
     Notify.success(`The movie "${title}" has been added to the queue`);
 
     // FT-15 (Рендер бібліотеки після додавання фільму в чергу)
-    if (watchedBtn.classList.contains('selected')) {
-      renderWatched();
-    } else {
-      renderQueue();
-    }
+    try {
+      if (watchedBtn.classList.contains('selected')) {
+        renderWatched();
+      } else {
+        renderQueue();
+      }
+    } catch (e) {}
   }
   // Видалення об'єкта фільму ключа Watched з LocalStorage за індексом
   function removeFilmFromWatched() {

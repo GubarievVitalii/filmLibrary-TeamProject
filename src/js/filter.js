@@ -1,11 +1,12 @@
 import { genresNames } from './genres-names';
-import { createMarkupElement } from './renderMarkup';
-import { fetchTrendMovies } from './pagination';
-import MoviesApi from './moviesApi';
-import getRefs from './get-refs';
-import { renderPaginationbyGenre } from './pagination';
 
-const moviesApi = new MoviesApi();
+import {moviesApi, customPagination} from './gallery';
+
+import getRefs from './get-refs';
+
+// import { renderPaginationbyGenre } from './pagination';
+
+
 const refs = getRefs();
 
 // set genres
@@ -13,8 +14,12 @@ let selectedGenre = [];
 let selectedGenreName = [];
 setGenre();
 
-function setGenre() {
-  genresNames.forEach(genre => {
+async function setGenre() {
+
+  try {
+    const genre  = await moviesApi.getAllGenres();
+
+    genre.forEach(genre => {
     const elem = document.createElement('li');
     elem.classList.add('filter__genre-item');
     elem.id = genre.id;
@@ -36,12 +41,20 @@ function setGenre() {
           selectedGenreName.push(genre.name);
         }
       }
-      showMovies();
+      
+      moviesApi.currentPage = 1;
+      moviesApi.genres = selectedGenre;
+      moviesApi.currentFetch = moviesApi.fetchMovieByGenres;  
+      customPagination.moveToPage(moviesApi.currentPage)
+
       highlightSelection();
       updateFilterSelectBtn();
     });
     refs.filterGenreList.append(elem);
   });
+  } catch (error) {
+    
+  }
 }
 
 // highlight selected genre
@@ -95,16 +108,18 @@ function onFilterClearBtn() {
   selectedGenre = [];
   selectedGenreName = [];
   refs.filterClear.classList.add('filter--hidden');
-  refs.filterContainer.classList.remove('filter--active');
+  // refs.filterWrap.classList.remove('filter--active');
   refs.filterSelectBtn.innerHTML = 'Select genre';
-  fetchTrendMovies();
+  
+  moviesApi.currentpage = 1;
+  moviesApi.currentFetch = moviesApi.fetchTrendWeekMovies;
 }
 
 // custom select
 refs.filterSelectBtn.addEventListener('click', onFilterSelectBtn);
 
 function onFilterSelectBtn() {
-  refs.filterContainer.classList.toggle('filter--active');
+  refs.filterWrap.classList.toggle('filter--active');
 }
 
 function updateFilterSelectBtn() {

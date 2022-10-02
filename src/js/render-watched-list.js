@@ -32,10 +32,10 @@ export default function renderGallery() {
     return;
   }
 
-  if (watchedMarkup === '') {
-    Notiflix.Notify.warning('There is no watched list!');
-    return;
-  }
+  // if (!watchedMarkup) {
+  //   Notiflix.Notify.warning('There is no watched list!');
+  //   return;
+  // }
   galleryList.insertAdjacentHTML('beforeend', watchedMarkup);
   makeSkeletonLoader();
 }

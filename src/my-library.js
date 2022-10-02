@@ -5,9 +5,8 @@ import renderWatched from './js/render-watched-list.js';
 import renderQueue from './js/render_queue-list.js';
 import openMovieDetails from './js/movie-details-open.js';
 import footerModal from './js/footer-modal-open';
-
+import './js/auth'
 topUp();
-footerModal();
 
 const { watchedBtn, queuedBtn, galleryList } = getRefs();
 
@@ -32,3 +31,4 @@ function onMovieCardClick(e) {
   }
 }
 
+footerModal();
