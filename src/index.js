@@ -11,7 +11,7 @@ import topUp from './js/top.js';
 import './js/filter';
 
 import { makeSkeletonLoader } from './js/skeleton-loader';
-import onSearch  from './js/onSearch';
+import onSearch from './js/onSearch';
 
 import renderPagination from './js/pagination';
 
@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ------------ OPEN MOVIE MODAL --------------------
 
-// const movieGallery = document.querySelector('.galary-list');
 refs.imagesContainer.addEventListener('click', onMovieCardClick);
 function onMovieCardClick(e) {
   if (e.target.classList.contains('gallery__img')) {
@@ -78,4 +77,3 @@ async function fetchTrendMovies() {
 
 refs.searchForm.addEventListener('submit', onSearch);
 topUp();
-
