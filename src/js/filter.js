@@ -108,7 +108,7 @@ function onFilterClearBtn() {
   selectedGenre = [];
   selectedGenreName = [];
   refs.filterClear.classList.add('filter--hidden');
-  refs.filterContainer.classList.remove('filter--active');
+  // refs.filterWrap.classList.remove('filter--active');
   refs.filterSelectBtn.innerHTML = 'Select genre';
   
   moviesApi.currentpage = 1;
@@ -119,7 +119,7 @@ function onFilterClearBtn() {
 refs.filterSelectBtn.addEventListener('click', onFilterSelectBtn);
 
 function onFilterSelectBtn() {
-  refs.filterContainer.classList.toggle('filter--active');
+  refs.filterWrap.classList.toggle('filter--active');
 }
 
 function updateFilterSelectBtn() {
