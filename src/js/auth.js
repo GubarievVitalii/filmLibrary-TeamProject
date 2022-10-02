@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, AuthErrorCodes } from "firebase/auth";
 import Notiflix from "notiflix";
+
 Notiflix.Notify.init({
     width: '250px',
     position: 'center-top',
@@ -20,72 +21,158 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
-const auth = getAuth();
+export const auth = getAuth();
 const authBtn = document.querySelector('.auth')
+const authGoogleBtn = document.querySelector('.authgoogle')
 const userLibrary = document.querySelector('.library')
-const authCheck = document.querySelector('.authreq')
+const authMenu = document.querySelector('.auth-div')
+const authEmailBtn = document.getElementById('authlogin')
+const signUpEmailBtn = document.getElementById('authsignup')
+const emailInput = document.getElementById('authEmail')
+const passwordInput = document.getElementById('authPassword')
 
+authEmailBtn.addEventListener('click', onEmailAuth)
 authBtn.addEventListener('click', onAuthClick)
-userLibrary.addEventListener('click', checkAuth)
-export default async function userAuth() {
-  await signInWithPopup(auth, provider)
-    .then(result => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      if (user) {
-        Notiflix.Notify.success(`Hello ${user.displayName}`);
-        authBtn.removeEventListener('click', onAuthClick);
-      }
-    })
-    .catch(error => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
-};
+authGoogleBtn.addEventListener('click', onGoogleAuth)
 
-export const authListnener =  onAuthStateChanged(auth, (user) => {
-    if (user) {
+signUpEmailBtn.addEventListener('click', onSignUp)
+const authGoogle = async () => {
+  await signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user
+    if(user) {
+        Notiflix.Notify.success(`Hello ${user.displayName}`)
+        authBtn.removeEventListener('click', onAuthClick)
+        
+    }
+
+  
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });}
+
+ authEmailAndPassword = async () => {
+    const loginEmail = emailInput.value
+    const loginPassword = passwordInput.value
+    try{
+      const userCredential = await signInWithEmailAndPassword(auth,loginEmail,loginPassword)
+      
+      Notiflix.Notify.success(`Hello ${userCredential.user.email}`)
+      passwordInput.classList.remove('error')
+      emailInput.classList.remove('error')
+      
+    } 
+    catch(error) {
+      console.log(error.code)
+      if(error.code === AuthErrorCodes.INVALID_PASSWORD)
+      {Notiflix.Notify.failure('Wrong password, try again!')
+      passwordInput.classList.add('error')}
+      passwordInput.value = ""
+      
+      if(error.code === AuthErrorCodes.INVALID_EMAIL)
+      {Notiflix.Notify.failure('Wrong email, try again!')
+        emailInput.classList.add('error')}
+    }
+    
+  }
+
+export default onAuthStateChanged(auth,  (user) => {
+  
+  if (user) {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid;
- 
-      userLibrary.innerHTML = `<a href="./my-library.html" class="nav__link library "
-      >MY LIBRARY</a>`;
       authBtn.innerHTML = "LOG OUT"
-      authBtn.removeEventListener('click', onAuthClick)
-      authCheck.removeEventListener('click', checkAuth)
+      authBtn.removeEventListener('click', onGoogleAuth)
       authBtn.addEventListener('click', userSignOut)
- 
-    
+      authMenu.classList.remove('auth-clicked')
+      passwordInput.classList.remove('error')
+      emailInput.value = ''
+      passwordInput.value = ''
+      revealUserUI ()
+      // if(renderMovieDetails) {
+        
+      //   const userbtns = document.querySelectorAll('.button-modal')
+      //   console.log(userbtns)
+      //   userbtns.forEach(item => item.classList.remove('auth-hidden'))
+      // }
+      
     } 
     else if (   document.location.pathname === '/my-library.html') {
-        console.log(window.location.href === document.location.origin)
+     
         window.location.replace(document.location.origin)
        
         
     }
         else {
-      
+          // if(renderMovieDetails) {
+            
+          //   userbtns.forEach(item => item.classList.add('auth-hidden'))
+          // }
+        authMenu.classList.remove('auth-clicked')
         authBtn.addEventListener('click', onAuthClick)
         authBtn.innerHTML = "LOG IN"
-        userLibrary.innerHTML = `<span class="nav__link">MY LIBRARY</span>`;
-        
+      
+        hideUserUI ()
     }
   });
 
- function onAuthClick () {
-    userAuth()
+async function onEmailAuth(e) {
+    e.preventDefault()
+    if (emailInput.value === '' || passwordInput.value === '') {
+      Notiflix.Notify.warning('Please fill the form')
+      return
+    }
+   await authEmailAndPassword()
+    
+  }
+
+function onAuthClick () {
+    authMenu.classList.toggle('auth-clicked')
+    
+  }
+const createAccount = async () => {
+    const loginEmail = emailInput.value
+    const loginPassword = passwordInput.value
+    try{
+      const userCredential = await createUserWithEmailAndPassword(auth,loginEmail,loginPassword)
+      console.log(userCredential.user)
+      Notiflix.Notify.success(`Hello ${userCredential.user.displayName}`)
+    } 
+    catch(error) {
+      console.log(error.code)
+      if(error.code === AuthErrorCodes.EMAIL_EXISTS)
+      {Notiflix.Notify.failure('This email is already taken!')}
+      
+     
+    }
+  }
+  async function onSignUp(e) {
+  e.preventDefault()
+  if (emailInput.value === '' || passwordInput.value === '') {
+    Notiflix.Notify.warning('Please fill the form')
+    
+    return
+  }
+  await  createAccount()
+  
+}  
+ function onGoogleAuth(e) {
+  e.preventDefault()
+  authGoogle()
     
   }
 
@@ -102,8 +189,16 @@ signOut(auth).then(() => {
     // An error happened.
   });}
  
+
+
+function hideUserUI () {
+
   
-function checkAuth() {
-         Notiflix.Notify.warning('You need to Log In!')
-       }
-       
+  userLibrary.classList.add('auth-hidden')
+}
+function revealUserUI () {
+ 
+  userLibrary.classList.remove('auth-hidden')
+}
+
+

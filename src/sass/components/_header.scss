@@ -7,6 +7,7 @@
   background-size: cover;
   height: 230px;
   padding: 40px 0;
+  z-index: 7;
 
   &-library {
     position: relative;
@@ -16,6 +17,7 @@
     background-size: cover;
     height: 230px;
     padding: 40px 0;
+    z-index: 7;
   }
   &__nav {
     display: flex;
