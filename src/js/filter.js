@@ -36,9 +36,9 @@ async function setGenre() {
           }
         }
 
+        refs.searchInput.value = '';
         moviesApi.currentPage = 1;
         moviesApi.genres = selectedGenre;
-        refs.searchInput.value = '';
         moviesApi.currentFetch = moviesApi.fetchMovieByGenres;
         customPagination.moveToPage(moviesApi.currentPage);
 
@@ -64,34 +64,20 @@ function highlightSelection() {
     });
   } else {
     refs.filterClear.classList.add('filter--hidden');
-    console.log('fbdb');
-    // fetchTrendMovies();
+    fetchTrendMovies();
   }
 }
-
-// render movies by genre
-
-// async function showMovies() {
-//   try {
-//     const { results } = await moviesApi.fetchMovieByGenres(selectedGenre);
-//     refs.imagesContainer.innerHTML = '';
-//     refs.searchInput.value = '';
-
-//     results.length &&
-//       refs.imagesContainer.insertAdjacentHTML(
-//         'afterbegin',
-//         results.map(createMarkupElement).join('')
-//       );
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
 
 // clear filter
 refs.filterClear.addEventListener('click', onFilterClearBtn);
 
 function onFilterClearBtn() {
-  if (selectedGenre.length != 0) {
+  clearFilter();
+  fetchTrendMovies();
+}
+
+export function clearFilter() {
+  if (selectedGenre.length !== 0) {
     selectedGenre.forEach(id => {
       const filterHighlightedGenre = document.getElementById(id);
       filterHighlightedGenre.classList.remove('filter__genre-item--highlight');
@@ -100,11 +86,7 @@ function onFilterClearBtn() {
   selectedGenre = [];
   selectedGenreName = [];
   refs.filterClear.classList.add('filter--hidden');
-  // refs.filterWrap.classList.remove('filter--active');
   refs.filterSelectBtn.innerHTML = 'Select genre';
-  
-  moviesApi.currentpage = 1;
-  moviesApi.currentFetch = moviesApi.fetchTrendWeekMovies;
 }
 
 // custom select
@@ -129,16 +111,17 @@ function updateFilterSelectBtn() {
   }
 }
 
-export function clearFilterOnSearch() {
-  if (selectedGenre.length != 0) {
-    selectedGenre.forEach(id => {
-      const filterHighlightedGenre = document.getElementById(id);
-      filterHighlightedGenre.classList.remove('filter__genre-item--highlight');
-    });
-  }
-  selectedGenre = [];
-  selectedGenreName = [];
-  refs.filterClear.classList.add('filter--hidden');
-  refs.filterWrap.classList.remove('filter--active');
-  refs.filterSelectBtn.innerHTML = 'Select genre';
+// fetch trend movies
+
+function fetchTrendMovies() {
+  moviesApi.currentPage = 1;
+  moviesApi.currentFetch = moviesApi.fetchTrendWeekMovies;
+  customPagination.moveToPage(moviesApi.currentPage);
 }
+
+// hide genre list by clicking outside
+document.onclick = function closeList(e) {
+  if (!refs.filterWrap.contains(e.target)) {
+    refs.filterWrap.classList.remove('filter--active');
+  }
+};
