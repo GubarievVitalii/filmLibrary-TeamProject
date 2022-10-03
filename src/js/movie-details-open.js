@@ -28,6 +28,8 @@ export default async function openMovieDetails(movieIdPromise) {
       movieModalContent.innerHTML = '';
       closeMovieModalBtn.removeEventListener('click', onCloseBtnClick);
       watchTrailerBtn.removeEventListener('click', onWatchTrailerClick);
+      document.removeEventListener('keydown', onEscPress);
+      movieBackdrop.removeEventListener('click', onBackdropClick);
     }
 
     if (authorized.textContent !== 'LOG IN') {
