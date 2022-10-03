@@ -1,15 +1,13 @@
-import MoviesApi from './moviesApi';
 import getRefs from './get-refs';
 import renderMovieDetails from './movie-details-render';
 import watchTrailer from './movie-play-trailer';
 import addToWatchOrQueue from './add-to-watch-queue'; // FT-18, FT-19 (Функціонал для кнопок "Додати до переглянутих", "Додати до черги")
 import Notiflix from 'notiflix';
 
-const moviesApi = new MoviesApi();
 const { movieBackdrop, movieModalContent } = getRefs();
 const TRAILER = 'Trailer';
 
-export default function openMovieDetails(movieId) {
+export default async function openMovieDetails(movieIdPromise) {
   movieBackdrop.classList.remove('is-hidden');
   movieBackdrop.insertAdjacentHTML(
     'beforeend',
@@ -17,55 +15,55 @@ export default function openMovieDetails(movieId) {
   );
   const spinner = document.querySelector('.lds-ring');
 
-  moviesApi
-    .fetchMovieByID(movieId)
-    .then(movieDetails => {
-      spinner.remove();
-      renderMovieDetails(movieDetails);
+  try {
+    const movieDetails = await movieIdPromise;
 
-      const closeMovieModalBtn = document.querySelector('.modal-close-btn');
-      closeMovieModalBtn.addEventListener('click', onCloseBtnClick);
-      function onCloseBtnClick() {
-        movieBackdrop.classList.add('is-hidden');
-        movieModalContent.innerHTML = '';
-        closeMovieModalBtn.removeEventListener('click', onCloseBtnClick);
-        watchTrailerBtn.removeEventListener('click', onWatchTrailerClick);
+    spinner.remove();
+    renderMovieDetails(movieDetails);
+
+    const closeMovieModalBtn = document.querySelector('.modal-close-btn');
+    closeMovieModalBtn.addEventListener('click', onCloseBtnClick);
+    function onCloseBtnClick() {
+      movieBackdrop.classList.add('is-hidden');
+      movieModalContent.innerHTML = '';
+      closeMovieModalBtn.removeEventListener('click', onCloseBtnClick);
+      watchTrailerBtn.removeEventListener('click', onWatchTrailerClick);
+    }
+
+    addToWatchOrQueue(movieDetails); // FT-18, FT-19 (Функціонал для кнопок "Додати до переглянутих", "Додати до черги")
+
+    const watchTrailerBtn = document.querySelector('.play-trailer');
+    // movieDetails = undefined;
+    let movieTrailer;
+    try {
+      movieTrailer = movieDetails.resultVideo.find(
+        video => video.type === TRAILER
+      );
+      // movieTrailer = undefined;
+      if (!movieTrailer) {
+        throw new Error();
       }
-
-      addToWatchOrQueue(movieDetails); // FT-18, FT-19 (Функціонал для кнопок "Додати до переглянутих", "Додати до черги")
-
-      const watchTrailerBtn = document.querySelector('.play-trailer');
-      // movieDetails = undefined;
-      let movieTrailer;
-      try {
-        movieTrailer = movieDetails.resultVideo.find(
-          video => video.type === TRAILER
-        );
-        // movieTrailer = undefined;
-        if (!movieTrailer) {
-          throw new Error();
-        }
-        watchTrailerBtn.addEventListener('click', onWatchTrailerClick);
-        function onWatchTrailerClick() {
-          watchTrailer(movieTrailer.key);
-        }
-      } catch (e) {
-        watchTrailerBtn.addEventListener('click', onWatchTrailerClick);
-        function onWatchTrailerClick() {
-          Notiflix.Notify.warning("Sorry, we didn't find trailer", {
-            position: 'center-center',
-          });
-        }
+      watchTrailerBtn.addEventListener('click', onWatchTrailerClick);
+      function onWatchTrailerClick() {
+        watchTrailer(movieTrailer.key);
       }
-    })
-    .catch(e => {
-      Notiflix.Notify.warning('Ups! Something went wrong.', {
-        position: 'center-center',
-      });
-      // console.log(e);
-      // console.log(e.name);
-      // console.log(e.message);
+    } catch (e) {
+      watchTrailerBtn.addEventListener('click', onWatchTrailerClick);
+      function onWatchTrailerClick() {
+        Notiflix.Notify.warning("Sorry, we didn't find trailer", {
+          position: 'center-center',
+        });
+      }
+    }
+  } catch (e) {
+    Notiflix.Notify.failure('Ups! Something went wrong.', {
+      position: 'center-center',
     });
+    movieBackdrop.classList.add('is-hidden');
+    // console.log(e);
+    // console.log(e.name);
+    // console.log(e.message);
+  }
 
   // ----------------------------------------- CLOSE MODAL ---------------------------------------------
 

@@ -6,7 +6,7 @@ export default function playTrailer(trailer) {
   const playerHeight = Math.round(playerWidth / 1.77777);
 
   const iframe = `<iframe class="player" id="player" type="text/html" width="${playerWidth}" height="${playerHeight}"
-                            src="http://www.youtube.com/embed/${trailer}?enablejsapi=1"
+                            src="https://www.youtube.com/embed/${trailer}?enablejsapi=1&https://aleksandor2138.github.io"
                         frameborder="0" allowfullscreen></iframe>`;
 
   playerContainer.insertAdjacentHTML(
