@@ -4,7 +4,7 @@ import watchTrailer from './movie-play-trailer';
 import addToWatchOrQueue from './add-to-watch-queue'; // FT-18, FT-19 (Функціонал для кнопок "Додати до переглянутих", "Додати до черги")
 import Notiflix from 'notiflix';
 
-const { movieBackdrop, movieModalContent } = getRefs();
+const { movieBackdrop, movieModalContent, authorized } = getRefs();
 const TRAILER = 'Trailer';
 
 export default async function openMovieDetails(movieIdPromise) {
@@ -30,7 +30,9 @@ export default async function openMovieDetails(movieIdPromise) {
       watchTrailerBtn.removeEventListener('click', onWatchTrailerClick);
     }
 
-    addToWatchOrQueue(movieDetails); // FT-18, FT-19 (Функціонал для кнопок "Додати до переглянутих", "Додати до черги")
+    if (authorized.textContent !== 'LOG IN') {
+      addToWatchOrQueue(movieDetails);
+    } // FT-18, FT-19 (Функціонал для кнопок "Додати до переглянутих", "Додати до черги")
 
     const watchTrailerBtn = document.querySelector('.play-trailer');
     // movieDetails = undefined;

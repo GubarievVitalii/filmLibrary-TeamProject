@@ -30,6 +30,8 @@ export default function getRefs() {
     watchedBtn: document.querySelector('.watched-btn'),
     queuedBtn: document.querySelector('.queue-btn'),
 
+    authorized: document.querySelector('.auth'),
+
     //  footer-modal
     footerModalOpen: document.querySelector('.footer-modal-open'),
     footerModalClose: document.querySelector('.close'),

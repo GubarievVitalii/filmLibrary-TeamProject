@@ -1,5 +1,5 @@
 import getRefs from './get-refs';
-const { movieModalContent } = getRefs();
+const { movieModalContent, authorized } = getRefs();
 import posterDefault from '../images/movie-defalt-poster.jpg';
 const pathImage = 'https://image.tmdb.org/t/p/';
 
@@ -96,19 +96,19 @@ export default function renderMovieDetails(movieDetails) {
   movieModalContent.insertAdjacentHTML('beforeend', movieDetailsMarkup);
 
   const addToWatch = document.querySelector('.add-watch-js');
-  const addToQueue = document.querySelector('add-queue-js');
-  const authorized = document.querySelector('.auth');
-  console.log(authorized.textContent);
-  console.log(addToWatch);
+  const addToQueue = document.querySelector('.add-queue-js');
+
   if (authorized.textContent === 'LOG IN') {
     addToWatch.disabled = true;
+    // addToWatch.classList.add('disabled');
     addToWatch.style.pointerEvents = 'none';
-    addToWatch.style.color = '#d6d6d6';
-    addToWatch.style.borderColor = '#e0e0e0';
+    addToWatch.style.color = '#bbbbbb';
+    addToWatch.style.borderColor = '#bbbbbb';
 
     addToQueue.disabled = true;
+    // addToWatch.classList.add('disabled');
     addToQueue.style.pointerEvents = 'none';
-    addToQueue.style.color = '#d6d6d6';
-    addToQueue.style.borderColor = '#e0e0e0';
+    addToQueue.style.color = '#bbbbbb';
+    addToQueue.style.borderColor = '#bbbbbb';
   }
 }
