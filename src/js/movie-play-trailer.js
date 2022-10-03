@@ -1,12 +1,13 @@
 import getRefs from './get-refs';
 const { playerContainer, playerBackdrop, playerCloseBtn } = getRefs();
+const origin = location.origin;
 
 export default function playTrailer(trailer) {
   const playerWidth = Math.round(window.innerWidth * 0.65);
   const playerHeight = Math.round(playerWidth / 1.77777);
 
   const iframe = `<iframe class="player" id="player" type="text/html" width="${playerWidth}" height="${playerHeight}"
-                            src="https://www.youtube.com/embed/${trailer}?enablejsapi=1&https://aleksandor2138.github.io"
+                            src="https://www.youtube.com/embed/${trailer}?enablejsapi=1&origin=${origin}"
                         frameborder="0" allowfullscreen></iframe>`;
 
   playerContainer.insertAdjacentHTML(
