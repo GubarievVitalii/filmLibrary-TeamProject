@@ -1,12 +1,12 @@
 import getRefs from './get-refs';
 import { moviesApi, customPagination } from './gallery';
-import { clearFilterOnSearch } from './filter';
+import { clearFilter } from './filter';
 
 const refs = getRefs();
 
 export default function onSearch(e) {
   e.preventDefault();
-  clearFilterOnSearch();
+  clearFilter();
 
   moviesApi.query = refs.searchInput.value;
   moviesApi.currentFetch = moviesApi.fetchMovieQuery;
