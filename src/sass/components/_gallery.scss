@@ -32,10 +32,10 @@
       cursor: pointer;
     }
     body.night & {
-      border: 1px solid #ff6b0177;
+      border: 1px solid var(--primary-color-night);
       &:hover,
       &:focus {
-        box-shadow: 0px 0px 4px 4px #ff6b0142;
+        box-shadow: 0px 0px 4px 4px var(--primary-color-night);
       }
     }
   }
@@ -46,7 +46,7 @@
 
   &__img {
     display: block;
-    width: 280px;
+    width: 278px;
     height: 402px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -63,7 +63,7 @@
     margin-left: 5px;
 
     body.night & {
-      color: #fff;
+      color: var(--primary-text-color-night);
     }
   }
 
@@ -73,6 +73,9 @@
     @include font(500, 12px, 16px, 0.02em);
     font-style: normal;
     margin-left: 5px;
+    body.night & {
+        color: var(--second-color-night);
+      }
   }
 
   &-rating {
@@ -99,7 +102,7 @@
     }
 
     &__img {
-      width: 336px;
+      width: 334px;
       height: 455px;
       margin-bottom: 8px;
     }
@@ -119,7 +122,7 @@
     }
 
     &__img {
-      width: 394px;
+      width: 392px;
       height: 574px;
       margin-bottom: 12px;
     }

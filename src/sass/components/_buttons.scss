@@ -16,6 +16,11 @@
   @include font(500, 12px, 16px, 0.03em);
   color: var(--white-text-color);
   cursor: pointer;
+  
+  body.night & {
+      color: var(--primary-text-color-night);
+      border: 1px solid var(--primary-text-color-night)
+    }
 
   &:not(:last-child) {
     margin-right: 20px;
@@ -23,14 +28,21 @@
 
   &:hover,
   &:focus {
+    body.night & {
+        background-color: var(--primary-color-night);
+        border: 1px solid var(--primary-color-night);
+      }
     background-color: var(--accent-color);
-    border: none;
+    border: 1px solid var(--accent-color);
     outline: none;
   }
 
   &.selected {
     background-color: var(--accent-color);
     border: none;
+    body.night & {
+        background-color: var(--primary-color-night);
+      }
   }
 
   &.swich-on {

@@ -3,13 +3,11 @@ body.night {
     box-shadow: none;
   }
   & .filter__clear {
-    color: #f9f9f9;
-    fill: #f9f9f9;
+    fill: var(--primary-text-color-night);    
   }
   & .filter__clear:hover,
   & .filter__clear:focus {
-    color: #ff6b01;
-    fill: #ff6b01;
+    fill: var(--primary-color-night);
   }
 }
 
@@ -81,12 +79,24 @@ body.night {
 
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+    body.night & {
+      color: var(--primary-text-color-night);
+      background-color: #36393b;
+      border: 1px solid var(--primary-color-night);
+    }
 
   &:hover {
     color: #f9f9f9;
     background-color: #ff6b01;
+    body.night & {
+        background-color: var(--primary-color-night);
+      }
     &::before {
       border-color: #f9f9f9;
+      body.night & {
+          border-color: var(--primary-text-color-night);
+      }
     }
   }
 
@@ -105,6 +115,10 @@ body.night {
 
     transform: rotate(-45deg);
     transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  body.night & {
+    border-left: 2px solid var(--primary-text-color-night);
+    border-bottom: 2px solid var(--primary-text-color-night);
+    }
   }
 }
 
@@ -117,11 +131,15 @@ body.night {
 
   max-height: 220px;
 
-  background: #f9f9f9;
+  background-color: #f9f9f9;
 
   border-radius: 4px;
 
   overflow-y: auto;
+  body.night & {
+      background-color: #36393b;
+      border: 1px solid var(--primary-color-night);
+    }
   &::-webkit-scrollbar {
     width: 5px;
   }
@@ -141,7 +159,9 @@ body.night {
 
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
+  body.night & {
+      color: var(--primary-text-color-night);
+    }
   &:not(:last-child) {
     margin-bottom: 2px;
   }
@@ -150,6 +170,9 @@ body.night {
   &:focus {
     color: #f9f9f9;
     background-color: rgba(204, 204, 204, 0.856);
+    body.night & {
+        background-color: var(--second-text-color);
+      }
   }
 
   &--highlight {
@@ -158,6 +181,10 @@ body.night {
 
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
       background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+      body.night & {
+          background-color: var(--primary-color-night);
+        }
 
     &:hover,
     &:focus {
