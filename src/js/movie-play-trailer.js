@@ -3,9 +3,6 @@ const { playerContainer, playerBackdrop, playerCloseBtn } = getRefs();
 const origin = location.origin;
 
 export default function playTrailer(trailer) {
-  // const playerWidth = Math.round(window.innerWidth * 0.65);
-  // const playerHeight = Math.round(playerWidth / 1.77777);
-
   const iframe = `<iframe class="responsive-player" id="player" type="text/html"
                             src="https://www.youtube.com/embed/${trailer}?origin=${origin}"
                         frameborder="0" allowfullscreen></iframe>`;
@@ -24,7 +21,6 @@ export default function playTrailer(trailer) {
   function onPlayerBackdropClick(e) {
     if (e.target === playerBackdrop) {
       playerBackdrop.classList.add('is-hidden');
-      // playerContainer.innerHTML = '';
       player.remove();
       spinner.remove();
       playerBackdrop.removeEventListener('click', onPlayerBackdropClick);
@@ -35,7 +31,6 @@ export default function playTrailer(trailer) {
   playerCloseBtn.addEventListener('click', onClosePlayerBtnClick);
   function onClosePlayerBtnClick() {
     playerBackdrop.classList.add('is-hidden');
-    // playerContainer.innerHTML = '';
     player.remove();
     spinner.remove();
     playerCloseBtn.removeEventListener('click', onClosePlayerBtnClick);
