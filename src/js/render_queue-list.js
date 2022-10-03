@@ -1,4 +1,4 @@
-import { createMarkupElement } from './renderMarkup';
+import { createMarkupElementGallery } from './gallery/renderMarkup';
 import { spinnerOn } from './loader';
 import getRefs from './get-refs';
 import Notiflix from 'notiflix';
@@ -25,7 +25,7 @@ export default function renderQueue() {
       delete queueItem.genres;
       queueItem.genre_str = genres;
 
-      queueMarkup += createMarkupElement(queueItem);
+      queueMarkup += createMarkupElementGallery(queueItem);
     });
   } catch (e) {
     Notiflix.Notify.warning('There is no queue list!');

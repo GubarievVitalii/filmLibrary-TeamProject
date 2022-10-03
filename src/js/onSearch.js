@@ -8,7 +8,10 @@ export default function onSearch(e) {
   e.preventDefault();
   clearFilter();
 
-  moviesApi.query = refs.searchInput.value;
-  moviesApi.currentFetch = moviesApi.fetchMovieQuery;
-  customPagination.moveToPage(moviesApi.currentPage);
+  if (refs.searchInput.value) {
+    moviesApi.query = refs.searchInput.value;
+    moviesApi.currentFetch = moviesApi.fetchMovieQuery;
+    customPagination.moveToPage(1); 
+  }
 }
+

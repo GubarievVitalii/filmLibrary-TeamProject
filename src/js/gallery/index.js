@@ -17,17 +17,18 @@ function renderMovies({ results, total_results, total_pages, page }){
 
   if (results.length === 0) {
     Notiflix.Notify.warning(
-      '❌ Sorry, there are no images matching your search query. Please try again.',
+      '❌ Sorry, there are no movies matching your search query. Please try again.',
       {
         timeout: 3000,
       }
     );
+    customPagination.setTotalPages(1);
     return
   }
 
   if (results.length > 0 && page === 1) {
     Notiflix.Notify.success (
-      ` We found ${total_results} images.`, {
+      ` We found ${total_results} movies.`, {
         timeout: 3000,}
     )
   }

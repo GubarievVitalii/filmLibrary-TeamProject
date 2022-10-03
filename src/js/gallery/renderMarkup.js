@@ -3,7 +3,14 @@ import imageDefaults from '../../images/default.jpg'
 
 export function createMarkupElementGallery({id, title, poster_path, genre_str = [], release_date = "    ", vote_average}) {
   
-  if (genre_str.length > 3 ) genre_str = [...genre_str.slice(0, 3), "..."] 
+  if ( genre_str.length > 3 ) {
+    genre_str = [[...genre_str.slice(0, 3)].join(", ") ,"..."]
+  }
+  else {
+    genre_str = [genre_str.join(", ")]
+  }
+
+  const stringGenres = genre_str.join(" ");
 
   return `<li class="gallery__item" data-movie-id = ${id}>
               <a data-modal-open href="" class="gallery__link link skeleton" data-movie-id = ${id}>
@@ -17,7 +24,7 @@ export function createMarkupElementGallery({id, title, poster_path, genre_str = 
                   <div class="film first">
                     <p class="films__name skeleton skeleton-text">${title}</p>
                     <p class="films__genre skeleton skeleton-text">
-                      ${genre_str.join(", ")} &#124; ${release_date.slice(0,4)}
+                      ${stringGenres} &#124; ${release_date.slice(0,4)}
                     </p>
                   </div>
                 </div>

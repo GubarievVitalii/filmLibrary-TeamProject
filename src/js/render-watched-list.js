@@ -1,4 +1,4 @@
-import { createMarkupElement } from './renderMarkup';
+import { createMarkupElementGallery } from './gallery/renderMarkup';
 import { spinnerOn } from './loader';
 import getRefs from './get-refs';
 import Notiflix from 'notiflix';
@@ -25,7 +25,7 @@ export default function renderGallery() {
       delete watchedItem.genres;
       watchedItem.genre_str = genres;
 
-      watchedMarkup += createMarkupElement(watchedItem);
+      watchedMarkup += createMarkupElementGallery(watchedItem);
     });
   } catch (e) {
     Notiflix.Notify.warning('There is no watched list!');
