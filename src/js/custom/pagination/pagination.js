@@ -1,4 +1,3 @@
-
 class Pagination {
     #currentPage
     #totalPages
@@ -81,32 +80,6 @@ class Pagination {
     }
 
 }
-
-// function createPageNumbers (countPoint, offset = 0) {
-
-//     // <button class="${ el ===1 ? "current" : "" }" type="button" data-index = ${el} >
-//     return Array.from({ length: countPoint }, (v, k) => k + ( 1+ offset))
-//             .map(el => `<li>
-//                         <button class="" type="button" data-index = ${el} >
-//                           ${el}
-//                         </button>
-//                       </li>`).join("")
-//     }
-
-// function createMarkUp(parent) {
-//     console.log(parent);
-//     const markup = createPageNumbers(3, 1); 
-//     parent.insertAdjacentHTML('afterbegin',  
-//     `<ul class="customPagination">
-//       <li> <button type="button" data-action="previosPage" > <  </button> </li>
-//       <li> <button class="" type="button" data-index = ${1} > ${1} </button>
-//       <li> <button class ="pagination--is-hidden"type="button" data-action="previosInterval"> ... </button> </li>
-//       <li> <ul class="currentPages"> ${markup} </ul> </li>
-//       <li> <button type="button" data-action="nextInterval"> ... </button> </li>
-//       <li> <button class="" type="button" data-index = ${5} > ${5} </button>
-//       <li> <button type="button" data-action="nextPage">  > </button> </li>
-//      </ul>`);
-// }
 
 function renderPagination(parent, page, totalPage, countPoint) {
     
