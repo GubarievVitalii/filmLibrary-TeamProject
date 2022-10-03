@@ -94,4 +94,21 @@ export default function renderMovieDetails(movieDetails) {
       </div>
 `;
   movieModalContent.insertAdjacentHTML('beforeend', movieDetailsMarkup);
+
+  const addToWatch = document.querySelector('.add-watch-js');
+  const addToQueue = document.querySelector('add-queue-js');
+  const authorized = document.querySelector('.auth');
+  console.log(authorized.textContent);
+  console.log(addToWatch);
+  if (authorized.textContent === 'LOG IN') {
+    addToWatch.disabled = true;
+    addToWatch.style.pointerEvents = 'none';
+    addToWatch.style.color = '#d6d6d6';
+    addToWatch.style.borderColor = '#e0e0e0';
+
+    addToQueue.disabled = true;
+    addToQueue.style.pointerEvents = 'none';
+    addToQueue.style.color = '#d6d6d6';
+    addToQueue.style.borderColor = '#e0e0e0';
+  }
 }
