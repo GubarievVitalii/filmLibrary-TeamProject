@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, AuthErrorCodes } from "firebase/auth";
 import Notiflix from "notiflix";
 
+
 Notiflix.Notify.init({
     width: '250px',
     position: 'center-top',
@@ -88,8 +89,20 @@ const authGoogle = async () => {
     }
     
   }
-
-export default onAuthStateChanged(auth,  (user) => {
+export default function checkAuth(buttons) {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+   
+      buttons.forEach(element => {
+        return element.classList.remove('auth-hidden')
+      });
+    }
+    else {
+  
+      buttons.forEach(element => {
+       return element.classList.add('auth-hidden')})}})}
+   
+onAuthStateChanged(auth,  (user) => {
   
   if (user) {
       // User is signed in, see docs for a list of available properties
