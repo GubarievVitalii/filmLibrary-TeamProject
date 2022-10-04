@@ -132,8 +132,8 @@ class MoviesApi {
       params: {
         api_key: API_KEY,
         language: "en",
-        query: this.#searchParams,
         page: this.#currentPage,
+        query: this.#searchParams,
       },
     });
     this.onShow(handlerGenres(response.data, MoviesApi.allGenres, 500));
