@@ -21,7 +21,7 @@ export default function renderWatched(page, countOnePage = 20) {
     galleryList.innerHTML = '';
     let genres;
 
-    watchedData = JSON.parse(watchedList);
+    const watchedData = JSON.parse(watchedList);
     
     watchedData.slice((page-1) * countOnePage, (page)*countOnePage).map(watchedItem => {
       genres = watchedItem.genreNames;

@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, AuthErrorCodes } from "firebase/auth";
+import { getAuth, sendPasswordResetEmail, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, AuthErrorCodes } from "firebase/auth";
 import Notiflix from "notiflix";
 
 
@@ -214,4 +214,29 @@ function revealUserUI () {
   userLibrary.classList.remove('auth-hidden')
 }
 
+const authResetBtn = document.querySelector('.auth-reset')
+authResetBtn.addEventListener('click', resetPassword)
+function resetPassword(e) {
+  const email = emailInput.value
+  e.preventDefault()
+  if (email !== '' && email.includes('@')) {
+    sendPasswordResetEmail(auth, email).then(() => {
+      // Password reset email sent!
+      // ..
+      Notiflix.Notify.info('Please, check you email!')
+      emailInput.classList.remove('error')
+    })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        Notiflix.Notify.warning('Email does not exist!')
+      });
+  }
+    else {
+    emailInput.classList.add('error')
+    Notiflix.Notify.warning('Please enter your email!')
+    return
+    }
+  
+}
 

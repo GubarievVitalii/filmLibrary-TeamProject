@@ -21,7 +21,7 @@ export default function renderQueue(page, countOnePage = 20) {
     galleryList.innerHTML = '';
     let genres;
 
-    queueData = JSON.parse(queueList);
+    const queueData = JSON.parse(queueList);
 
     queueData.slice((page-1)*countOnePage, (page)*countOnePage).map(queueItem => {
         genres = queueItem.genreNames;
