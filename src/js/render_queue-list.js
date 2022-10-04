@@ -41,10 +41,6 @@ export default function renderQueue(page, countOnePage = 20) {
     return;
   }
 
-  //   if (!queueMarkup) {
-  //     Notiflix.Notify.warning('There is no queue list!');
-  //     return;
-  //   }
   galleryList.insertAdjacentHTML('beforeend', queueMarkup);
   spinnerOn();
 }

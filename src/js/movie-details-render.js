@@ -1,5 +1,5 @@
 import getRefs from './get-refs';
-const { movieModalContent } = getRefs();
+const { movieModalContent, authorized } = getRefs();
 import posterDefault from '../images/movie-defalt-poster.jpg';
 const pathImage = 'https://image.tmdb.org/t/p/';
 
@@ -79,14 +79,14 @@ export default function renderMovieDetails(movieDetails) {
             ${params.overview}
           </p>
           <div class="movie-modal-buttons">
-            <button class="button-modal add-watch-js" type="button" id="first-btn">
+            <button class="button-modal auth-required add-watch-js" type="button" id="first-btn">
               Add to watch
             </button>
-            <button class="button-modal vissualy-hidden remove-watch-js" type="button" id="first-btn">
+            <button class="button-modal auth-required  vissualy-hidden remove-watch-js" type="button" id="first-btn">
               Remove from watch
             </button>
-            <button class="button-modal add-queue-js" type="button">Add to queue</button>
-            <button class="button-modal vissualy-hidden remove-queue-js" type="button">Remove from queue</button>
+            <button class="button-modal auth-required  add-queue-js" type="button">Add to queue</button>
+            <button class="button-modal auth-required  vissualy-hidden remove-queue-js" type="button">Remove from queue</button>
             <button class="button-modal play-trailer" type="button">Watch trailer</button>
           </div>
         </div>
@@ -94,4 +94,21 @@ export default function renderMovieDetails(movieDetails) {
       </div>
 `;
   movieModalContent.insertAdjacentHTML('beforeend', movieDetailsMarkup);
+
+  const addToWatch = document.querySelector('.add-watch-js');
+  const addToQueue = document.querySelector('.add-queue-js');
+
+  if (authorized.textContent === 'LOG IN') {
+    addToWatch.disabled = true;
+    // addToWatch.classList.add('disabled');
+    addToWatch.style.pointerEvents = 'none';
+    addToWatch.style.color = '#bbbbbb';
+    addToWatch.style.borderColor = '#bbbbbb';
+
+    addToQueue.disabled = true;
+    // addToWatch.classList.add('disabled');
+    addToQueue.style.pointerEvents = 'none';
+    addToQueue.style.color = '#bbbbbb';
+    addToQueue.style.borderColor = '#bbbbbb';
+  }
 }

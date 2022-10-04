@@ -15,6 +15,11 @@ export default function addToWatchOrQueue(movieDetails) {
     queuedBtn,
   } = getRefs();
 
+  const options = {
+    clickToClose: true,
+    timeout: 1500,
+  };
+
   const genreNames = [];
   for (const genre of genres) {
     genreNames.push(genre.name);
@@ -98,7 +103,7 @@ export default function addToWatchOrQueue(movieDetails) {
     addWatchBtn.classList.add('vissualy-hidden');
     removeWatchBtn.classList.remove('vissualy-hidden');
 
-    Notify.success(`The movie "${title}" has been added to watched`);
+    Notify.success(`The movie "${title}" has been added to watched`, options);
 
     // FT-14 (Рендер бібліотеки після додавання фільму в переглянуті)
     try {
@@ -129,7 +134,7 @@ export default function addToWatchOrQueue(movieDetails) {
     addQueueBtn.classList.add('vissualy-hidden');
     removeQueueBtn.classList.remove('vissualy-hidden');
 
-    Notify.success(`The movie "${title}" has been added to the queue`);
+    Notify.success(`The movie "${title}" has been added to the queue`, options);
 
     // FT-15 (Рендер бібліотеки після додавання фільму в чергу)
     try {
@@ -155,7 +160,7 @@ export default function addToWatchOrQueue(movieDetails) {
     addWatchBtn.classList.remove('vissualy-hidden');
     removeWatchBtn.classList.add('vissualy-hidden');
 
-    Notify.info(`The film "${title}" has been removed from watched`);
+    Notify.info(`The film "${title}" has been removed from watched`, options);
 
     renderWatched(); // FT-14 (Рендер бібліотеки після видалення фільму з переглянутих)
   }
@@ -174,7 +179,7 @@ export default function addToWatchOrQueue(movieDetails) {
     addQueueBtn.classList.remove('vissualy-hidden');
     removeQueueBtn.classList.add('vissualy-hidden');
 
-    Notify.info(`The film "${title}" been removed from the queue`);
+    Notify.info(`The film "${title}" been removed from the queue`, options);
 
     renderQueue(); // FT-15 (Рендер бібліотеки після видалення фільму з черги)
   }
