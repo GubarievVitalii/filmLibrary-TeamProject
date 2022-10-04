@@ -1,4 +1,6 @@
-
+:root {
+    --player-width: calc(100% * 0.65); 
+}
 
 .player-backdrop {
     position: fixed;
@@ -22,16 +24,26 @@
 
 .player {
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
+
+    width: calc(100% * 0.65);
+    padding-bottom: 37%;
+}
+
+.responsive-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .btn-player-close {
     position: absolute;
-    top: calc(50% - ((100vw * 0.18) + 60px));
-    left: 50%;
-    transform: translate((calc((100vw * 0.32) + 10px)));
+    top: -40px;
+    right: -25px;
 
     width: 30px;
     height: 30px;
