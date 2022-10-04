@@ -8,7 +8,7 @@ import { genresNames } from "./genres-names";
 
 axios.defaults.baseURL = API_URL;
 
-function handlerGenres ({results, ...other}, genres) {
+function handlerGenres ({results, total_pages, ...other}, genres, maxLength = 1000) {
   if (genres === null){
     genres = genresNames;
   }
@@ -16,7 +16,10 @@ function handlerGenres ({results, ...other}, genres) {
   for (let object of results) {
     object.genre_str = object.genre_ids.map(elem => genres.find(genre =>  genre.id === elem).name);
   }
-  return {...other, results}
+
+  total_pages = Math.min(total_pages, maxLength);
+
+  return {...other, total_pages, results, }
 }
 
 function getQueryGendres(queryGendres) {
@@ -122,7 +125,7 @@ class MoviesApi {
       },
     });
 
-    this.onShow(handlerGenres(response.data, MoviesApi.allGenres));
+    this.onShow(handlerGenres(response.data, MoviesApi.allGenres, 500));
   }
 
   async fetchMovieQuery() {
@@ -134,7 +137,7 @@ class MoviesApi {
         page: this.#currentPage,
       },
     });
-    this.onShow(handlerGenres(response.data, MoviesApi.allGenres));
+    this.onShow(handlerGenres(response.data, MoviesApi.allGenres, 500));
   }
 
   get query() {
