@@ -151,9 +151,18 @@
     transform: translate(-50%, -50%);
     opacity: 0;
     transition: 500ms opacity linear;
+    width: 80px;
 
     @include mobile {
-        width: 125px;
+        width: 140px;
+    }
+
+    @include tablet {
+        width: 140px;
+    }
+
+    @include desktop {
+        width: 140px;
     }
 }
 
@@ -165,6 +174,15 @@
     @include mobile {
         width: 60px;
     }
+
+    @include tablet {
+        width: 25px;
+    }
+
+    @include desktop {
+        width: 25px;
+    }
+
 }
 
 .team-overlay {

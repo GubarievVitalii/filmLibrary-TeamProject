@@ -19,11 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
 // ------------ OPEN MOVIE MODAL --------------------
 
 refs.imagesContainer.addEventListener('click', onMovieCardClick);
-function onMovieCardClick(e) {
+async function onMovieCardClick(e) {
   if (e.target.classList.contains('gallery__img')) {
     e.preventDefault();
     const movieId = e.target.dataset.movieId;
-    openMovieDetails(moviesApi.fetchMovieByID(movieId));
+    await openMovieDetails(moviesApi.fetchMovieByID(movieId));
+    const authButtons = document.querySelectorAll('.auth-required')
+   
+    checkAuth(authButtons)
   }
 }
 // ---------- OPEN MOVIE MODAL END -------------------

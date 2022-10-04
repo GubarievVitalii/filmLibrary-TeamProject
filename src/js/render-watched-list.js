@@ -40,10 +40,6 @@ export default function renderWatched(page, countOnePage = 20) {
     return;
   }
 
-  // if (!watchedMarkup) {
-  //   Notiflix.Notify.warning('There is no watched list!');
-  //   return;
-  // }
   galleryList.insertAdjacentHTML('beforeend', watchedMarkup);
   spinnerOn();
 }
