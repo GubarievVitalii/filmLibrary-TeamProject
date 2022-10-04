@@ -8,14 +8,8 @@ import { customPagination, renderLibrary } from './library';
 export default function addToWatchOrQueue(movieDetails) {
   const { id, title, poster_path, genres, release_date, vote_average } =
     movieDetails;
-  const {
-    addWatchBtn,
-    removeWatchBtn,
-    addQueueBtn,
-    removeQueueBtn,
-    watchedBtn,
-    queuedBtn,
-  } = getRefs();
+  const { addWatchBtn, removeWatchBtn, addQueueBtn, removeQueueBtn } =
+    getRefs();
 
   const options = {
     clickToClose: true,
@@ -167,7 +161,9 @@ export default function addToWatchOrQueue(movieDetails) {
     Notify.info(`The film "${title}" has been removed from watched`, options);
 
     // renderWatched(); // FT-14 (Рендер бібліотеки після видалення фільму з переглянутих)
-    customPagination.setTotalPages(Math.ceil(watchedData.length / renderLibrary.itemOnPage));
+    customPagination.setTotalPages(
+      Math.ceil(watched.length / renderLibrary.itemOnPage)
+    );
     customPagination.moveToPage(customPagination.currentPage);
   }
   // Видалення об'єкта фільму ключа Queue з LocalStorage за індексом
@@ -188,7 +184,9 @@ export default function addToWatchOrQueue(movieDetails) {
     Notify.info(`The film "${title}" been removed from the queue`, options);
 
     // renderQueue(); // FT-15 (Рендер бібліотеки після видалення фільму з черги)
-    customPagination.setTotalPages(Math.ceil(queue.length / renderLibrary.itemOnPage));
+    customPagination.setTotalPages(
+      Math.ceil(queue.length / renderLibrary.itemOnPage)
+    );
     customPagination.moveToPage(customPagination.currentPage);
   }
 
