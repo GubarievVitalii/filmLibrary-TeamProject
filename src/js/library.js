@@ -6,9 +6,11 @@ refs = getRefs();
 
 const moviesApi = new MoviesApi();
 
-function currentPageLibrary(currentPage, renderLibrary) {
-    const itemOnPage = 6;
-    renderLibrary(currentPage, itemOnPage);
+const renderLibrary = { functionRender : "" , itemOnPage : 6} ;
+
+function currentPageLibrary(currentPage, functionRender) {
+    const {itemOnPage} = renderLibrary;
+    functionRender(currentPage, itemOnPage);
 }
 
 const customPagination = new CustomPagination(refs.paginationList,{
@@ -16,8 +18,9 @@ const customPagination = new CustomPagination(refs.paginationList,{
     // totalPages : 0,
     onShow: (currentPage) => {
         window.scrollTo({ top: 240, behavior: 'smooth' });
-        if (typeof renderLibrary === 'function') 
-          currentPageLibrary(currentPage,renderLibrary);
+        const {functionRender} = renderLibrary;
+        if (typeof functionRender === 'function') 
+          currentPageLibrary(currentPage, functionRender);
 
     }
     }
