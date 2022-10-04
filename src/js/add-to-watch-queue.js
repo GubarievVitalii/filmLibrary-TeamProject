@@ -1,7 +1,9 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import getRefs from './get-refs';
-import renderWatched from './render-watched-list';
-import renderQueue from './render_queue-list';
+// import renderWatched from './render-watched-list';
+// import renderQueue from './render_queue-list';
+
+import { customPagination, renderLibrary } from './library';
 
 export default function addToWatchOrQueue(movieDetails) {
   const { id, title, poster_path, genres, release_date, vote_average } =
@@ -107,11 +109,12 @@ export default function addToWatchOrQueue(movieDetails) {
 
     // FT-14 (Рендер бібліотеки після додавання фільму в переглянуті)
     try {
-      if (queuedBtn.classList.contains('selected')) {
-        renderQueue();
-      } else {
-        renderWatched();
-      }
+      // if (queuedBtn.classList.contains('selected')) {
+      //   renderQueue();
+      // } else {
+      //   renderWatched();
+      // }
+      customPagination.moveToPage(customPagination.currentPage);
     } catch (e) {}
   }
   // Додавання поточного фільму до LocalStorage
@@ -138,11 +141,12 @@ export default function addToWatchOrQueue(movieDetails) {
 
     // FT-15 (Рендер бібліотеки після додавання фільму в чергу)
     try {
-      if (watchedBtn.classList.contains('selected')) {
-        renderWatched();
-      } else {
-        renderQueue();
-      }
+      // if (watchedBtn.classList.contains('selected')) {
+      //   renderWatched();
+      // } else {
+      //   renderQueue();
+      // }
+      customPagination.moveToPage(customPagination.currentPage);
     } catch (e) {}
   }
   // Видалення об'єкта фільму ключа Watched з LocalStorage за індексом
@@ -162,7 +166,9 @@ export default function addToWatchOrQueue(movieDetails) {
 
     Notify.info(`The film "${title}" has been removed from watched`, options);
 
-    renderWatched(); // FT-14 (Рендер бібліотеки після видалення фільму з переглянутих)
+    // renderWatched(); // FT-14 (Рендер бібліотеки після видалення фільму з переглянутих)
+    customPagination.setTotalPages(Math.ceil(watchedData.length / renderLibrary.itemOnPage));
+    customPagination.moveToPage(customPagination.currentPage);
   }
   // Видалення об'єкта фільму ключа Queue з LocalStorage за індексом
   function removeFilmFromQueue() {
@@ -181,7 +187,9 @@ export default function addToWatchOrQueue(movieDetails) {
 
     Notify.info(`The film "${title}" been removed from the queue`, options);
 
-    renderQueue(); // FT-15 (Рендер бібліотеки після видалення фільму з черги)
+    // renderQueue(); // FT-15 (Рендер бібліотеки після видалення фільму з черги)
+    customPagination.setTotalPages(Math.ceil(queue.length / renderLibrary.itemOnPage));
+    customPagination.moveToPage(customPagination.currentPage);
   }
 
   addWatchBtn.addEventListener('click', addFilmToWatched);

@@ -37,6 +37,7 @@ class Pagination {
   
   moveToPage(page){
     //if (this.currentPage != page) {
+      if (page > this.#totalPages) page = this.#totalPages;
       this.currentPage = page;
       this.render(this.parent, this.currentPage, this.#totalPages, this.countPoint, this.useInterval);
       this.onShow(this.currentPage)
