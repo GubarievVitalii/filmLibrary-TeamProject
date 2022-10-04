@@ -3,9 +3,16 @@ import axios from "axios";
 const API_URL = 'https://api.themoviedb.org/3';
 const API_KEY = 'bb9be7856d820d280efdc8865f07d5b2';
 
+import './genres-names'
+import { genresNames } from "./genres-names";
+
 axios.defaults.baseURL = API_URL;
 
 function handlerGenres ({results, ...other}, genres) {
+  if (genres === null){
+    genres = genresNames;
+  }
+
   for (let object of results) {
     object.genre_str = object.genre_ids.map(elem => genres.find(genre =>  genre.id === elem).name);
   }
