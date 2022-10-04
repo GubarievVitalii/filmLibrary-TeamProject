@@ -2,7 +2,7 @@ import getRefs from './get-refs';
 import MoviesApi from "./moviesApi";
 import { Pagination as CustomPagination } from './custom/pagination/pagination'
 
-refs = getRefs();
+const refs = getRefs();
 
 const moviesApi = new MoviesApi();
 
