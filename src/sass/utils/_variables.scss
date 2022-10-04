@@ -1,24 +1,19 @@
-
-
 //  основной цвет текста черный #0000
 //  вторичный цвет текста серый #545454
-//  белый #FFFFFF 
+//  белый #FFFFFF
 //  акцент #FF6B01
 
-
-
-
-
 :root {
-    --primary-text-color: #000;
-    --second-text-color: #545454;
-    --white-text-color: #ffffff;
-    --accent-color: #FF6B01;
-    --accent-color-transparent: #ff6b0185;
-    --accent-color-transparenty: #ff6b01af;
+  --primary-text-color: #000;
+  --second-text-color: #545454;
+  --white-text-color: #ffffff;
+  --light-text-color: #f9f9f9;
+  --accent-color: #ff6b01;
+  --accent-color-transparent: #ff6b0185;
+  --accent-color-transparenty: #ff6b01af;
 
-    --primary-text-color-night: #8C8C8C;
-    --second-color-night: #ff6b01cc;
-    --primary-color-night: #ff6b0177;
-    --background-color-night: #272e34;
-  }
+  --primary-text-color-night: #8c8c8c;
+  --second-color-night: #ff6b01cc;
+  --primary-color-night: #ff6b0177;
+  --background-color-night: #272e34;
+}
