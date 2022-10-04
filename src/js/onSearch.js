@@ -16,4 +16,3 @@ function onSearch(e) {
 }
 
 refs.searchForm.addEventListener('submit', onSearch);
-
