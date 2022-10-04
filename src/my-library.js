@@ -12,18 +12,18 @@ topUp();
 
 const { watchedBtn, queuedBtn, galleryList } = getRefs();
 
-renderLibrary=renderWatched;
+renderLibrary.functionRender=renderWatched;
 customPagination.moveToPage(1);
 
 watchedBtn.addEventListener('click', onWatchedClick);
 function onWatchedClick() {
-  renderLibrary=renderWatched;
+  renderLibrary.functionRender=renderWatched;
   customPagination.moveToPage(1);
 }
 
 queuedBtn.addEventListener('click', onQueueClick);
 function onQueueClick() {  
-  renderLibrary=renderQueue;
+  renderLibrary.functionRender=renderQueue;
   customPagination.moveToPage(1);
 }
 
