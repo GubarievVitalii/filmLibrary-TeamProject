@@ -16,7 +16,9 @@ const customPagination = new CustomPagination(refs.paginationList,{
     // totalPages : 0,
     onShow: (currentPage) => {
         window.scrollTo({ top: 240, behavior: 'smooth' });
-        currentPageLibrary(currentPage,renderLibrary);
+        if (typeof renderLibrary === 'function') 
+          currentPageLibrary(currentPage,renderLibrary);
+
     }
     }
   );

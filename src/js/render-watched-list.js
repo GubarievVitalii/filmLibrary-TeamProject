@@ -1,11 +1,10 @@
 import { createMarkupElementGallery } from './renderMarkup';
-
 import { spinnerOn } from './loader';
 import getRefs from './get-refs';
 import Notiflix from 'notiflix';
+import { customPagination } from './library'
 
 const { galleryList, watchedBtn, queuedBtn, paginationList } = getRefs();
-import { customPagination } from './library'
 
 export default function renderWatched(page, countOnePage = 20) {
   try {
@@ -36,7 +35,8 @@ export default function renderWatched(page, countOnePage = 20) {
     !watchedData.length && paginationList.classList.add("is-hidden");
   } catch (e) {
     Notiflix.Notify.warning('There is no watched list!');
-    paginationList.classList.add("is-hidden");    
+    paginationList.classList.add("is-hidden");
+    spinnerOn();
     return;
   }
 

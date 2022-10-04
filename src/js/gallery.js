@@ -32,19 +32,20 @@ function renderMovies({ results, total_results, total_pages, page }){
         timeout: 3000,}
     )
   }
-    
+  
   results.length && refs.imagesContainer.insertAdjacentHTML(
       'afterbegin',
       results.map(createMarkupElementGallery).join(''));
-
+  
   refs.paginationList.classList.remove("is-hidden");
   customPagination.setTotalPages(total_pages);
   
   // Skeleton
   spinnerOn();
 }
+
 const moviesApi = new MoviesApi(renderMovies);
-  
+
 const customPagination = new CustomPagination(refs.paginationList,{
     countPoint : 5,
     onShow: (currentPage) => {

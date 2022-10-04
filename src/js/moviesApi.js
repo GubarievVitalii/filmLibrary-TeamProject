@@ -115,7 +115,6 @@ class MoviesApi {
   }
 
   async fetchMovieByGenres() {
-    console.log(this.#searchParams);
     const response = await axios.get('/discover/movie', {
       params: {
         api_key: API_KEY,
