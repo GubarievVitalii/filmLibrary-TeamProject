@@ -1,15 +1,11 @@
 import getRefs from './js/get-refs';
 import openMovieDetails from './js/movie-details-open';
 import footerModal from './js/footer-modal-open';
-import { moviesApi, customPagination } from './js/gallery/';
+import { moviesApi, customPagination } from './js/gallery';
 import './js/nightMode';
 import topUp from './js/top.js';
 import './js/filter';
-
-import { spinnerOn } from './js/loader';
-import onSearch from './js/onSearch';
-import checkAuth from './js/auth';
-// import renderPagination from './js/pagination';
+import './js/onSearch';
 
 import userAuth from './js/auth';
 
@@ -37,39 +33,4 @@ async function onMovieCardClick(e) {
 
 footerModal();
 
-// async function fetchTrendMovies() {
-//   try {
-//     const { results, total_results, page } =
-//       await moviesApi.fetchTrendWeekMovies();
-
-//     results.length &&
-//       refs.imagesContainer.insertAdjacentHTML(
-//         'afterbegin',
-//         results.map(createMarkupElement).join('')
-//       );
-
-//     // pagination
-//     // const instance = createPagination();
-//     // instance.setItemsPerPage(20);
-//     // instance.setTotalItems(total_results);
-//     // instance.movePageTo(page);
-
-//     // instance.on('afterMove', event => {
-//     //   const currentPage = event.page;
-//     //   window.scrollTo({ top: 240, behavior: 'smooth' });
-//     // });
-
-//     // results.length &&
-//     //   refs.imagesContainer.insertAdjacentHTML(
-//     //     'afterbegin',
-//     //     results.map(createMarkupElement).join('')
-//     //   );
-
-
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-
-refs.searchForm.addEventListener('submit', onSearch);
 topUp();

@@ -37,10 +37,9 @@ async function setGenre() {
         }
 
         refs.searchInput.value = '';
-        moviesApi.currentPage = 1;
         moviesApi.genres = selectedGenre;
         moviesApi.currentFetch = moviesApi.fetchMovieByGenres;
-        customPagination.moveToPage(moviesApi.currentPage);
+        customPagination.moveToPage(1);
 
         highlightSelection();
         updateFilterSelectBtn();
