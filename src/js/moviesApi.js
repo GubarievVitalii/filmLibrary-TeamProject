@@ -128,7 +128,7 @@ class MoviesApi {
   }
 
   async fetchMovieQuery() {
-    const response = await axios.get(`/search/movie/`, {
+    const response = await axios.get('/search/movie/', {
       params: {
         api_key: API_KEY,
         language: "en",
