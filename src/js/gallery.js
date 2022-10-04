@@ -1,11 +1,11 @@
-import getRefs from "../get-refs";
-import { spinnerOn } from '../loader';
+import getRefs from "./get-refs";
+import { spinnerOn } from './loader';
 import MoviesApi from "./moviesApi";
 
 import Notiflix from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.5.min.css';
 
-import { Pagination as CustomPagination } from '../custom/pagination/pagination'
+import { Pagination as CustomPagination } from './custom/pagination/pagination'
 
 import { createMarkupElementGallery } from "./renderMarkup";
 
@@ -22,7 +22,7 @@ function renderMovies({ results, total_results, total_pages, page }){
         timeout: 3000,
       }
     );
-    customPagination.setTotalPages(1);
+    refs.paginationList.classList.add("is-hidden");
     return
   }
 
@@ -37,6 +37,7 @@ function renderMovies({ results, total_results, total_pages, page }){
       'afterbegin',
       results.map(createMarkupElementGallery).join(''));
 
+  refs.paginationList.classList.remove("is-hidden");
   customPagination.setTotalPages(total_pages);
   
   // Skeleton
@@ -46,7 +47,6 @@ const moviesApi = new MoviesApi(renderMovies);
   
 const customPagination = new CustomPagination(refs.paginationList,{
     countPoint : 5,
-    maxCountPages : 10,
     onShow: (currentPage) => {
       moviesApi.currentPage = currentPage;
       window.scrollTo({ top: 240, behavior: 'smooth' });

@@ -4,7 +4,7 @@ import { clearFilter } from './filter';
 
 const refs = getRefs();
 
-export default function onSearch(e) {
+function onSearch(e) {
   e.preventDefault();
   clearFilter();
 
@@ -14,4 +14,6 @@ export default function onSearch(e) {
     customPagination.moveToPage(1); 
   }
 }
+
+refs.searchForm.addEventListener('submit', onSearch);
 

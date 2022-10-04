@@ -5,22 +5,26 @@ import renderWatched from './js/render-watched-list.js';
 import renderQueue from './js/render_queue-list.js';
 import openMovieDetails from './js/movie-details-open.js';
 import footerModal from './js/footer-modal-open';
-import { moviesApi } from './js/gallery/';
+import { moviesApi, customPagination , renderLibrary } from './js/library'
+
 import './js/auth';
 topUp();
 
 const { watchedBtn, queuedBtn, galleryList } = getRefs();
 
-renderWatched();
+renderLibrary=renderWatched;
+customPagination.moveToPage(1);
 
 watchedBtn.addEventListener('click', onWatchedClick);
 function onWatchedClick() {
-  renderWatched();
+  renderLibrary=renderWatched;
+  customPagination.moveToPage(1);
 }
 
 queuedBtn.addEventListener('click', onQueueClick);
-function onQueueClick() {
-  renderQueue();
+function onQueueClick() {  
+  renderLibrary=renderQueue;
+  customPagination.moveToPage(1);
 }
 
 galleryList.addEventListener('click', onMovieCardClick);

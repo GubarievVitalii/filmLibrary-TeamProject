@@ -1,5 +1,5 @@
 const pathImage = "https://image.tmdb.org/t/p/";
-import imageDefaults from '../../images/default.jpg'
+import imageDefaults from '../images/default.jpg'
 
 export function createMarkupElementGallery({id, title, poster_path, genre_str = [], release_date = "    ", vote_average}) {
   
