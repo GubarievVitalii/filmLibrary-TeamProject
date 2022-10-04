@@ -27,29 +27,31 @@ function getQueryGendres(queryGendres) {
     return ""
   }
 }
-
-class MoviesApi{
+class MoviesApi {
 
   static allGenres = null;
-  static async fetchAllGendresMovie() {
-      const response = await axios.get("/genre/movie/list", {
-        params: {
-          api_key: API_KEY,
-        },
-      });
-      this.allGenres = response.data.genres;
-    }
-  
+
   #searchParams;
   #currentPage;
 
-  constructor (onShow) {
-      this.#searchParams = null;
-      this.#currentPage = 1;
-      this.currentFetch = null;
-      this.onShow = onShow;      
-      
-      this.constructor.fetchAllGendresMovie();
+  constructor(onShow) {
+    this.#searchParams = null;
+    this.#currentPage = 1;
+    this.currentFetch = null;
+    this.onShow = onShow;
+
+    this.fetchAllGendresMovie().then(
+      genres => {this.constructor.allGenres = genres;}
+    );
+  }
+
+  async fetchAllGendresMovie() {
+    const response = await axios.get('/genre/movie/list', {
+      params: {
+        api_key: API_KEY,
+      },
+    });
+    return response.data.genres;
   }
 
   async fetchTrendWeekMovies() {
@@ -71,7 +73,7 @@ class MoviesApi{
         page: this.#currentPage,
       },
     });
-    this.onShow( handlerGenres(response.data, MoviesApi.allGenres) );
+    this.onShow(handlerGenres(response.data, MoviesApi.allGenres));
   }
 
   async fetchMovieByID(id, withVideo = true) {
@@ -83,8 +85,8 @@ class MoviesApi{
     });
 
     if (withVideo) {
-      const {results} =  await this.fetchMovieVideoByID(id);
-      response.data["resultVideo"] = results;
+      const { results } = await this.fetchMovieVideoByID(id);
+      response.data['resultVideo'] = results;
       return response.data;
     }
     return response.data;
@@ -131,24 +133,23 @@ class MoviesApi{
     return this.#searchParams;
   }
 
-  
   set query(newSearhQuery) {
     this.#searchParams = newSearhQuery;
     this.#currentPage = 1;
   }
 
   get genres() {
-    return
+    return;
   }
 
   /**
    * @param {any} arrayGenres
    */
-  set genres(arrayGenres){
+  set genres(arrayGenres) {
     const queryGendres = getQueryGendres(arrayGenres);
-    if (queryGendres){
-     this.query = queryGendres; 
-    } 
+    if (queryGendres) {
+      this.query = queryGendres;
+    }
   }
 
   nextPage() {
@@ -156,29 +157,28 @@ class MoviesApi{
   }
 
   previousPage() {
-    if (!(this.#currentPage - 1)){
-      return
+    if (!(this.#currentPage - 1)) {
+      return;
     }
 
     this.#currentPage -= 1;
   }
 
   get currentPage() {
-    return this.#currentPage
+    return this.#currentPage;
   }
 
   set currentPage(newPage) {
     this.#currentPage = newPage;
   }
-  
-  async getAllGenres(){    
-    // return this.constructor.allGenres;
-    const response = await axios.get("/genre/movie/list", {
-      params: {
-        api_key: API_KEY,
-      },
-    });
-    return response.data.genres;
+
+  getAllGenres() {
+    
+    if (MoviesApi.allGenres === null){
+      return this.fetchAllGendresMovie();
+    }
+
+    return MoviesApi.allGenres;
   }
 }
 
