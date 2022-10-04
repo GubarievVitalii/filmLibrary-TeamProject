@@ -174,11 +174,9 @@ class MoviesApi {
   }
 
   getAllGenres() {
-    
     if (MoviesApi.allGenres === null){
       return this.fetchAllGendresMovie();
     }
-
     return MoviesApi.allGenres;
   }
 }
