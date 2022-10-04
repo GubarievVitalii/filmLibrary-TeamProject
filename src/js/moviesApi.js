@@ -27,6 +27,7 @@ function getQueryGendres(queryGendres) {
     return ""
   }
 }
+
 class MoviesApi {
 
   static allGenres = null;
