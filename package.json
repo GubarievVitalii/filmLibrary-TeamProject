@@ -2,20 +2,20 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://Aleksandor2138.github.io/filmLibrary",
+  "homepage": "https://gubarievvitalii.github.io/gubarievvitalii",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /filmLibrary/"
+    "build": "parcel build src/*.html --public-url /gubarievvitalii/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Aleksandor2138/filmLibrary.git"
+    "url": "git+https://github.com/gubarievvitalii/gubarievvitalii.git"
   },
   "keywords": [],
-  "author": "Aleksandr Pavlenko <aleksandor2138@gmail.com>",
+  "author": "GubarievVitalii <scales00@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Aleksandor2138/filmLibrary/issues"
+    "url": "https://github.com/gubarievvitalii/gubarievvitalii/issues"
   },
   "dependencies": {
     "axios": "^0.27.2",
